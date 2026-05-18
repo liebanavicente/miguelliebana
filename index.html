@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>La Llar del Dolç — Lotes y packs regalo personalizados</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:      #F9F7F4;
+      --white:   #FFFFFF;
+      --ink:     #1A1714;
+      --mid:     #6B6560;
+      --muted:   #A8A29E;
+      --border:  #E5E1DB;
+      --accent:  #C9A96E;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color: var(--ink); line-height: 1.6; }
+    h1, h2, h3 { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 600; line-height: 1.15; }
+    a { text-decoration: none; color: inherit; transition: opacity 0.2s; }
+    img { display: block; }
+    .container { width: min(1120px, 92%); margin: 0 auto; }
+
+    /* NAV */
+    header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(249,247,244,0.96); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    nav { display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 0; position: relative; }
+    .logo { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; letter-spacing: 0.04em; color: var(--ink); }
+    .logo em { font-style: italic; color: var(--accent); }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; align-items: center; }
+    .nav-links a { color: var(--mid); transition: color 0.2s; }
+    .nav-links a:hover { color: var(--ink); }
+    .nav-cta { border: 1px solid var(--ink); padding: 0.5rem 1.25rem; color: var(--ink) !important; letter-spacing: 0.08em; transition: background 0.2s, color 0.2s !important; }
+    .nav-cta:hover { background: var(--ink); color: var(--white) !important; opacity: 1 !important; }
+    .menu-toggle { display: none; background: none; border: none; font-size: 1.4rem; cursor: pointer; color: var(--ink); }
+
+    /* HERO */
+    .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; }
+    .hero-left {
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 10rem 5% 5rem 0;
+    }
+    .hero-eyebrow { font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem; }
+    .hero-left h1 { font-size: clamp(3rem, 5vw, 4.5rem); margin-bottom: 1.5rem; color: var(--ink); }
+    .hero-left h1 em { font-style: italic; font-weight: 400; }
+    .hero-left p { font-size: 1rem; color: var(--mid); max-width: 40ch; margin-bottom: 2.5rem; line-height: 1.8; }
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-dark { display: inline-block; padding: 0.85rem 2rem; background: var(--ink); color: var(--white); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; transition: opacity 0.2s; }
+    .btn-dark:hover { opacity: 0.75; }
+    .btn-outline { display: inline-block; padding: 0.85rem 2rem; border: 1px solid var(--border); color: var(--mid); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; transition: border-color 0.2s, color 0.2s; }
+    .btn-outline:hover { border-color: var(--ink); color: var(--ink); }
+
+    .hero-right { position: relative; overflow: hidden; }
+    .hero-right img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* DIVIDER */
+    .divider-line { border: none; border-top: 1px solid var(--border); margin: 0; }
+
+    /* ABOUT STRIP */
+    .strip { padding: 2rem 0; border-bottom: 1px solid var(--border); }
+    .strip-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 2rem; }
+    .strip-item { text-align: center; flex: 1; min-width: 120px; }
+    .strip-item .num { font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: var(--ink); }
+    .strip-item .label { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-top: 2px; }
+    .strip-sep { width: 1px; height: 40px; background: var(--border); }
+
+    /* PRODUCTS */
+    .products { padding: 6rem 0; }
+    .section-head { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem; flex-wrap: wrap; gap: 1rem; }
+    .section-eyebrow { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; }
+    .section-title { font-size: clamp(1.75rem, 4vw, 2.75rem); }
+    .section-sub { font-size: 0.875rem; color: var(--mid); max-width: 36ch; line-height: 1.7; }
+
+    .products-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
+    .product-card { background: var(--bg); overflow: hidden; transition: background 0.2s; }
+    .product-card:hover { background: var(--white); }
+    .product-img { height: 280px; overflow: hidden; }
+    .product-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+    .product-card:hover .product-img img { transform: scale(1.04); }
+    .product-body { padding: 1.75rem; }
+    .product-tag { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
+    .product-body h3 { font-size: 1.35rem; margin-bottom: 0.5rem; }
+    .product-body p { font-size: 0.875rem; color: var(--mid); line-height: 1.7; margin-bottom: 1.25rem; }
+    .product-footer { display: flex; justify-content: space-between; align-items: center; padding-top: 1rem; border-top: 1px solid var(--border); }
+    .product-price { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; color: var(--ink); }
+    .product-price small { font-family: 'Inter', sans-serif; font-size: 0.7rem; color: var(--muted); margin-left: 4px; }
+    .product-link { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mid); border-bottom: 1px solid var(--border); padding-bottom: 1px; transition: color 0.2s, border-color 0.2s; }
+    .product-link:hover { color: var(--ink); border-color: var(--ink); }
+
+    /* HOW */
+    .how { padding: 6rem 0; background: var(--white); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .how-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4rem; margin-top: 4rem; }
+    .how-item {}
+    .how-num { font-family: 'Cormorant Garamond', serif; font-size: 3rem; color: var(--border); line-height: 1; margin-bottom: 1rem; }
+    .how-item h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
+    .how-item p { font-size: 0.875rem; color: var(--mid); line-height: 1.8; }
+
+    /* CONTACT */
+    .contact { padding: 6rem 0; }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
+    .contact-img { height: 480px; overflow: hidden; }
+    .contact-img img { width: 100%; height: 100%; object-fit: cover; }
+    .contact-text .section-eyebrow { margin-bottom: 0.75rem; }
+    .contact-text h2 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 1.25rem; }
+    .contact-text p { font-size: 0.9rem; color: var(--mid); line-height: 1.8; margin-bottom: 2.5rem; max-width: 40ch; }
+    .contact-links { display: flex; flex-direction: column; gap: 1.5rem; margin-bottom: 2.5rem; }
+    .contact-item { display: flex; flex-direction: column; gap: 4px; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border); }
+    .contact-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .contact-item .lbl { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); }
+    .contact-item a { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: var(--ink); transition: color 0.2s; }
+    .contact-item a:hover { color: var(--accent); }
+
+    /* FOOTER */
+    footer { background: var(--ink); color: var(--muted); padding: 2rem 0; }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--white); }
+    .footer-logo em { font-style: italic; color: var(--accent); }
+    footer p { font-size: 0.78rem; letter-spacing: 0.05em; }
+
+    /* FADE IN AL SCROLL */
+    .fade-up { opacity: 0; transform: translateY(32px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+    .fade-up.delay-1 { transition-delay: 0.1s; }
+    .fade-up.delay-2 { transition-delay: 0.2s; }
+    .fade-up.delay-3 { transition-delay: 0.3s; }
+
+    /* BOTÓN FLOTANTE */
+    .fab {
+      position: fixed; bottom: 2rem; right: 2rem; z-index: 200;
+      display: flex; align-items: center; gap: 0.6rem;
+      background: var(--ink); color: var(--white);
+      padding: 0.75rem 1.4rem; border-radius: 999px;
+      font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase;
+      box-shadow: 0 8px 24px rgba(26,23,20,0.25);
+      transition: transform 0.2s, box-shadow 0.2s, opacity 0.3s;
+      opacity: 0; pointer-events: none;
+    }
+    .fab.show { opacity: 1; pointer-events: auto; }
+    .fab:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(26,23,20,0.35); }
+    .fab-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100% { transform: scale(1); opacity:1; } 50% { transform: scale(1.5); opacity:0.6; } }
+
+    /* HERO ANIMADO */
+    .hero-left > * { opacity: 0; transform: translateY(24px); animation: heroIn 0.8s ease forwards; }
+    .hero-left .hero-eyebrow { animation-delay: 0.1s; }
+    .hero-left h1 { animation-delay: 0.25s; }
+    .hero-left p { animation-delay: 0.4s; }
+    .hero-left .hero-btns { animation-delay: 0.55s; }
+    .hero-right img { animation: heroImgIn 1.2s ease forwards; }
+    @keyframes heroIn { to { opacity: 1; transform: translateY(0); } }
+    @keyframes heroImgIn { from { opacity: 0; transform: scale(1.04); } to { opacity: 1; transform: scale(1); } }
+
+    /* MOBILE */
+    @media (max-width: 768px) {
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-left { padding: 7rem 0 3rem; }
+      .hero-right { height: 60vw; }
+      .strip-sep { display: none; }
+      .products-grid { grid-template-columns: 1fr; }
+      .how-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .contact-img { height: 260px; }
+      .nav-links { display: none; position: absolute; top: 100%; left: -4%; right: -4%; flex-direction: column; background: var(--bg); padding: 1.5rem 5%; gap: 1.25rem; border-bottom: 1px solid var(--border); }
+      .nav-links.open { display: flex; }
+      .menu-toggle { display: block; }
+      .footer-inner { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container">
+      <nav>
+        <span class="logo">La Llar <em>del Dolç</em></span>
+        <button class="menu-toggle" type="button" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+        <ul class="nav-links">
+          <li><a href="#productos">Productos</a></li>
+          <li><a href="#como-funciona">Cómo funciona</a></li>
+          <li><a href="#contacto" class="nav-cta">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-left container" style="width:auto;padding-left:max(1.5rem, calc((100vw - 1120px)/2));padding-right:4rem;">
+        <div class="hero-eyebrow">Packs regalo personalizados</div>
+        <h1>Regala algo <em>verdaderamente</em> único</h1>
+        <p>Lotes y packs de regalo elaborados con mimo. Cada detalle pensado para que quien lo recibe lo recuerde.</p>
+        <div class="hero-btns">
+          <a href="#contacto" class="btn-dark">Hacer un pedido</a>
+          <a href="#productos" class="btn-outline">Ver packs</a>
+        </div>
+      </div>
+      <div class="hero-right">
+        <img src="https://images.unsplash.com/photo-1549465220-1a8b9238cd48?w=900&q=85" alt="Pack regalo La Llar del Dolç">
+      </div>
+    </section>
+
+    <!-- STRIP -->
+    <div class="strip">
+      <div class="container">
+        <div class="strip-inner">
+          <div class="strip-item fade-up"><div class="num">4</div><div class="label">Packs disponibles</div></div>
+          <div class="strip-sep"></div>
+          <div class="strip-item fade-up delay-1"><div class="num">100%</div><div class="label">Personalizable</div></div>
+          <div class="strip-sep"></div>
+          <div class="strip-item fade-up delay-2"><div class="num">✦</div><div class="label">Hecho con mimo</div></div>
+          <div class="strip-sep"></div>
+          <div class="strip-item fade-up delay-3"><div class="num">24h</div><div class="label">Respuesta garantizada</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUCTS -->
+    <section class="products" id="productos">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-eyebrow">Nuestros packs</div>
+            <h2 class="section-title">Ideas listas para regalar</h2>
+          </div>
+          <p class="section-sub">Elige uno de nuestros lotes o cuéntanos qué tienes en mente. Lo personalizamos para ti.</p>
+        </div>
+        <div class="products-grid">
+
+          <div class="product-card fade-up">
+            <div class="product-img">
+              <img src="https://images.unsplash.com/photo-1512909006721-3d6018887383?w=700&q=80" alt="Pack Bienvenida">
+            </div>
+            <div class="product-body">
+              <div class="product-tag">Pack 01</div>
+              <h3>Pack Bienvenida</h3>
+              <p>Taza artesanal personalizada, infusiones selectas y galletas caseras. Perfecto para estrenar hogar u oficina.</p>
+              <div class="product-footer">
+                <span class="product-price">32 €<small>aprox.</small></span>
+                <a href="#contacto" class="product-link">Solicitar</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-card fade-up delay-1">
+            <div class="product-img">
+              <img src="https://images.unsplash.com/photo-1506368249639-73a05d6f6488?w=700&q=80" alt="Pack Gourmet">
+            </div>
+            <div class="product-body">
+              <div class="product-tag">Pack 02</div>
+              <h3>Pack Gourmet</h3>
+              <p>Quesos seleccionados, mermeladas artesanas, crackers y vino o mosto de la zona.</p>
+              <div class="product-footer">
+                <span class="product-price">58 €<small>aprox.</small></span>
+                <a href="#contacto" class="product-link">Solicitar</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-card fade-up delay-2">
+            <div class="product-img">
+              <img src="https://images.unsplash.com/photo-1519415510236-718bdfcd89c8?w=700&q=80" alt="Pack Spa">
+            </div>
+            <div class="product-body">
+              <div class="product-tag">Pack 03</div>
+              <h3>Pack Spa</h3>
+              <p>Crema hidratante, sales de baño, vela aromática y toalla de algodón suave.</p>
+              <div class="product-footer">
+                <span class="product-price">45 €<small>aprox.</small></span>
+                <a href="#contacto" class="product-link">Solicitar</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-card fade-up delay-3">
+            <div class="product-img">
+              <img src="https://images.unsplash.com/photo-1543157145-f78c636d023d?w=700&q=80" alt="Pack Dulce Hogar">
+            </div>
+            <div class="product-body">
+              <div class="product-tag">Pack 04</div>
+              <h3>Pack Dulce Hogar</h3>
+              <p>Velas, miel local, té aromático y detalle decorativo para un rincón acogedor.</p>
+              <div class="product-footer">
+                <span class="product-price">38 €<small>aprox.</small></span>
+                <a href="#contacto" class="product-link">Solicitar</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW -->
+    <section class="how" id="como-funciona">
+      <div class="container">
+        <div class="section-eyebrow">El proceso</div>
+        <h2 class="section-title">Tres pasos para tu regalo perfecto</h2>
+        <div class="how-grid">
+          <div class="how-item fade-up">
+            <div class="how-num">01</div>
+            <h3>Elige tu pack</h3>
+            <p>Selecciona uno de nuestros lotes o cuéntanos qué te gustaría incluir. No hay límites.</p>
+          </div>
+          <div class="how-item fade-up delay-1">
+            <div class="how-num">02</div>
+            <h3>Personaliza</h3>
+            <p>Añade una dedicatoria, elige colores o incluye productos extra según la ocasión y el destinatario.</p>
+          </div>
+          <div class="how-item fade-up delay-2">
+            <div class="how-num">03</div>
+            <h3>Recibe y regala</h3>
+            <p>Preparamos tu pedido con mimo y te lo enviamos listo para sorprender a quien más quieres.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact" id="contacto">
+      <div class="container">
+        <div class="contact-grid">
+          <div class="contact-img">
+            <img src="https://images.unsplash.com/photo-1607344645866-009c320b63e0?w=800&q=85" alt="Contacto La Llar del Dolç">
+          </div>
+          <div class="contact-text">
+            <div class="section-eyebrow">Contacto</div>
+            <h2>¿Tienes una idea especial?</h2>
+            <p>Escríbenos o llámanos. Te ayudamos a crear el pack perfecto para cada ocasión. Respondemos en menos de 24 horas.</p>
+            <div class="contact-links">
+              <div class="contact-item">
+                <span class="lbl">Email</span>
+                <a href="mailto:info@llaroldolc.com">info@llaroldolc.com</a>
+              </div>
+              <div class="contact-item">
+                <span class="lbl">Teléfono</span>
+                <a href="tel:+34612345678">612 345 678</a>
+              </div>
+            </div>
+            <a href="mailto:info@llaroldolc.com" class="btn-dark">Enviar un mensaje</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-logo">La Llar <em>del Dolç</em></div>
+        <p>© 2026 La Llar del Dolç — Regala momentos únicos</p>
+      </div>
+    </div>
+  </footer>
+
+  <a href="#contacto" class="fab" id="fab">
+    <span class="fab-dot"></span>
+    Hacer pedido
+  </a>
+
+  <script>
+    const fab = document.getElementById('fab');
+    window.addEventListener('scroll', () => {
+      fab.classList.toggle('show', window.scrollY > 400);
+    });
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
