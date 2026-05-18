@@ -3,348 +3,357 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>La Llar del Dolç — Lotes y packs regalo personalizados</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <meta name="description" content="Miguel Liébana — Tecnología, creatividad, salud mental y proyectos con propósito. Barcelona.">
+  <title>Miguel Liébana</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg:      #F9F7F4;
-      --white:   #FFFFFF;
-      --ink:     #1A1714;
-      --mid:     #6B6560;
-      --muted:   #A8A29E;
-      --border:  #E5E1DB;
-      --accent:  #C9A96E;
+      --bg: #f8f7f4;
+      --bg-elevated: #ffffff;
+      --text: #2a2a28;
+      --text-muted: #6b6b66;
+      --accent: #1a1a18;
+      --accent-soft: #3d3d38;
+      --border: #e4e2dc;
+      --serif: "Cormorant Garamond", Georgia, serif;
+      --sans: "Source Sans 3", system-ui, sans-serif;
+      --nav-h: 4.25rem;
+      --max-w: 72rem;
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color: var(--ink); line-height: 1.6; }
-    h1, h2, h3 { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 600; line-height: 1.15; }
-    a { text-decoration: none; color: inherit; transition: opacity 0.2s; }
-    img { display: block; }
-    .container { width: min(1120px, 92%); margin: 0 auto; }
+    html { scroll-behavior: smooth; scroll-padding-top: var(--nav-h); }
+    body { font-family: var(--sans); font-size: 1.0625rem; line-height: 1.65; color: var(--text); background: var(--bg); -webkit-font-smoothing: antialiased; }
+    h1, h2, h3 { font-family: var(--serif); font-weight: 600; line-height: 1.15; letter-spacing: -0.02em; }
+    a { color: inherit; text-decoration: none; transition: opacity 0.25s; }
+    img { max-width: 100%; display: block; }
+    .container { width: min(100% - 2.5rem, var(--max-w)); margin-inline: auto; }
 
-    /* NAV */
-    header {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      background: rgba(249,247,244,0.96); backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
+    .reveal { opacity: 0; transform: translateY(1.75rem); transition: opacity 0.85s var(--ease), transform 0.85s var(--ease); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+
+    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: var(--nav-h); background: rgba(248,247,244,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid transparent; transition: border-color 0.35s, box-shadow 0.35s; }
+    .nav.scrolled { border-color: var(--border); box-shadow: 0 1px 0 rgba(0,0,0,0.04); }
+    .nav__inner { display: flex; align-items: center; justify-content: space-between; height: 100%; }
+    .logo { font-family: var(--serif); font-size: 1.2rem; font-weight: 600; display: flex; align-items: center; gap: 0.6rem; }
+    .logo strong { font-weight: 700; }
+    .nav__links { display: flex; gap: 1.75rem; list-style: none; }
+    .nav__links a { font-size: 0.8rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); transition: color 0.2s; }
+    .nav__links a:hover { color: var(--accent); }
+    .nav__toggle { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; color: var(--accent); }
+    .nav__toggle span { display: block; width: 1.35rem; height: 2px; background: currentColor; margin: 5px 0; transition: transform 0.3s, opacity 0.3s; }
+    .nav__toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav__toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+    .nav__toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; font-family: var(--sans); font-size: 0.875rem; font-weight: 500; letter-spacing: 0.05em; border-radius: 2px; border: 1px solid transparent; cursor: pointer; transition: background 0.3s, color 0.3s, border-color 0.3s, transform 0.3s; }
+    .btn:hover { transform: translateY(-1px); }
+    .btn--primary { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+    .btn--primary:hover { background: var(--accent-soft); color: var(--bg); }
+    .btn--outline { background: transparent; color: var(--accent); border-color: var(--accent); }
+    .btn--outline:hover { background: var(--accent); color: var(--bg); }
+
+    .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; align-items: center; padding-top: var(--nav-h); }
+    .hero__left { padding: 4rem 5% 4rem 0; }
+    .hero__eyebrow { font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1.5rem; }
+    .hero__left h1 { font-size: clamp(2.75rem, 6vw, 4.5rem); margin-bottom: 1.25rem; }
+    .hero__left h1 strong { font-weight: 800; }
+    .hero__subtitle { font-size: 1.1rem; color: var(--text-muted); font-weight: 300; margin-bottom: 2rem; max-width: 36ch; line-height: 1.7; }
+    .hero__actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 2rem; }
+    .badge { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; color: var(--text-muted); padding: 0.5rem 1rem; background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 100px; }
+    .badge::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: #4a9b6e; flex-shrink: 0; }
+    .hero__right { height: 100vh; overflow: hidden; }
+    .hero__right img { width: 100%; height: 100%; object-fit: cover; }
+
+    section { padding: 5.5rem 0; }
+    section:nth-child(even) { background: var(--bg-elevated); }
+    .section-label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.75rem; }
+    .section-title { font-size: clamp(2rem, 4vw, 2.75rem); margin-bottom: 2rem; }
+
+    .about__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+    .about__text p { margin-bottom: 1.25rem; color: var(--text-muted); }
+    .about__text p:first-of-type { color: var(--text); font-size: 1.1rem; }
+    .about__list { list-style: none; display: flex; flex-direction: column; gap: 0.65rem; }
+    .about__list li { display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.95rem; }
+    .about__list li::before { content: "—"; color: var(--accent); flex-shrink: 0; font-weight: 500; }
+
+    .lab-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+    .project-card { background: var(--bg); border: 1px solid var(--border); padding: 1.5rem; border-radius: 2px; display: flex; flex-direction: column; gap: 0.65rem; transition: border-color 0.35s, box-shadow 0.35s, transform 0.35s; text-decoration: none; color: inherit; }
+    .project-card:hover { border-color: var(--accent); box-shadow: 0 8px 24px rgba(26,26,24,0.06); transform: translateY(-2px); }
+    .project-card__badges { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .project-card h3 { font-family: var(--serif); font-size: 1.3rem; font-weight: 600; }
+    .project-card p { font-size: 0.875rem; color: var(--text-muted); flex: 1; }
+    .status { align-self: flex-start; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.25rem 0.6rem; border-radius: 2px; }
+    .status--destacado { background: var(--accent); color: var(--bg); }
+    .status--activo { background: #e8f0eb; color: #2d5a3d; }
+    .status--beta { background: #f0ebe4; color: #6b5344; }
+
+    .music-block { display: flex; align-items: center; justify-content: space-between; gap: 2rem; padding: 2.5rem; border: 1px solid var(--border); border-radius: 2px; }
+    .music-block__main { display: flex; align-items: center; gap: 1.5rem; }
+    .music-block__logo { width: 5.5rem; height: 5.5rem; object-fit: contain; border-radius: 2px; }
+    .music-block h3 { font-size: 1.75rem; margin-bottom: 0.35rem; }
+    .genre { font-size: 0.95rem; color: var(--text-muted); }
+
+    .cv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+    .cv-block h3 { font-family: var(--serif); font-size: 1.5rem; margin-bottom: 1.25rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
+    .cv-item { margin-bottom: 1.5rem; }
+    .cv-item__title { font-weight: 600; font-size: 1rem; margin-bottom: 0.15rem; }
+    .cv-item__meta { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.35rem; }
+    .cv-item__desc { font-size: 0.875rem; color: var(--text-muted); }
+    .cv-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 2.5rem; }
+
+    .contact__inner { text-align: center; max-width: 32rem; margin-inline: auto; }
+    .contact__email { font-family: var(--serif); font-size: clamp(1.5rem, 4vw, 2.25rem); font-weight: 500; margin: 1rem 0 0.5rem; display: inline-block; border-bottom: 1px solid var(--border); transition: border-color 0.3s, color 0.3s; }
+    .contact__email:hover { border-color: var(--accent); color: var(--accent); }
+    .contact__note { font-size: 0.9rem; color: var(--text-muted); }
+
+    footer { padding: 2rem 0; border-top: 1px solid var(--border); text-align: center; font-size: 0.85rem; color: var(--text-muted); }
+
+    .fab { position: fixed; bottom: 1.75rem; right: 1.75rem; z-index: 90; width: 3.25rem; height: 3.25rem; border-radius: 50%; background: var(--accent); color: var(--bg); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(26,26,24,0.25); transition: transform 0.3s, box-shadow 0.3s; opacity: 0; transform: translateY(1rem); pointer-events: none; }
+    .fab.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+    .fab:hover { transform: translateY(-2px) scale(1.05); box-shadow: 0 8px 28px rgba(26,26,24,0.3); }
+    .fab svg { width: 1.25rem; height: 1.25rem; }
+
+    @media (max-width: 900px) {
+      .lab-grid { grid-template-columns: repeat(2, 1fr); }
+      .about__grid, .cv-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .hero { grid-template-columns: 1fr; }
+      .hero__right { height: 50vw; }
+      .hero__left { padding: 2rem 0; }
     }
-    nav { display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 0; position: relative; }
-    .logo { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; letter-spacing: 0.04em; color: var(--ink); }
-    .logo em { font-style: italic; color: var(--accent); }
-    .nav-links { display: flex; gap: 2.5rem; list-style: none; font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; align-items: center; }
-    .nav-links a { color: var(--mid); transition: color 0.2s; }
-    .nav-links a:hover { color: var(--ink); }
-    .nav-cta { border: 1px solid var(--ink); padding: 0.5rem 1.25rem; color: var(--ink) !important; letter-spacing: 0.08em; transition: background 0.2s, color 0.2s !important; }
-    .nav-cta:hover { background: var(--ink); color: var(--white) !important; opacity: 1 !important; }
-    .menu-toggle { display: none; background: none; border: none; font-size: 1.4rem; cursor: pointer; color: var(--ink); }
-
-    /* HERO */
-    .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; }
-    .hero-left {
-      display: flex; flex-direction: column; justify-content: center;
-      padding: 10rem 5% 5rem 0;
-    }
-    .hero-eyebrow { font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem; }
-    .hero-left h1 { font-size: clamp(3rem, 5vw, 4.5rem); margin-bottom: 1.5rem; color: var(--ink); }
-    .hero-left h1 em { font-style: italic; font-weight: 400; }
-    .hero-left p { font-size: 1rem; color: var(--mid); max-width: 40ch; margin-bottom: 2.5rem; line-height: 1.8; }
-    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
-    .btn-dark { display: inline-block; padding: 0.85rem 2rem; background: var(--ink); color: var(--white); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; transition: opacity 0.2s; }
-    .btn-dark:hover { opacity: 0.75; }
-    .btn-outline { display: inline-block; padding: 0.85rem 2rem; border: 1px solid var(--border); color: var(--mid); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; transition: border-color 0.2s, color 0.2s; }
-    .btn-outline:hover { border-color: var(--ink); color: var(--ink); }
-
-    .hero-right { position: relative; overflow: hidden; }
-    .hero-right img { width: 100%; height: 100%; object-fit: cover; }
-
-    /* DIVIDER */
-    .divider-line { border: none; border-top: 1px solid var(--border); margin: 0; }
-
-    /* ABOUT STRIP */
-    .strip { padding: 2rem 0; border-bottom: 1px solid var(--border); }
-    .strip-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 2rem; }
-    .strip-item { text-align: center; flex: 1; min-width: 120px; }
-    .strip-item .num { font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: var(--ink); }
-    .strip-item .label { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-top: 2px; }
-    .strip-sep { width: 1px; height: 40px; background: var(--border); }
-
-    /* PRODUCTS */
-    .products { padding: 6rem 0; }
-    .section-head { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem; flex-wrap: wrap; gap: 1rem; }
-    .section-eyebrow { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; }
-    .section-title { font-size: clamp(1.75rem, 4vw, 2.75rem); }
-    .section-sub { font-size: 0.875rem; color: var(--mid); max-width: 36ch; line-height: 1.7; }
-
-    .products-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
-    .product-card { background: var(--bg); overflow: hidden; transition: background 0.2s; }
-    .product-card:hover { background: var(--white); }
-    .product-img { height: 280px; overflow: hidden; }
-    .product-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
-    .product-card:hover .product-img img { transform: scale(1.04); }
-    .product-body { padding: 1.75rem; }
-    .product-tag { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
-    .product-body h3 { font-size: 1.35rem; margin-bottom: 0.5rem; }
-    .product-body p { font-size: 0.875rem; color: var(--mid); line-height: 1.7; margin-bottom: 1.25rem; }
-    .product-footer { display: flex; justify-content: space-between; align-items: center; padding-top: 1rem; border-top: 1px solid var(--border); }
-    .product-price { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; color: var(--ink); }
-    .product-price small { font-family: 'Inter', sans-serif; font-size: 0.7rem; color: var(--muted); margin-left: 4px; }
-    .product-link { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mid); border-bottom: 1px solid var(--border); padding-bottom: 1px; transition: color 0.2s, border-color 0.2s; }
-    .product-link:hover { color: var(--ink); border-color: var(--ink); }
-
-    /* HOW */
-    .how { padding: 6rem 0; background: var(--white); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-    .how-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4rem; margin-top: 4rem; }
-    .how-item {}
-    .how-num { font-family: 'Cormorant Garamond', serif; font-size: 3rem; color: var(--border); line-height: 1; margin-bottom: 1rem; }
-    .how-item h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
-    .how-item p { font-size: 0.875rem; color: var(--mid); line-height: 1.8; }
-
-    /* CONTACT */
-    .contact { padding: 6rem 0; }
-    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
-    .contact-img { height: 480px; overflow: hidden; }
-    .contact-img img { width: 100%; height: 100%; object-fit: cover; }
-    .contact-text .section-eyebrow { margin-bottom: 0.75rem; }
-    .contact-text h2 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 1.25rem; }
-    .contact-text p { font-size: 0.9rem; color: var(--mid); line-height: 1.8; margin-bottom: 2.5rem; max-width: 40ch; }
-    .contact-links { display: flex; flex-direction: column; gap: 1.5rem; margin-bottom: 2.5rem; }
-    .contact-item { display: flex; flex-direction: column; gap: 4px; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border); }
-    .contact-item:last-child { border-bottom: none; padding-bottom: 0; }
-    .contact-item .lbl { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); }
-    .contact-item a { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: var(--ink); transition: color 0.2s; }
-    .contact-item a:hover { color: var(--accent); }
-
-    /* FOOTER */
-    footer { background: var(--ink); color: var(--muted); padding: 2rem 0; }
-    .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
-    .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--white); }
-    .footer-logo em { font-style: italic; color: var(--accent); }
-    footer p { font-size: 0.78rem; letter-spacing: 0.05em; }
-
-    /* FADE IN AL SCROLL */
-    .fade-up { opacity: 0; transform: translateY(32px); transition: opacity 0.7s ease, transform 0.7s ease; }
-    .fade-up.visible { opacity: 1; transform: translateY(0); }
-    .fade-up.delay-1 { transition-delay: 0.1s; }
-    .fade-up.delay-2 { transition-delay: 0.2s; }
-    .fade-up.delay-3 { transition-delay: 0.3s; }
-
-    /* BOTÓN FLOTANTE */
-    .fab {
-      position: fixed; bottom: 2rem; right: 2rem; z-index: 200;
-      display: flex; align-items: center; gap: 0.6rem;
-      background: var(--ink); color: var(--white);
-      padding: 0.75rem 1.4rem; border-radius: 999px;
-      font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase;
-      box-shadow: 0 8px 24px rgba(26,23,20,0.25);
-      transition: transform 0.2s, box-shadow 0.2s, opacity 0.3s;
-      opacity: 0; pointer-events: none;
-    }
-    .fab.show { opacity: 1; pointer-events: auto; }
-    .fab:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(26,23,20,0.35); }
-    .fab-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; animation: pulse 2s infinite; }
-    @keyframes pulse { 0%,100% { transform: scale(1); opacity:1; } 50% { transform: scale(1.5); opacity:0.6; } }
-
-    /* HERO ANIMADO */
-    .hero-left > * { opacity: 0; transform: translateY(24px); animation: heroIn 0.8s ease forwards; }
-    .hero-left .hero-eyebrow { animation-delay: 0.1s; }
-    .hero-left h1 { animation-delay: 0.25s; }
-    .hero-left p { animation-delay: 0.4s; }
-    .hero-left .hero-btns { animation-delay: 0.55s; }
-    .hero-right img { animation: heroImgIn 1.2s ease forwards; }
-    @keyframes heroIn { to { opacity: 1; transform: translateY(0); } }
-    @keyframes heroImgIn { from { opacity: 0; transform: scale(1.04); } to { opacity: 1; transform: scale(1); } }
-
-    /* MOBILE */
-    @media (max-width: 768px) {
-      .hero { grid-template-columns: 1fr; min-height: auto; }
-      .hero-left { padding: 7rem 0 3rem; }
-      .hero-right { height: 60vw; }
-      .strip-sep { display: none; }
-      .products-grid { grid-template-columns: 1fr; }
-      .how-grid { grid-template-columns: 1fr; gap: 3rem; }
-      .contact-grid { grid-template-columns: 1fr; }
-      .contact-img { height: 260px; }
-      .nav-links { display: none; position: absolute; top: 100%; left: -4%; right: -4%; flex-direction: column; background: var(--bg); padding: 1.5rem 5%; gap: 1.25rem; border-bottom: 1px solid var(--border); }
-      .nav-links.open { display: flex; }
-      .menu-toggle { display: block; }
-      .footer-inner { flex-direction: column; text-align: center; }
+    @media (max-width: 640px) {
+      .nav__toggle { display: block; }
+      .nav__links { position: fixed; top: var(--nav-h); left: 0; right: 0; background: var(--bg); flex-direction: column; padding: 1.5rem 1.25rem 2rem; gap: 1rem; border-bottom: 1px solid var(--border); transform: translateY(-120%); opacity: 0; pointer-events: none; transition: transform 0.4s, opacity 0.4s; }
+      .nav__links.open { transform: translateY(0); opacity: 1; pointer-events: auto; }
+      .lab-grid { grid-template-columns: 1fr; }
+      .music-block { flex-direction: column; align-items: flex-start; }
+      section { padding: 4rem 0; }
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <div class="container">
-      <nav>
-        <span class="logo">La Llar <em>del Dolç</em></span>
-        <button class="menu-toggle" type="button" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
-        <ul class="nav-links">
-          <li><a href="#productos">Productos</a></li>
-          <li><a href="#como-funciona">Cómo funciona</a></li>
-          <li><a href="#contacto" class="nav-cta">Contacto</a></li>
-        </ul>
-      </nav>
+  <header class="nav" id="nav">
+    <div class="container nav__inner">
+      <a href="#" class="logo">
+        <img src="logomiguel.png" alt="ML" style="height:2.4rem;width:auto;">
+        Miguel <strong>Liébana</strong>
+      </a>
+      <button class="nav__toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav__links" id="navLinks">
+        <li><a href="#sobre-mi">Sobre mí</a></li>
+        <li><a href="#laboratorio">Laboratorio</a></li>
+        <li><a href="#musica">Música</a></li>
+        <li><a href="#cv">CV</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
     </div>
   </header>
 
   <main>
 
-    <!-- HERO -->
-    <section class="hero">
-      <div class="hero-left container" style="width:auto;padding-left:max(1.5rem, calc((100vw - 1120px)/2));padding-right:4rem;">
-        <div class="hero-eyebrow">Packs regalo personalizados</div>
-        <h1>Regala algo <em>verdaderamente</em> único</h1>
-        <p>Lotes y packs de regalo elaborados con mimo. Cada detalle pensado para que quien lo recibe lo recuerde.</p>
-        <div class="hero-btns">
-          <a href="#contacto" class="btn-dark">Hacer un pedido</a>
-          <a href="#productos" class="btn-outline">Ver packs</a>
+    <section class="hero" id="inicio">
+      <div class="hero__left container" style="width:auto;padding-left:max(1.25rem,calc((100vw - 72rem)/2));padding-right:3rem;">
+        <div class="reveal">
+          <div class="hero__eyebrow">Tecnología · Creatividad · Propósito</div>
+          <h1>Hola, soy <strong>Miguel.</strong></h1>
+          <p class="hero__subtitle">Tecnología, creatividad, salud mental y proyectos con propósito.</p>
+          <div class="hero__actions">
+            <a href="#laboratorio" class="btn btn--primary">Ver proyectos</a>
+            <a href="#contacto" class="btn btn--outline">Contacto</a>
+          </div>
+          <span class="badge">Disponible para proyectos · Barcelona</span>
         </div>
       </div>
-      <div class="hero-right">
-        <img src="https://images.unsplash.com/photo-1549465220-1a8b9238cd48?w=900&q=85" alt="Pack regalo La Llar del Dolç">
+      <div class="hero__right">
+        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=900&q=85" alt="Miguel Liébana">
       </div>
     </section>
 
-    <!-- STRIP -->
-    <div class="strip">
+    <section id="sobre-mi">
       <div class="container">
-        <div class="strip-inner">
-          <div class="strip-item fade-up"><div class="num">4</div><div class="label">Packs disponibles</div></div>
-          <div class="strip-sep"></div>
-          <div class="strip-item fade-up delay-1"><div class="num">100%</div><div class="label">Personalizable</div></div>
-          <div class="strip-sep"></div>
-          <div class="strip-item fade-up delay-2"><div class="num">✦</div><div class="label">Hecho con mimo</div></div>
-          <div class="strip-sep"></div>
-          <div class="strip-item fade-up delay-3"><div class="num">24h</div><div class="label">Respuesta garantizada</div></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- PRODUCTS -->
-    <section class="products" id="productos">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <div class="section-eyebrow">Nuestros packs</div>
-            <h2 class="section-title">Ideas listas para regalar</h2>
+        <p class="section-label reveal">Perfil</p>
+        <h2 class="section-title reveal reveal-delay-1">Sobre mí</h2>
+        <div class="about__grid">
+          <div class="about__text reveal">
+            <p>Soy Miguel. Maestro de primaria y música, coordinador TIC, administrativo y músico. Mi camino no ha sido lineal: he enseñado a niños, gestionado oficinas, atendido llamadas y subido a un escenario.</p>
+            <p>Hoy combino esa experiencia con mi pasión por la tecnología, la inteligencia artificial y la creación digital. Construyo proyectos con propósito: salud mental, accesibilidad, IA aplicada al deporte y todo lo que mezcle creatividad con impacto real.</p>
+            <p>Soy fan del Barça, del fútbol y de las ideas que nacen de los errores. Creo en la resiliencia, en construir despacio y en hacer las cosas con honestidad.</p>
           </div>
-          <p class="section-sub">Elige uno de nuestros lotes o cuéntanos qué tienes en mente. Lo personalizamos para ti.</p>
-        </div>
-        <div class="products-grid">
-
-          <div class="product-card fade-up">
-            <div class="product-img">
-              <img src="https://images.unsplash.com/photo-1512909006721-3d6018887383?w=700&q=80" alt="Pack Bienvenida">
-            </div>
-            <div class="product-body">
-              <div class="product-tag">Pack 01</div>
-              <h3>Pack Bienvenida</h3>
-              <p>Taza artesanal personalizada, infusiones selectas y galletas caseras. Perfecto para estrenar hogar u oficina.</p>
-              <div class="product-footer">
-                <span class="product-price">32 €<small>aprox.</small></span>
-                <a href="#contacto" class="product-link">Solicitar</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="product-card fade-up delay-1">
-            <div class="product-img">
-              <img src="https://images.unsplash.com/photo-1506368249639-73a05d6f6488?w=700&q=80" alt="Pack Gourmet">
-            </div>
-            <div class="product-body">
-              <div class="product-tag">Pack 02</div>
-              <h3>Pack Gourmet</h3>
-              <p>Quesos seleccionados, mermeladas artesanas, crackers y vino o mosto de la zona.</p>
-              <div class="product-footer">
-                <span class="product-price">58 €<small>aprox.</small></span>
-                <a href="#contacto" class="product-link">Solicitar</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="product-card fade-up delay-2">
-            <div class="product-img">
-              <img src="https://images.unsplash.com/photo-1519415510236-718bdfcd89c8?w=700&q=80" alt="Pack Spa">
-            </div>
-            <div class="product-body">
-              <div class="product-tag">Pack 03</div>
-              <h3>Pack Spa</h3>
-              <p>Crema hidratante, sales de baño, vela aromática y toalla de algodón suave.</p>
-              <div class="product-footer">
-                <span class="product-price">45 €<small>aprox.</small></span>
-                <a href="#contacto" class="product-link">Solicitar</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="product-card fade-up delay-3">
-            <div class="product-img">
-              <img src="https://images.unsplash.com/photo-1543157145-f78c636d023d?w=700&q=80" alt="Pack Dulce Hogar">
-            </div>
-            <div class="product-body">
-              <div class="product-tag">Pack 04</div>
-              <h3>Pack Dulce Hogar</h3>
-              <p>Velas, miel local, té aromático y detalle decorativo para un rincón acogedor.</p>
-              <div class="product-footer">
-                <span class="product-price">38 €<small>aprox.</small></span>
-                <a href="#contacto" class="product-link">Solicitar</a>
-              </div>
-            </div>
-          </div>
-
+          <ul class="about__list reveal reveal-delay-1">
+            <li>Maestro de primaria y música</li>
+            <li>Coordinador TIC</li>
+            <li>Administrativo en CTTI</li>
+            <li>Músico en activo</li>
+            <li>Explorando IA generativa</li>
+            <li>Creador digital</li>
+          </ul>
         </div>
       </div>
     </section>
 
-    <!-- HOW -->
-    <section class="how" id="como-funciona">
+    <section id="laboratorio">
       <div class="container">
-        <div class="section-eyebrow">El proceso</div>
-        <h2 class="section-title">Tres pasos para tu regalo perfecto</h2>
-        <div class="how-grid">
-          <div class="how-item fade-up">
-            <div class="how-num">01</div>
-            <h3>Elige tu pack</h3>
-            <p>Selecciona uno de nuestros lotes o cuéntanos qué te gustaría incluir. No hay límites.</p>
-          </div>
-          <div class="how-item fade-up delay-1">
-            <div class="how-num">02</div>
-            <h3>Personaliza</h3>
-            <p>Añade una dedicatoria, elige colores o incluye productos extra según la ocasión y el destinatario.</p>
-          </div>
-          <div class="how-item fade-up delay-2">
-            <div class="how-num">03</div>
-            <h3>Recibe y regala</h3>
-            <p>Preparamos tu pedido con mimo y te lo enviamos listo para sorprender a quien más quieres.</p>
-          </div>
+        <p class="section-label reveal">Proyectos</p>
+        <h2 class="section-title reveal reveal-delay-1">Laboratorio</h2>
+        <div class="lab-grid">
+
+          <a href="https://lallardeldolc.vercel.app" class="project-card reveal" target="_blank" rel="noopener">
+            <div class="project-card__badges">
+              <span class="status status--destacado">Destacado</span>
+              <span class="status status--activo">Activo</span>
+            </div>
+            <h3>La Llar del Dolç</h3>
+            <p>Web de lotes y packs regalo personalizados.</p>
+          </a>
+
+          <a href="https://noflagpatriotshop.com" class="project-card reveal reveal-delay-1" target="_blank" rel="noopener">
+            <div class="project-card__badges">
+              <span class="status status--destacado">Destacado</span>
+              <span class="status status--activo">Activo</span>
+            </div>
+            <h3>No Flag Patriots Shop</h3>
+            <p>Tienda oficial de merchandising de mi banda.</p>
+          </a>
+
+          <a href="https://fichajesradaria.lovable.app" class="project-card reveal reveal-delay-2" target="_blank" rel="noopener">
+            <span class="status status--activo">Activo</span>
+            <h3>Fichajes Radar IA</h3>
+            <p>Análisis de fichajes con IA.</p>
+          </a>
+
+          <a href="https://onaia.lovable.app" class="project-card reveal" target="_blank" rel="noopener">
+            <span class="status status--activo">Activo</span>
+            <h3>Onaia</h3>
+            <p>Proyecto en desarrollo.</p>
+          </a>
+
+          <a href="https://comprabarata.lovable.app" class="project-card reveal reveal-delay-1" target="_blank" rel="noopener">
+            <span class="status status--activo">Activo</span>
+            <h3>Compra Barata</h3>
+            <p>Comparador para decisiones de compra.</p>
+          </a>
+
+          <a href="https://apuestaclara.lovable.app" class="project-card reveal reveal-delay-2" target="_blank" rel="noopener">
+            <span class="status status--activo">Activo</span>
+            <h3>Apuesta Clara</h3>
+            <p>Análisis racional en apuestas deportivas.</p>
+          </a>
+
+          <a href="https://spartafitcoach.lovable.app" class="project-card reveal" target="_blank" rel="noopener">
+            <span class="status status--beta">Beta</span>
+            <h3>Espartanos</h3>
+            <p>Fitness con enfoque motivacional.</p>
+          </a>
+
+          <a href="https://sheindescuentos.lovable.app" class="project-card reveal reveal-delay-1" target="_blank" rel="noopener">
+            <span class="status status--activo">Activo</span>
+            <h3>Shein Real Codes</h3>
+            <p>Verificación de descuentos online.</p>
+          </a>
+
+          <a href="https://coaich-de-seduccion.lovable.app" class="project-card reveal reveal-delay-2" target="_blank" rel="noopener">
+            <span class="status status--beta">Beta</span>
+            <h3>CoAIch de Seducción</h3>
+            <p>Asistente conversacional para relaciones.</p>
+          </a>
+
+          <a href="https://redflagtoxicai.lovable.app" class="project-card reveal" target="_blank" rel="noopener">
+            <span class="status status--beta">Beta</span>
+            <h3>RedFlag AI</h3>
+            <p>Comunicación y comportamiento digital.</p>
+          </a>
+
         </div>
       </div>
     </section>
 
-    <!-- CONTACT -->
-    <section class="contact" id="contacto">
+    <section id="musica">
       <div class="container">
-        <div class="contact-grid">
-          <div class="contact-img">
-            <img src="https://images.unsplash.com/photo-1607344645866-009c320b63e0?w=800&q=85" alt="Contacto La Llar del Dolç">
-          </div>
-          <div class="contact-text">
-            <div class="section-eyebrow">Contacto</div>
-            <h2>¿Tienes una idea especial?</h2>
-            <p>Escríbenos o llámanos. Te ayudamos a crear el pack perfecto para cada ocasión. Respondemos en menos de 24 horas.</p>
-            <div class="contact-links">
-              <div class="contact-item">
-                <span class="lbl">Email</span>
-                <a href="mailto:info@llaroldolc.com">info@llaroldolc.com</a>
-              </div>
-              <div class="contact-item">
-                <span class="lbl">Teléfono</span>
-                <a href="tel:+34612345678">612 345 678</a>
-              </div>
+        <p class="section-label reveal">Banda</p>
+        <h2 class="section-title reveal reveal-delay-1">Música</h2>
+        <div class="music-block reveal reveal-delay-2">
+          <div class="music-block__main">
+            <img src="nfplogo.jpg" alt="No Flag Patriots" class="music-block__logo">
+            <div>
+              <h3>No Flag Patriots</h3>
+              <p class="genre">Punk Rock · Barcelona</p>
             </div>
-            <a href="mailto:info@llaroldolc.com" class="btn-dark">Enviar un mensaje</a>
           </div>
+          <a href="https://noflagpatriots.com" class="btn btn--outline" target="_blank" rel="noopener">noflagpatriots.com</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="cv">
+      <div class="container">
+        <p class="section-label reveal">Trayectoria</p>
+        <h2 class="section-title reveal reveal-delay-1">CV</h2>
+        <div class="cv-grid">
+          <div class="cv-block reveal">
+            <h3>Experiencia</h3>
+            <div class="cv-item">
+              <p class="cv-item__title">Recepcionista / Administrativo</p>
+              <p class="cv-item__meta">CTTI · Generalitat de Catalunya · Actualidad</p>
+              <p class="cv-item__desc">Gestión administrativa y soporte en entorno institucional tecnológico.</p>
+            </div>
+            <div class="cv-item">
+              <p class="cv-item__title">Compositor y músico</p>
+              <p class="cv-item__meta">No Flag Patriots · 2022–2024</p>
+              <p class="cv-item__desc">Composición, directo y proyecto digital de la banda.</p>
+            </div>
+            <div class="cv-item">
+              <p class="cv-item__title">Coordinador TIC</p>
+              <p class="cv-item__meta">Escola Joan Maragall · 2017–2020</p>
+              <p class="cv-item__desc">Planificación digital, formación del profesorado e implementación de herramientas.</p>
+            </div>
+            <div class="cv-item">
+              <p class="cv-item__title">Profesor de primaria y música</p>
+              <p class="cv-item__meta">Escoles Gornal, Bernat Metge, Torre de la Miranda · 2006–2020</p>
+              <p class="cv-item__desc">Docencia en aula con especialización musical.</p>
+            </div>
+          </div>
+          <div class="cv-block reveal reveal-delay-1">
+            <h3>Formación</h3>
+            <div class="cv-item">
+              <p class="cv-item__title">Magisterio · Educación Primaria y Musical</p>
+              <p class="cv-item__meta">Universitat de Barcelona · 2007</p>
+            </div>
+            <div class="cv-item">
+              <p class="cv-item__title">FP Superior · Administración y Finanzas</p>
+              <p class="cv-item__meta">2022</p>
+            </div>
+            <div class="cv-item">
+              <p class="cv-item__title">IBM Watson AI Essentials</p>
+              <p class="cv-item__meta">IBM · Certificado verificado</p>
+            </div>
+            <div class="cv-item">
+              <p class="cv-item__title">IA generativa y creación digital</p>
+              <p class="cv-item__meta">Autodidacta · En curso</p>
+            </div>
+          </div>
+        </div>
+        <div class="cv-actions reveal">
+          <a href="newcv2026.PNG.pdf" class="btn btn--primary" download>Descargar CV</a>
+          <a href="https://www.linkedin.com/in/mliebanavicente" class="btn btn--outline" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacto">
+      <div class="container">
+        <p class="section-label reveal">Hablemos</p>
+        <h2 class="section-title reveal reveal-delay-1">Contacto</h2>
+        <div class="contact__inner reveal reveal-delay-2">
+          <p class="contact__note">¿Tienes un proyecto, una colaboración o simplemente quieres saludar?</p>
+          <a href="mailto:mlieban3@gmail.com" class="contact__email">mlieban3@gmail.com</a>
         </div>
       </div>
     </section>
@@ -352,28 +361,52 @@
   </main>
 
   <footer>
-    <div class="container">
-      <div class="footer-inner">
-        <div class="footer-logo">La Llar <em>del Dolç</em></div>
-        <p>© 2026 La Llar del Dolç — Regala momentos únicos</p>
-      </div>
-    </div>
+    <div class="container">© 2026 Miguel Liébana · Hecho con creatividad y muchas reconstrucciones.</div>
   </footer>
 
-  <a href="#contacto" class="fab" id="fab">
-    <span class="fab-dot"></span>
-    Hacer pedido
+  <a href="#contacto" class="fab" id="fab" aria-label="Ir a contacto">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+      <polyline points="22,6 12,13 2,6"/>
+    </svg>
   </a>
 
   <script>
-    const fab = document.getElementById('fab');
-    window.addEventListener('scroll', () => {
-      fab.classList.toggle('show', window.scrollY > 400);
-    });
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.12 });
-    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+    (function () {
+      var nav = document.getElementById("nav");
+      var navToggle = document.getElementById("navToggle");
+      var navLinks = document.getElementById("navLinks");
+      var fab = document.getElementById("fab");
+
+      window.addEventListener("scroll", function () {
+        nav.classList.toggle("scrolled", window.scrollY > 20);
+        fab.classList.toggle("visible", window.scrollY > 400);
+      }, { passive: true });
+
+      navToggle.addEventListener("click", function () {
+        var open = navLinks.classList.toggle("open");
+        navToggle.setAttribute("aria-expanded", open);
+      });
+
+      navLinks.querySelectorAll("a").forEach(function (link) {
+        link.addEventListener("click", function () {
+          navLinks.classList.remove("open");
+          navToggle.setAttribute("aria-expanded", "false");
+        });
+      });
+
+      var revealEls = document.querySelectorAll(".reveal");
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+
+      revealEls.forEach(function (el) { observer.observe(el); });
+    })();
   </script>
 
 </body>
