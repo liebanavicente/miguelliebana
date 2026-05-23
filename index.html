@@ -3,21 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Miguel Liébana — Tecnología, creatividad y proyectos con propósito. Barcelona.">
+  <meta name="description" content="Miguel Liébana — Creador de productos digitales con IA, diseño y tecnología accesible. Barcelona.">
   <meta name="theme-color" content="#0c0c0a">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Miguel Liébana">
-  <meta property="og:description" content="Tecnología, creatividad y proyectos con propósito. Barcelona.">
+  <meta property="og:title" content="Miguel Liébana — Creador de productos digitales">
+  <meta property="og:description" content="Creo productos digitales con IA, diseño y tecnología accesible. Barcelona.">
   <meta property="og:url" content="https://miguelliebana.com">
   <meta name="twitter:card" content="summary_large_image">
-  <title>Miguel Liébana</title>
+  <title>Miguel Liébana — Creador de productos digitales</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%230c0c0a'/%3E%3Ctext x='16' y='22' text-anchor='middle' fill='%23f0ede6' font-family='Georgia%2Cserif' font-size='13' font-weight='700'%3EML%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      /* paleta clara */
       --bg: #f8f7f4;
       --bg-elevated: #ffffff;
       --text: #2a2a28;
@@ -25,15 +24,12 @@
       --accent: #1a1a18;
       --accent-soft: #3d3d38;
       --border: #e4e2dc;
-      /* paleta hero oscura */
       --hero-bg: #0c0c0a;
       --hero-text: #f0ede6;
       --hero-muted: rgba(240,237,230,0.5);
       --hero-border: rgba(240,237,230,0.12);
-      /* tipografía */
       --serif: "Cormorant Garamond", Georgia, serif;
       --sans: "Source Sans 3", system-ui, sans-serif;
-      /* layout */
       --nav-h: 4.25rem;
       --max-w: 72rem;
       --ease: cubic-bezier(0.22, 1, 0.36, 1);
@@ -73,26 +69,16 @@
       box-shadow: 0 1px 0 rgba(0,0,0,0.04);
     }
     .nav__inner { display: flex; align-items: center; justify-content: space-between; height: 100%; }
-    .logo {
-      font-family: var(--serif); font-size: 1.2rem; font-weight: 600;
-      display: flex; align-items: center; gap: 0.6rem;
-      color: var(--hero-text); transition: color 0.4s;
-    }
+    .logo { font-family: var(--serif); font-size: 1.2rem; font-weight: 600; display: flex; align-items: center; gap: 0.6rem; color: var(--hero-text); transition: color 0.4s; }
     .logo strong { font-weight: 700; }
     .logo img { height: 2.4rem; width: auto; }
     .nav.scrolled .logo { color: var(--text); }
     .nav__links { display: flex; gap: 1.75rem; list-style: none; }
-    .nav__links a {
-      font-size: 0.8rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
-      color: rgba(240,237,230,0.65); transition: color 0.2s;
-    }
+    .nav__links a { font-size: 0.8rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(240,237,230,0.65); transition: color 0.2s; }
     .nav__links a:hover { color: var(--hero-text); }
     .nav.scrolled .nav__links a { color: var(--text-muted); }
     .nav.scrolled .nav__links a:hover { color: var(--accent); }
-    .nav__toggle {
-      display: none; background: none; border: none; cursor: pointer; padding: 0.5rem;
-      color: var(--hero-text); transition: color 0.4s;
-    }
+    .nav__toggle { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; color: var(--hero-text); transition: color 0.4s; }
     .nav.scrolled .nav__toggle { color: var(--accent); }
     .nav__toggle span { display: block; width: 1.35rem; height: 2px; background: currentColor; margin: 5px 0; transition: transform 0.3s, opacity 0.3s; }
     .nav__toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
@@ -112,63 +98,26 @@
     .btn--primary:hover { background: var(--accent-soft); border-color: var(--accent-soft); }
     .btn--outline { background: transparent; color: var(--accent); border-color: var(--accent); }
     .btn--outline:hover { background: var(--accent); color: var(--bg); }
-    /* botones en hero oscuro */
     .btn--hero-primary { background: var(--hero-text); color: var(--hero-bg); border-color: var(--hero-text); }
     .btn--hero-primary:hover { background: rgba(240,237,230,0.88); border-color: rgba(240,237,230,0.88); box-shadow: 0 4px 20px rgba(240,237,230,0.15); }
     .btn--hero-outline { background: transparent; color: var(--hero-text); border-color: rgba(240,237,230,0.35); }
     .btn--hero-outline:hover { background: var(--hero-text); color: var(--hero-bg); border-color: var(--hero-text); }
 
     /* ---- HERO ---- */
-    .hero {
-      background: var(--hero-bg);
-      color: var(--hero-text);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      padding-top: var(--nav-h);
-    }
-    .hero__inner {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      padding-top: 4rem;
-      padding-bottom: 4.5rem;
-    }
-    .hero__eyebrow {
-      font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase;
-      color: var(--hero-muted);
-      display: flex; align-items: center; gap: 0.75rem;
-    }
+    .hero { background: var(--hero-bg); color: var(--hero-text); min-height: 100vh; display: flex; flex-direction: column; padding-top: var(--nav-h); }
+    .hero__inner { flex: 1; display: flex; flex-direction: column; justify-content: space-between; padding-top: 4rem; padding-bottom: 4.5rem; }
+    .hero__eyebrow { font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--hero-muted); display: flex; align-items: center; gap: 0.75rem; }
     .hero__eyebrow::before { content: ""; display: block; width: 2rem; height: 1px; background: currentColor; flex-shrink: 0; }
     .hero__display { padding: 1.5rem 0; }
-    .hero h1 {
-      font-size: clamp(4rem, 11.5vw, 9.5rem);
-      line-height: 0.88;
-      letter-spacing: -0.03em;
-      font-weight: 700;
-    }
-    .hero__intro-line {
-      display: block;
-      font-size: 0.195em;
-      font-weight: 300;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      font-family: var(--sans);
-      color: var(--hero-muted);
-      margin-bottom: 0.8em;
-      line-height: 1;
-    }
-    .hero__bottom { display: flex; flex-wrap: wrap; align-items: center; gap: 2rem; }
+    .hero h1 { font-size: clamp(4rem, 11.5vw, 9.5rem); line-height: 0.88; letter-spacing: -0.03em; font-weight: 700; }
+    .hero__claim { font-size: clamp(1.2rem, 2.2vw, 1.6rem); font-weight: 300; color: var(--hero-text); line-height: 1.35; margin-top: 1.75rem; max-width: 22ch; }
+    .hero__bottom { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 2rem; }
     .hero__left-bottom { display: flex; flex-direction: column; gap: 1.25rem; }
-    .hero__subtitle { font-size: 1.05rem; color: var(--hero-muted); font-weight: 300; max-width: 36ch; line-height: 1.7; }
-    .hero__actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
-    .badge {
-      display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.85rem;
-      padding: 0.5rem 1rem; border-radius: 100px;
-      background: rgba(240,237,230,0.07); border: 1px solid rgba(240,237,230,0.15);
-      color: var(--hero-muted);
-    }
+    .hero__subtitle { font-size: 0.975rem; color: var(--hero-muted); font-weight: 300; max-width: 42ch; line-height: 1.7; }
+    .hero__actions { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; }
+    .hero__cv-link { font-size: 0.82rem; color: rgba(240,237,230,0.45); letter-spacing: 0.06em; transition: color 0.2s; display: inline-flex; align-items: center; gap: 0.35rem; }
+    .hero__cv-link:hover { color: var(--hero-text); }
+    .badge { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; padding: 0.5rem 1rem; border-radius: 100px; background: rgba(240,237,230,0.07); border: 1px solid rgba(240,237,230,0.15); color: var(--hero-muted); white-space: nowrap; }
     .badge::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: #4a9b6e; flex-shrink: 0; animation: pulse-dot 2.5s ease-in-out infinite; }
     @keyframes pulse-dot { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
 
@@ -184,49 +133,24 @@
     section { padding: 5.5rem 0; }
     #sobre-mi, #musica, #contacto { background: var(--bg-elevated); }
     #laboratorio, #cv { background: var(--bg); }
-    .section-label {
-      font-size: 0.7rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--text-muted); margin-bottom: 0.75rem;
-      display: flex; align-items: center; gap: 0.75rem;
-    }
+    .section-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.75rem; }
     .section-label::before { content: ""; display: block; width: 1.5rem; height: 1px; background: currentColor; flex-shrink: 0; }
     .section-title { font-size: clamp(2rem, 4vw, 2.75rem); margin-bottom: 2rem; }
-
-    /* números de sección como marca de agua */
-    .section-num {
-      position: absolute;
-      top: 1.25rem; right: -0.5rem;
-      font-family: var(--serif);
-      font-size: clamp(6rem, 14vw, 11rem);
-      font-weight: 700; line-height: 1;
-      letter-spacing: -0.05em;
-      color: rgba(42,42,40,0.05);
-      pointer-events: none; user-select: none;
-      z-index: 0;
-    }
+    .section-num { position: absolute; top: 1.25rem; right: -0.5rem; font-family: var(--serif); font-size: clamp(6rem, 14vw, 11rem); font-weight: 700; line-height: 1; letter-spacing: -0.05em; color: rgba(42,42,40,0.05); pointer-events: none; user-select: none; z-index: 0; }
 
     /* ---- ABOUT ---- */
     .about__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
-    .about__text p { margin-bottom: 1.25rem; color: var(--text-muted); }
+    .about__text p { margin-bottom: 1.25rem; color: var(--text-muted); line-height: 1.75; }
     .about__text p:first-of-type { color: var(--text); font-size: 1.1rem; }
+    .about__text p:last-of-type { color: var(--text-muted); font-style: italic; margin-bottom: 0; }
     .about__list { list-style: none; display: flex; flex-direction: column; gap: 0.65rem; }
     .about__list li { display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.95rem; }
     .about__list li::before { content: "—"; color: var(--accent); flex-shrink: 0; font-weight: 500; }
 
     /* ---- LAB ---- */
     .lab-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
-    .project-card {
-      background: var(--bg-elevated); border: 1px solid var(--border); padding: 1.5rem; border-radius: 2px;
-      display: flex; flex-direction: column; gap: 0.65rem;
-      transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s var(--ease);
-      text-decoration: none; color: inherit; position: relative; overflow: hidden;
-    }
-    .project-card::after {
-      content: "↗"; position: absolute; top: 1rem; right: 1rem;
-      font-size: 1rem; line-height: 1; color: var(--text-muted);
-      opacity: 0; transform: translate(-4px, 4px);
-      transition: opacity 0.25s, transform 0.25s var(--ease);
-    }
+    .project-card { background: var(--bg-elevated); border: 1px solid var(--border); padding: 1.5rem; border-radius: 2px; display: flex; flex-direction: column; gap: 0.65rem; transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s var(--ease); text-decoration: none; color: inherit; position: relative; overflow: hidden; }
+    .project-card::after { content: "↗"; position: absolute; top: 1rem; right: 1rem; font-size: 1rem; line-height: 1; color: var(--text-muted); opacity: 0; transform: translate(-4px, 4px); transition: opacity 0.25s, transform 0.25s var(--ease); }
     .project-card:hover { border-color: var(--accent); box-shadow: var(--shadow-md); transform: translateY(-3px); }
     .project-card:hover::after { opacity: 1; transform: translate(0, 0); }
     .project-card__badges { display: flex; flex-wrap: wrap; gap: 0.4rem; }
@@ -241,29 +165,21 @@
     .project-card--featured p { font-size: 0.925rem; max-width: 52ch; }
 
     /* Accordion */
-    .lab-more {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem;
-      overflow: hidden; max-height: 0; opacity: 0;
-      transition: max-height 0.75s var(--ease), opacity 0.4s; margin-top: 0;
-    }
+    .lab-more { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; overflow: hidden; max-height: 0; opacity: 0; transition: max-height 0.75s var(--ease), opacity 0.4s; margin-top: 0; }
     .lab-more.open { max-height: 2400px; opacity: 1; margin-top: 1.25rem; }
     .lab-footer { display: flex; justify-content: center; margin-top: 2rem; }
     .lab-toggle__icon { transition: transform 0.35s var(--ease); flex-shrink: 0; }
     .lab-toggle[aria-expanded="true"] .lab-toggle__icon { transform: rotate(180deg); }
 
     /* ---- MUSIC ---- */
-    .music-block {
-      display: flex; align-items: center; justify-content: space-between; gap: 2rem;
-      padding: 2.5rem 3rem; background: var(--bg);
-      border: 1px solid var(--border); border-left: 3px solid var(--accent);
-      border-radius: 0 2px 2px 0;
-    }
+    .music-block { display: flex; align-items: center; justify-content: space-between; gap: 2rem; padding: 2.5rem 3rem; background: var(--bg); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: 0 2px 2px 0; }
     .music-block__main { display: flex; align-items: center; gap: 1.75rem; }
     .music-block__logo { width: 5rem; height: 5rem; object-fit: contain; border-radius: 2px; }
     .music-block h3 { font-size: 1.75rem; margin-bottom: 0.35rem; }
     .genre { font-size: 0.95rem; color: var(--text-muted); }
 
     /* ---- CV ---- */
+    .cv-intro { font-size: 1rem; color: var(--text-muted); line-height: 1.7; max-width: 58ch; margin-bottom: 2.5rem; font-style: italic; }
     .cv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
     .cv-block h3 { font-family: var(--serif); font-size: 1.5rem; margin-bottom: 1.5rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
     .cv-item { margin-bottom: 1.5rem; padding-left: 1rem; border-left: 2px solid var(--border); transition: border-left-color 0.2s; }
@@ -274,15 +190,12 @@
     .cv-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 2.5rem; }
 
     /* ---- CONTACT ---- */
-    .contact__inner { text-align: center; max-width: 34rem; margin-inline: auto; }
-    .contact__email {
-      font-family: var(--serif); font-size: clamp(1.5rem, 4vw, 2.25rem); font-weight: 500;
-      margin: 1rem 0 0.5rem; display: inline-block;
-      border-bottom: 1px solid var(--border); padding-bottom: 0.15rem;
-      transition: border-color 0.3s, color 0.3s;
-    }
-    .contact__email:hover { border-color: var(--accent); color: var(--accent); }
-    .contact__note { font-size: 0.9rem; color: var(--text-muted); }
+    .contact__inner { text-align: center; max-width: 40rem; margin-inline: auto; }
+    .contact__question { font-family: var(--serif); font-size: clamp(1.5rem, 3.5vw, 2.1rem); font-weight: 500; color: var(--text); line-height: 1.3; margin-bottom: 1rem; }
+    .contact__sub { font-size: 0.975rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 2rem; max-width: 44ch; margin-inline: auto; }
+    .contact__actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; margin-bottom: 2rem; }
+    .contact__email { font-size: 0.85rem; color: var(--text-muted); display: inline-flex; align-items: center; gap: 0.4rem; letter-spacing: 0.03em; transition: color 0.2s; }
+    .contact__email:hover { color: var(--accent); }
 
     /* ---- FOOTER ---- */
     footer { padding: 2rem 0; border-top: 1px solid var(--border); background: var(--bg); }
@@ -292,15 +205,7 @@
     .footer__links a:hover { color: var(--accent); }
 
     /* ---- FAB ---- */
-    .fab {
-      position: fixed; bottom: 1.75rem; right: 1.75rem; z-index: 90;
-      width: 3.25rem; height: 3.25rem; border-radius: 50%;
-      background: var(--accent); color: var(--bg); border: none; cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 4px 20px rgba(26,26,24,0.25);
-      transition: transform 0.3s var(--ease), box-shadow 0.3s, opacity 0.3s;
-      opacity: 0; transform: translateY(1rem); pointer-events: none;
-    }
+    .fab { position: fixed; bottom: 1.75rem; right: 1.75rem; z-index: 90; width: 3.25rem; height: 3.25rem; border-radius: 50%; background: var(--accent); color: var(--bg); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(26,26,24,0.25); transition: transform 0.3s var(--ease), box-shadow 0.3s, opacity 0.3s; opacity: 0; transform: translateY(1rem); pointer-events: none; }
     .fab.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
     .fab:hover { transform: translateY(-3px) scale(1.06); box-shadow: 0 8px 28px rgba(26,26,24,0.32); }
     .fab svg { width: 1.25rem; height: 1.25rem; }
@@ -311,18 +216,12 @@
       .project-card--featured { grid-column: span 2; }
       .about__grid, .cv-grid { grid-template-columns: 1fr; gap: 2rem; }
       .hero h1 { font-size: clamp(3.5rem, 12vw, 7rem); }
+      .hero__claim { font-size: clamp(1.1rem, 3vw, 1.4rem); max-width: 30ch; }
       .music-block { padding: 2rem; }
     }
     @media (max-width: 640px) {
       .nav__toggle { display: block; }
-      .nav__links {
-        position: fixed; top: var(--nav-h); left: 0; right: 0;
-        background: var(--bg); flex-direction: column;
-        padding: 1.5rem 1.25rem 2rem; gap: 1rem;
-        border-bottom: 1px solid var(--border);
-        transform: translateY(-120%); opacity: 0; pointer-events: none;
-        transition: transform 0.4s var(--ease), opacity 0.35s;
-      }
+      .nav__links { position: fixed; top: var(--nav-h); left: 0; right: 0; background: var(--bg); flex-direction: column; padding: 1.5rem 1.25rem 2rem; gap: 1rem; border-bottom: 1px solid var(--border); transform: translateY(-120%); opacity: 0; pointer-events: none; transition: transform 0.4s var(--ease), opacity 0.35s; }
       .nav__links a { color: var(--text-muted); }
       .nav__links a:hover { color: var(--accent); }
       .nav__links.open { transform: translateY(0); opacity: 1; pointer-events: auto; }
@@ -332,6 +231,7 @@
       section { padding: 4rem 0; }
       .hero__inner { padding-top: 2.5rem; padding-bottom: 3rem; }
       .hero h1 { font-size: clamp(3rem, 14vw, 5rem); }
+      .hero__claim { font-size: 1.1rem; max-width: 100%; }
       .hero__bottom { gap: 1.5rem; }
       .footer__inner { flex-direction: column; align-items: center; text-align: center; }
     }
@@ -352,7 +252,7 @@
       </button>
       <ul class="nav__links" id="navLinks">
         <li><a href="#sobre-mi">Sobre mí</a></li>
-        <li><a href="#laboratorio">Laboratorio</a></li>
+        <li><a href="#laboratorio">Proyectos</a></li>
         <li><a href="#musica">Música</a></li>
         <li><a href="#cv">CV</a></li>
         <li><a href="#contacto">Contacto</a></li>
@@ -362,48 +262,45 @@
 
   <main id="main-content">
 
-    <!-- HERO: fondo negro, tipografía monumental -->
     <section class="hero" id="inicio">
       <div class="container hero__inner">
-        <div class="hero__eyebrow">Tecnología · Creatividad · Propósito</div>
+        <div class="hero__eyebrow">Creador digital · Barcelona</div>
         <div class="hero__display">
-          <h1>
-            <span class="hero__intro-line">Hola, soy</span>
-            Miguel<br>Liébana.
-          </h1>
+          <h1>Miguel<br>Liébana.</h1>
+          <p class="hero__claim">Creo productos digitales con IA, diseño y tecnología accesible.</p>
         </div>
         <div class="hero__bottom">
           <div class="hero__left-bottom">
-            <p class="hero__subtitle">Tecnología, creatividad y proyectos con propósito.</p>
+            <p class="hero__subtitle">Desarrollo herramientas web útiles para empresas, creadores y proyectos con propósito — combinando mirada humana, criterio práctico e inteligencia artificial.</p>
             <div class="hero__actions">
               <a href="#laboratorio" class="btn btn--hero-primary">Ver proyectos</a>
-              <a href="#contacto" class="btn btn--hero-outline">Contacto</a>
+              <a href="#contacto" class="btn btn--hero-outline">Contactar</a>
+              <a href="newcv2026.PNG.pdf" class="hero__cv-link" download>Descargar CV ↓</a>
             </div>
           </div>
-          <span class="badge">Disponible para proyectos · Barcelona</span>
+          <span class="badge">Disponible · Barcelona</span>
         </div>
       </div>
     </section>
 
-    <!-- TICKER entre hero y contenido -->
     <div class="ticker" aria-hidden="true">
       <div class="ticker__track">
-        <span class="ticker__item">Tecnología</span><span class="ticker__sep">·</span>
-        <span class="ticker__item">Creatividad</span><span class="ticker__sep">·</span>
-        <span class="ticker__item">IA Generativa</span><span class="ticker__sep">·</span>
-        <span class="ticker__item">Música</span><span class="ticker__sep">·</span>
+        <span class="ticker__item">Productos digitales</span><span class="ticker__sep">·</span>
+        <span class="ticker__item">IA aplicada</span><span class="ticker__sep">·</span>
+        <span class="ticker__item">Diseño web</span><span class="ticker__sep">·</span>
+        <span class="ticker__item">Automatización</span><span class="ticker__sep">·</span>
         <span class="ticker__item">Barcelona</span><span class="ticker__sep">·</span>
         <span class="ticker__item">Propósito</span><span class="ticker__sep">·</span>
-        <span class="ticker__item">Diseño Digital</span><span class="ticker__sep">·</span>
-        <span class="ticker__item">Proyectos</span><span class="ticker__sep">·</span>
-        <span class="ticker__item">Tecnología</span><span class="ticker__sep">·</span>
-        <span class="ticker__item">Creatividad</span><span class="ticker__sep">·</span>
-        <span class="ticker__item">IA Generativa</span><span class="ticker__sep">·</span>
-        <span class="ticker__item">Música</span><span class="ticker__sep">·</span>
+        <span class="ticker__item">Ejecución real</span><span class="ticker__sep">·</span>
+        <span class="ticker__item">Tecnología accesible</span><span class="ticker__sep">·</span>
+        <span class="ticker__item">Productos digitales</span><span class="ticker__sep">·</span>
+        <span class="ticker__item">IA aplicada</span><span class="ticker__sep">·</span>
+        <span class="ticker__item">Diseño web</span><span class="ticker__sep">·</span>
+        <span class="ticker__item">Automatización</span><span class="ticker__sep">·</span>
         <span class="ticker__item">Barcelona</span><span class="ticker__sep">·</span>
         <span class="ticker__item">Propósito</span><span class="ticker__sep">·</span>
-        <span class="ticker__item">Diseño Digital</span><span class="ticker__sep">·</span>
-        <span class="ticker__item">Proyectos</span><span class="ticker__sep">·</span>
+        <span class="ticker__item">Ejecución real</span><span class="ticker__sep">·</span>
+        <span class="ticker__item">Tecnología accesible</span><span class="ticker__sep">·</span>
       </div>
     </div>
 
@@ -414,17 +311,18 @@
         <h2 class="section-title reveal reveal-delay-1">Sobre mí</h2>
         <div class="about__grid">
           <div class="about__text reveal">
-            <p>Soy Miguel. Maestro de primaria y música, coordinador TIC, administrativo y músico. Mi camino no ha sido lineal: he enseñado a niños, gestionado oficinas, atendido llamadas y subido a un escenario.</p>
-            <p>Hoy combino esa experiencia con mi pasión por la tecnología, la inteligencia artificial y la creación digital. Construyo proyectos con propósito: accesibilidad, IA aplicada al deporte y todo lo que mezcle creatividad con impacto real.</p>
-            <p>Soy fan del Barça, del fútbol y de las ideas que nacen de los errores. Creo en la resiliencia, en construir despacio y en hacer las cosas con honestidad.</p>
+            <p>Soy Miguel Liébana, creador digital con experiencia en educación, administración, música y tecnología.</p>
+            <p>Combino mirada humana, criterio práctico e inteligencia artificial para construir soluciones web útiles, claras y accesibles.</p>
+            <p>Mi foco actual está en productos digitales, automatización, IA aplicada y herramientas que ayuden a personas y empresas a trabajar mejor.</p>
+            <p>Me interesan los proyectos con propósito, la creatividad aplicada y la tecnología que simplifica la vida en lugar de complicarla.</p>
           </div>
           <ul class="about__list reveal reveal-delay-1">
-            <li>Maestro de primaria y música</li>
-            <li>Coordinador TIC</li>
-            <li>Administrativo en CTTI</li>
-            <li>Músico en activo</li>
-            <li>Explorando IA generativa</li>
-            <li>Creador digital</li>
+            <li>Creación de productos digitales</li>
+            <li>IA generativa aplicada</li>
+            <li>Diseño web y comunicación digital</li>
+            <li>Coordinación tecnológica</li>
+            <li>Músico y creador de contenido</li>
+            <li>Docente con experiencia en tecnología educativa</li>
           </ul>
         </div>
       </div>
@@ -542,6 +440,7 @@
         <span class="section-num" aria-hidden="true">04</span>
         <p class="section-label reveal">Trayectoria</p>
         <h2 class="section-title reveal reveal-delay-1">CV</h2>
+        <p class="cv-intro reveal reveal-delay-2">Una trayectoria híbrida entre educación, administración, música y tecnología, ahora enfocada en creación digital e inteligencia artificial aplicada.</p>
         <div class="cv-grid">
           <div class="cv-block reveal">
             <h3>Experiencia</h3>
@@ -599,8 +498,16 @@
         <p class="section-label reveal">Hablemos</p>
         <h2 class="section-title reveal reveal-delay-1">Contacto</h2>
         <div class="contact__inner reveal reveal-delay-2">
-          <p class="contact__note">¿Tienes un proyecto, una colaboración o simplemente quieres saludar?</p>
-          <a href="mailto:mlieban3@gmail.com" class="contact__email">mlieban3@gmail.com</a>
+          <p class="contact__question">¿Tienes una idea, una web o un proceso que quieras convertir en algo funcional?</p>
+          <p class="contact__sub">Hablemos. Puedo ayudarte a ordenar la idea, crear un prototipo o convertirla en una primera versión presentable.</p>
+          <div class="contact__actions">
+            <a href="mailto:mlieban3@gmail.com" class="btn btn--primary">Contactar</a>
+            <a href="#laboratorio" class="btn btn--outline">Ver proyectos</a>
+            <a href="https://www.linkedin.com/in/mliebanavicente" class="btn btn--outline" target="_blank" rel="noopener">LinkedIn</a>
+          </div>
+          <a href="mailto:mlieban3@gmail.com" class="contact__email">
+            mlieban3@gmail.com
+          </a>
         </div>
       </div>
     </section>
