@@ -3,8 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Miguel Liébana — Tecnología, creatividad, salud mental y proyectos con propósito. Barcelona.">
+  <meta name="description" content="Miguel Liébana — Tecnología, creatividad y proyectos con propósito. Barcelona.">
+  <meta name="theme-color" content="#1a1a18">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Miguel Liébana">
+  <meta property="og:description" content="Tecnología, creatividad y proyectos con propósito. Barcelona.">
+  <meta property="og:url" content="https://miguelliebana.com">
+  <meta name="twitter:card" content="summary_large_image">
   <title>Miguel Liébana</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%231a1a18'/%3E%3Ctext x='16' y='22' text-anchor='middle' fill='%23f8f7f4' font-family='Georgia%2Cserif' font-size='13' font-weight='700'%3EML%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -22,6 +29,8 @@
       --nav-h: 4.25rem;
       --max-w: 72rem;
       --ease: cubic-bezier(0.22, 1, 0.36, 1);
+      --shadow-sm: 0 2px 8px rgba(26,26,24,0.06);
+      --shadow-md: 0 8px 32px rgba(26,26,24,0.1);
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; scroll-padding-top: var(--nav-h); }
@@ -31,17 +40,22 @@
     img { max-width: 100%; display: block; }
     .container { width: min(100% - 2.5rem, var(--max-w)); margin-inline: auto; }
 
+    .skip-link { position: absolute; top: -100%; left: 1rem; background: var(--accent); color: var(--bg); padding: 0.5rem 1rem; border-radius: 0 0 4px 4px; font-size: 0.875rem; z-index: 999; }
+    .skip-link:focus { top: 0; }
+
     .reveal { opacity: 0; transform: translateY(1.75rem); transition: opacity 0.85s var(--ease), transform 0.85s var(--ease); }
     .reveal.visible { opacity: 1; transform: translateY(0); }
     .reveal-delay-1 { transition-delay: 0.1s; }
     .reveal-delay-2 { transition-delay: 0.2s; }
     .reveal-delay-3 { transition-delay: 0.3s; }
 
+    /* ---- NAV ---- */
     .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: var(--nav-h); background: rgba(248,247,244,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid transparent; transition: border-color 0.35s, box-shadow 0.35s; }
     .nav.scrolled { border-color: var(--border); box-shadow: 0 1px 0 rgba(0,0,0,0.04); }
     .nav__inner { display: flex; align-items: center; justify-content: space-between; height: 100%; }
     .logo { font-family: var(--serif); font-size: 1.2rem; font-weight: 600; display: flex; align-items: center; gap: 0.6rem; }
     .logo strong { font-weight: 700; }
+    .logo img { height: 2.4rem; width: auto; }
     .nav__links { display: flex; gap: 1.75rem; list-style: none; }
     .nav__links a { font-size: 0.8rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); transition: color 0.2s; }
     .nav__links a:hover { color: var(--accent); }
@@ -51,30 +65,39 @@
     .nav__toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
     .nav__toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-    .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; font-family: var(--sans); font-size: 0.875rem; font-weight: 500; letter-spacing: 0.05em; border-radius: 2px; border: 1px solid transparent; cursor: pointer; transition: background 0.3s, color 0.3s, border-color 0.3s, transform 0.3s; }
-    .btn:hover { transform: translateY(-1px); }
+    /* ---- BUTTONS ---- */
+    .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; font-family: var(--sans); font-size: 0.875rem; font-weight: 500; letter-spacing: 0.05em; border-radius: 2px; border: 1px solid transparent; cursor: pointer; transition: background 0.25s, color 0.25s, border-color 0.25s, transform 0.25s var(--ease), box-shadow 0.25s; }
+    .btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-sm); }
     .btn--primary { background: var(--accent); color: var(--bg); border-color: var(--accent); }
-    .btn--primary:hover { background: var(--accent-soft); color: var(--bg); }
+    .btn--primary:hover { background: var(--accent-soft); border-color: var(--accent-soft); }
     .btn--outline { background: transparent; color: var(--accent); border-color: var(--accent); }
     .btn--outline:hover { background: var(--accent); color: var(--bg); }
 
-    .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; align-items: center; padding-top: var(--nav-h); }
-    .hero__left { padding: 4rem 5% 4rem 0; }
-    .hero__eyebrow { font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1.5rem; }
+    /* ---- HERO ---- */
+    .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; align-items: center; padding-top: var(--nav-h); background: var(--bg); }
+    .hero__left { padding: 4rem 3rem 4rem max(1.25rem, calc((100vw - var(--max-w)) / 2)); }
+    .hero__eyebrow { font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem; }
+    .hero__eyebrow::before { content: ""; display: block; width: 2rem; height: 1px; background: currentColor; flex-shrink: 0; }
     .hero__left h1 { font-size: clamp(2.75rem, 6vw, 4.5rem); margin-bottom: 1.25rem; }
     .hero__left h1 strong { font-weight: 800; }
     .hero__subtitle { font-size: 1.1rem; color: var(--text-muted); font-weight: 300; margin-bottom: 2rem; max-width: 36ch; line-height: 1.7; }
     .hero__actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 2rem; }
     .badge { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; color: var(--text-muted); padding: 0.5rem 1rem; background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 100px; }
-    .badge::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: #4a9b6e; flex-shrink: 0; }
-    .hero__right { height: 100vh; overflow: hidden; }
+    .badge::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: #4a9b6e; flex-shrink: 0; animation: pulse-dot 2.5s ease-in-out infinite; }
+    @keyframes pulse-dot { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
+    .hero__right { height: 100vh; overflow: hidden; position: relative; }
+    .hero__right::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to right, rgba(248,247,244,0.1) 0%, transparent 25%); pointer-events: none; }
     .hero__right img { width: 100%; height: 100%; object-fit: cover; }
 
+    /* ---- SECTIONS ---- */
     section { padding: 5.5rem 0; }
-    section:nth-child(even) { background: var(--bg-elevated); }
-    .section-label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.75rem; }
+    #sobre-mi, #musica, #contacto { background: var(--bg-elevated); }
+    #inicio, #laboratorio, #cv { background: var(--bg); }
+    .section-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.75rem; }
+    .section-label::before { content: ""; display: block; width: 1.5rem; height: 1px; background: currentColor; flex-shrink: 0; }
     .section-title { font-size: clamp(2rem, 4vw, 2.75rem); margin-bottom: 2rem; }
 
+    /* ---- ABOUT ---- */
     .about__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
     .about__text p { margin-bottom: 1.25rem; color: var(--text-muted); }
     .about__text p:first-of-type { color: var(--text); font-size: 1.1rem; }
@@ -82,66 +105,98 @@
     .about__list li { display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.95rem; }
     .about__list li::before { content: "—"; color: var(--accent); flex-shrink: 0; font-weight: 500; }
 
+    /* ---- LAB ---- */
     .lab-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
-    .project-card { background: var(--bg); border: 1px solid var(--border); padding: 1.5rem; border-radius: 2px; display: flex; flex-direction: column; gap: 0.65rem; transition: border-color 0.35s, box-shadow 0.35s, transform 0.35s; text-decoration: none; color: inherit; }
-    .project-card:hover { border-color: var(--accent); box-shadow: 0 8px 24px rgba(26,26,24,0.06); transform: translateY(-2px); }
+    .project-card { background: var(--bg-elevated); border: 1px solid var(--border); padding: 1.5rem; border-radius: 2px; display: flex; flex-direction: column; gap: 0.65rem; transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s var(--ease); text-decoration: none; color: inherit; position: relative; overflow: hidden; }
+    .project-card::after { content: "↗"; position: absolute; top: 1rem; right: 1rem; font-size: 1rem; line-height: 1; color: var(--text-muted); opacity: 0; transform: translate(-4px, 4px); transition: opacity 0.25s, transform 0.25s var(--ease); }
+    .project-card:hover { border-color: var(--accent); box-shadow: var(--shadow-md); transform: translateY(-3px); }
+    .project-card:hover::after { opacity: 1; transform: translate(0, 0); }
     .project-card__badges { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-    .project-card h3 { font-family: var(--serif); font-size: 1.3rem; font-weight: 600; }
+    .project-card h3 { font-family: var(--serif); font-size: 1.3rem; font-weight: 600; padding-right: 1.5rem; }
     .project-card p { font-size: 0.875rem; color: var(--text-muted); flex: 1; }
-    .status { align-self: flex-start; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.25rem 0.6rem; border-radius: 2px; }
+    .status { align-self: flex-start; font-size: 0.65rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.25rem 0.6rem; border-radius: 2px; }
     .status--destacado { background: var(--accent); color: var(--bg); }
     .status--activo { background: #e8f0eb; color: #2d5a3d; }
     .status--beta { background: #f0ebe4; color: #6b5344; }
 
-    .music-block { display: flex; align-items: center; justify-content: space-between; gap: 2rem; padding: 2.5rem; border: 1px solid var(--border); border-radius: 2px; }
-    .music-block__main { display: flex; align-items: center; gap: 1.5rem; }
-    .music-block__logo { width: 5.5rem; height: 5.5rem; object-fit: contain; border-radius: 2px; }
+    /* Enerpro featured card */
+    .project-card--featured { grid-column: span 2; border-left: 3px solid var(--accent); }
+    .project-card--featured h3 { font-size: 1.6rem; }
+    .project-card--featured p { font-size: 0.925rem; max-width: 52ch; }
+
+    /* Accordion */
+    .lab-more { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; overflow: hidden; max-height: 0; opacity: 0; transition: max-height 0.75s var(--ease), opacity 0.4s; margin-top: 0; }
+    .lab-more.open { max-height: 2400px; opacity: 1; margin-top: 1.25rem; }
+    .lab-footer { display: flex; justify-content: center; margin-top: 2rem; }
+    .lab-toggle__icon { transition: transform 0.35s var(--ease); flex-shrink: 0; }
+    .lab-toggle[aria-expanded="true"] .lab-toggle__icon { transform: rotate(180deg); }
+
+    /* ---- MUSIC ---- */
+    .music-block { display: flex; align-items: center; justify-content: space-between; gap: 2rem; padding: 2.5rem 3rem; background: var(--bg); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: 0 2px 2px 0; }
+    .music-block__main { display: flex; align-items: center; gap: 1.75rem; }
+    .music-block__logo { width: 5rem; height: 5rem; object-fit: contain; border-radius: 2px; }
     .music-block h3 { font-size: 1.75rem; margin-bottom: 0.35rem; }
     .genre { font-size: 0.95rem; color: var(--text-muted); }
 
+    /* ---- CV ---- */
     .cv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
-    .cv-block h3 { font-family: var(--serif); font-size: 1.5rem; margin-bottom: 1.25rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
-    .cv-item { margin-bottom: 1.5rem; }
+    .cv-block h3 { font-family: var(--serif); font-size: 1.5rem; margin-bottom: 1.5rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
+    .cv-item { margin-bottom: 1.5rem; padding-left: 1rem; border-left: 2px solid var(--border); transition: border-left-color 0.2s; }
+    .cv-item:hover { border-left-color: var(--accent); }
     .cv-item__title { font-weight: 600; font-size: 1rem; margin-bottom: 0.15rem; }
     .cv-item__meta { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.35rem; }
     .cv-item__desc { font-size: 0.875rem; color: var(--text-muted); }
     .cv-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 2.5rem; }
 
-    .contact__inner { text-align: center; max-width: 32rem; margin-inline: auto; }
-    .contact__email { font-family: var(--serif); font-size: clamp(1.5rem, 4vw, 2.25rem); font-weight: 500; margin: 1rem 0 0.5rem; display: inline-block; border-bottom: 1px solid var(--border); transition: border-color 0.3s, color 0.3s; }
+    /* ---- CONTACT ---- */
+    .contact__inner { text-align: center; max-width: 34rem; margin-inline: auto; }
+    .contact__email { font-family: var(--serif); font-size: clamp(1.5rem, 4vw, 2.25rem); font-weight: 500; margin: 1rem 0 0.5rem; display: inline-block; border-bottom: 1px solid var(--border); padding-bottom: 0.15rem; transition: border-color 0.3s, color 0.3s; }
     .contact__email:hover { border-color: var(--accent); color: var(--accent); }
     .contact__note { font-size: 0.9rem; color: var(--text-muted); }
 
-    footer { padding: 2rem 0; border-top: 1px solid var(--border); text-align: center; font-size: 0.85rem; color: var(--text-muted); }
+    /* ---- FOOTER ---- */
+    footer { padding: 2rem 0; border-top: 1px solid var(--border); }
+    .footer__inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; font-size: 0.85rem; color: var(--text-muted); }
+    .footer__links { display: flex; gap: 1.25rem; }
+    .footer__links a { color: var(--text-muted); transition: color 0.2s; }
+    .footer__links a:hover { color: var(--accent); }
 
-    .fab { position: fixed; bottom: 1.75rem; right: 1.75rem; z-index: 90; width: 3.25rem; height: 3.25rem; border-radius: 50%; background: var(--accent); color: var(--bg); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(26,26,24,0.25); transition: transform 0.3s, box-shadow 0.3s; opacity: 0; transform: translateY(1rem); pointer-events: none; }
+    /* ---- FAB ---- */
+    .fab { position: fixed; bottom: 1.75rem; right: 1.75rem; z-index: 90; width: 3.25rem; height: 3.25rem; border-radius: 50%; background: var(--accent); color: var(--bg); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(26,26,24,0.25); transition: transform 0.3s var(--ease), box-shadow 0.3s, opacity 0.3s; opacity: 0; transform: translateY(1rem); pointer-events: none; }
     .fab.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
-    .fab:hover { transform: translateY(-2px) scale(1.05); box-shadow: 0 8px 28px rgba(26,26,24,0.3); }
+    .fab:hover { transform: translateY(-3px) scale(1.06); box-shadow: 0 8px 28px rgba(26,26,24,0.32); }
     .fab svg { width: 1.25rem; height: 1.25rem; }
 
+    /* ---- RESPONSIVE ---- */
     @media (max-width: 900px) {
-      .lab-grid { grid-template-columns: repeat(2, 1fr); }
+      .lab-grid, .lab-more { grid-template-columns: repeat(2, 1fr); }
+      .project-card--featured { grid-column: span 2; }
       .about__grid, .cv-grid { grid-template-columns: 1fr; gap: 2rem; }
       .hero { grid-template-columns: 1fr; }
-      .hero__right { height: 50vw; }
-      .hero__left { padding: 2rem 0; }
+      .hero__right { height: 55vw; }
+      .hero__left { padding: 2.5rem 1.25rem; }
+      .music-block { padding: 2rem; }
     }
     @media (max-width: 640px) {
       .nav__toggle { display: block; }
-      .nav__links { position: fixed; top: var(--nav-h); left: 0; right: 0; background: var(--bg); flex-direction: column; padding: 1.5rem 1.25rem 2rem; gap: 1rem; border-bottom: 1px solid var(--border); transform: translateY(-120%); opacity: 0; pointer-events: none; transition: transform 0.4s, opacity 0.4s; }
+      .nav__links { position: fixed; top: var(--nav-h); left: 0; right: 0; background: var(--bg); flex-direction: column; padding: 1.5rem 1.25rem 2rem; gap: 1rem; border-bottom: 1px solid var(--border); transform: translateY(-120%); opacity: 0; pointer-events: none; transition: transform 0.4s var(--ease), opacity 0.35s; }
       .nav__links.open { transform: translateY(0); opacity: 1; pointer-events: auto; }
-      .lab-grid { grid-template-columns: 1fr; }
-      .music-block { flex-direction: column; align-items: flex-start; }
+      .lab-grid, .lab-more { grid-template-columns: 1fr; }
+      .project-card--featured { grid-column: span 1; }
+      .music-block { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
       section { padding: 4rem 0; }
+      .footer__inner { flex-direction: column; align-items: center; text-align: center; }
     }
   </style>
 </head>
 <body>
 
+  <a href="#main-content" class="skip-link">Saltar al contenido</a>
+
   <header class="nav" id="nav">
     <div class="container nav__inner">
-      <a href="#" class="logo">
-        <img src="logomiguel.png" alt="ML" style="height:2.4rem;width:auto;">
+      <a href="#inicio" class="logo">
+        <img src="logomiguel.png" alt="ML">
         Miguel <strong>Liébana</strong>
       </a>
       <button class="nav__toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
@@ -157,14 +212,14 @@
     </div>
   </header>
 
-  <main>
+  <main id="main-content">
 
     <section class="hero" id="inicio">
-      <div class="hero__left container" style="width:auto;padding-left:max(1.25rem,calc((100vw - 72rem)/2));padding-right:3rem;">
+      <div class="hero__left">
         <div class="reveal">
           <div class="hero__eyebrow">Tecnología · Creatividad · Propósito</div>
           <h1>Hola, soy <strong>Miguel.</strong></h1>
-          <p class="hero__subtitle">Tecnología, creatividad, salud mental y proyectos con propósito.</p>
+          <p class="hero__subtitle">Tecnología, creatividad y proyectos con propósito.</p>
           <div class="hero__actions">
             <a href="#laboratorio" class="btn btn--primary">Ver proyectos</a>
             <a href="#contacto" class="btn btn--outline">Contacto</a>
@@ -173,7 +228,7 @@
         </div>
       </div>
       <div class="hero__right">
-        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=900&q=85" alt="Miguel Liébana">
+        <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&q=90" alt="" loading="eager" fetchpriority="high">
       </div>
     </section>
 
@@ -184,7 +239,7 @@
         <div class="about__grid">
           <div class="about__text reveal">
             <p>Soy Miguel. Maestro de primaria y música, coordinador TIC, administrativo y músico. Mi camino no ha sido lineal: he enseñado a niños, gestionado oficinas, atendido llamadas y subido a un escenario.</p>
-            <p>Hoy combino esa experiencia con mi pasión por la tecnología, la inteligencia artificial y la creación digital. Construyo proyectos con propósito: salud mental, accesibilidad, IA aplicada al deporte y todo lo que mezcle creatividad con impacto real.</p>
+            <p>Hoy combino esa experiencia con mi pasión por la tecnología, la inteligencia artificial y la creación digital. Construyo proyectos con propósito: accesibilidad, IA aplicada al deporte y todo lo que mezcle creatividad con impacto real.</p>
             <p>Soy fan del Barça, del fútbol y de las ideas que nacen de los errores. Creo en la resiliencia, en construir despacio y en hacer las cosas con honestidad.</p>
           </div>
           <ul class="about__list reveal reveal-delay-1">
@@ -203,9 +258,20 @@
       <div class="container">
         <p class="section-label reveal">Proyectos</p>
         <h2 class="section-title reveal reveal-delay-1">Laboratorio</h2>
+
+        <!-- Proyectos destacados, siempre visibles -->
         <div class="lab-grid">
 
-          <a href="https://lallardeldolc.vercel.app" class="project-card reveal" target="_blank" rel="noopener">
+          <a href="https://enerpro.vercel.app/presentacion.html" class="project-card project-card--featured reveal" target="_blank" rel="noopener">
+            <div class="project-card__badges">
+              <span class="status status--destacado">Destacado</span>
+              <span class="status status--activo">Activo</span>
+            </div>
+            <h3>Enerpro</h3>
+            <p>Plataforma de gestión y optimización energética para empresas y particulares.</p>
+          </a>
+
+          <a href="https://lallardeldolc.vercel.app" class="project-card reveal reveal-delay-1" target="_blank" rel="noopener">
             <div class="project-card__badges">
               <span class="status status--destacado">Destacado</span>
               <span class="status status--activo">Activo</span>
@@ -214,7 +280,7 @@
             <p>Web de lotes y packs regalo personalizados.</p>
           </a>
 
-          <a href="https://noflagpatriotshop.com" class="project-card reveal reveal-delay-1" target="_blank" rel="noopener">
+          <a href="https://noflagpatriotshop.com" class="project-card reveal reveal-delay-2" target="_blank" rel="noopener">
             <div class="project-card__badges">
               <span class="status status--destacado">Destacado</span>
               <span class="status status--activo">Activo</span>
@@ -223,55 +289,86 @@
             <p>Tienda oficial de merchandising de mi banda.</p>
           </a>
 
-          <a href="https://fichajesradaria.lovable.app" class="project-card reveal reveal-delay-2" target="_blank" rel="noopener">
-            <span class="status status--activo">Activo</span>
+        </div>
+
+        <!-- Más proyectos, desplegables -->
+        <div class="lab-more" id="labMore" aria-hidden="true">
+
+          <a href="https://fichajesradaria.lovable.app" class="project-card" target="_blank" rel="noopener">
+            <div class="project-card__badges">
+              <span class="status status--activo">Activo</span>
+            </div>
             <h3>Fichajes Radar IA</h3>
             <p>Análisis de fichajes con IA.</p>
           </a>
 
-          <a href="https://onaia.lovable.app" class="project-card reveal" target="_blank" rel="noopener">
-            <span class="status status--activo">Activo</span>
+          <a href="https://onaia.lovable.app" class="project-card" target="_blank" rel="noopener">
+            <div class="project-card__badges">
+              <span class="status status--activo">Activo</span>
+            </div>
             <h3>Onaia</h3>
             <p>Proyecto en desarrollo.</p>
           </a>
 
-          <a href="https://comprabarata.lovable.app" class="project-card reveal reveal-delay-1" target="_blank" rel="noopener">
-            <span class="status status--activo">Activo</span>
+          <a href="https://comprabarata.lovable.app" class="project-card" target="_blank" rel="noopener">
+            <div class="project-card__badges">
+              <span class="status status--activo">Activo</span>
+            </div>
             <h3>Compra Barata</h3>
             <p>Comparador para decisiones de compra.</p>
           </a>
 
-          <a href="https://apuestaclara.lovable.app" class="project-card reveal reveal-delay-2" target="_blank" rel="noopener">
-            <span class="status status--activo">Activo</span>
+          <a href="https://apuestaclara.lovable.app" class="project-card" target="_blank" rel="noopener">
+            <div class="project-card__badges">
+              <span class="status status--activo">Activo</span>
+            </div>
             <h3>Apuesta Clara</h3>
             <p>Análisis racional en apuestas deportivas.</p>
           </a>
 
-          <a href="https://spartafitcoach.lovable.app" class="project-card reveal" target="_blank" rel="noopener">
-            <span class="status status--beta">Beta</span>
+          <a href="https://spartafitcoach.lovable.app" class="project-card" target="_blank" rel="noopener">
+            <div class="project-card__badges">
+              <span class="status status--beta">Beta</span>
+            </div>
             <h3>Espartanos</h3>
             <p>Fitness con enfoque motivacional.</p>
           </a>
 
-          <a href="https://sheindescuentos.lovable.app" class="project-card reveal reveal-delay-1" target="_blank" rel="noopener">
-            <span class="status status--activo">Activo</span>
+          <a href="https://sheindescuentos.lovable.app" class="project-card" target="_blank" rel="noopener">
+            <div class="project-card__badges">
+              <span class="status status--activo">Activo</span>
+            </div>
             <h3>Shein Real Codes</h3>
             <p>Verificación de descuentos online.</p>
           </a>
 
-          <a href="https://coaich-de-seduccion.lovable.app" class="project-card reveal reveal-delay-2" target="_blank" rel="noopener">
-            <span class="status status--beta">Beta</span>
+          <a href="https://coaich-de-seduccion.lovable.app" class="project-card" target="_blank" rel="noopener">
+            <div class="project-card__badges">
+              <span class="status status--beta">Beta</span>
+            </div>
             <h3>CoAIch de Seducción</h3>
             <p>Asistente conversacional para relaciones.</p>
           </a>
 
-          <a href="https://redflagtoxicai.lovable.app" class="project-card reveal" target="_blank" rel="noopener">
-            <span class="status status--beta">Beta</span>
+          <a href="https://redflagtoxicai.lovable.app" class="project-card" target="_blank" rel="noopener">
+            <div class="project-card__badges">
+              <span class="status status--beta">Beta</span>
+            </div>
             <h3>RedFlag AI</h3>
             <p>Comunicación y comportamiento digital.</p>
           </a>
 
         </div>
+
+        <div class="lab-footer reveal">
+          <button class="btn btn--outline lab-toggle" id="labToggle" aria-expanded="false" aria-controls="labMore">
+            Ver todos los proyectos
+            <svg class="lab-toggle__icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
+          </button>
+        </div>
+
       </div>
     </section>
 
@@ -281,7 +378,7 @@
         <h2 class="section-title reveal reveal-delay-1">Música</h2>
         <div class="music-block reveal reveal-delay-2">
           <div class="music-block__main">
-            <img src="nfplogo.jpg" alt="No Flag Patriots" class="music-block__logo">
+            <img src="nfplogo.jpg" alt="No Flag Patriots" class="music-block__logo" loading="lazy">
             <div>
               <h3>No Flag Patriots</h3>
               <p class="genre">Punk Rock · Barcelona</p>
@@ -361,7 +458,13 @@
   </main>
 
   <footer>
-    <div class="container">© 2026 Miguel Liébana · Hecho con creatividad y muchas reconstrucciones.</div>
+    <div class="container footer__inner">
+      <span>© 2026 Miguel Liébana · Hecho con creatividad y muchas reconstrucciones.</span>
+      <nav class="footer__links" aria-label="Enlaces rápidos">
+        <a href="https://www.linkedin.com/in/mliebanavicente" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://noflagpatriots.com" target="_blank" rel="noopener">No Flag Patriots</a>
+      </nav>
+    </div>
   </footer>
 
   <a href="#contacto" class="fab" id="fab" aria-label="Ir a contacto">
@@ -373,37 +476,46 @@
 
   <script>
     (function () {
-      var nav = document.getElementById("nav");
-      var navToggle = document.getElementById("navToggle");
-      var navLinks = document.getElementById("navLinks");
-      var fab = document.getElementById("fab");
+      var nav = document.getElementById('nav');
+      var navToggle = document.getElementById('navToggle');
+      var navLinks = document.getElementById('navLinks');
+      var fab = document.getElementById('fab');
+      var labToggle = document.getElementById('labToggle');
+      var labMore = document.getElementById('labMore');
 
-      window.addEventListener("scroll", function () {
-        nav.classList.toggle("scrolled", window.scrollY > 20);
-        fab.classList.toggle("visible", window.scrollY > 400);
+      window.addEventListener('scroll', function () {
+        nav.classList.toggle('scrolled', window.scrollY > 20);
+        fab.classList.toggle('visible', window.scrollY > 400);
       }, { passive: true });
 
-      navToggle.addEventListener("click", function () {
-        var open = navLinks.classList.toggle("open");
-        navToggle.setAttribute("aria-expanded", open);
+      navToggle.addEventListener('click', function () {
+        var open = navLinks.classList.toggle('open');
+        navToggle.setAttribute('aria-expanded', open);
       });
 
-      navLinks.querySelectorAll("a").forEach(function (link) {
-        link.addEventListener("click", function () {
-          navLinks.classList.remove("open");
-          navToggle.setAttribute("aria-expanded", "false");
+      navLinks.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', function () {
+          navLinks.classList.remove('open');
+          navToggle.setAttribute('aria-expanded', 'false');
         });
       });
 
-      var revealEls = document.querySelectorAll(".reveal");
+      labToggle.addEventListener('click', function () {
+        var open = labMore.classList.toggle('open');
+        labToggle.setAttribute('aria-expanded', open);
+        labMore.setAttribute('aria-hidden', !open);
+        labToggle.childNodes[0].textContent = open ? 'Ver menos ' : 'Ver todos los proyectos ';
+      });
+
+      var revealEls = document.querySelectorAll('.reveal');
       var observer = new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) {
           if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
+            entry.target.classList.add('visible');
             observer.unobserve(entry.target);
           }
         });
-      }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 
       revealEls.forEach(function (el) { observer.observe(el); });
     })();
