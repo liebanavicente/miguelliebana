@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Miguel Liébana — Tecnología, creatividad, salud mental y proyectos con propósito. Barcelona.">
+  <meta name="description" content="Miguel Liébana — Tecnología, creatividad y proyectos con propósito. Barcelona.">
   <meta name="theme-color" content="#1a1a18">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Miguel Liébana">
@@ -40,11 +40,9 @@
     img { max-width: 100%; display: block; }
     .container { width: min(100% - 2.5rem, var(--max-w)); margin-inline: auto; }
 
-    /* accessibility */
     .skip-link { position: absolute; top: -100%; left: 1rem; background: var(--accent); color: var(--bg); padding: 0.5rem 1rem; border-radius: 0 0 4px 4px; font-size: 0.875rem; z-index: 999; }
     .skip-link:focus { top: 0; }
 
-    /* scroll reveal */
     .reveal { opacity: 0; transform: translateY(1.75rem); transition: opacity 0.85s var(--ease), transform 0.85s var(--ease); }
     .reveal.visible { opacity: 1; transform: translateY(0); }
     .reveal-delay-1 { transition-delay: 0.1s; }
@@ -88,7 +86,7 @@
     .badge::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: #4a9b6e; flex-shrink: 0; animation: pulse-dot 2.5s ease-in-out infinite; }
     @keyframes pulse-dot { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
     .hero__right { height: 100vh; overflow: hidden; position: relative; }
-    .hero__right::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to right, rgba(248,247,244,0.12) 0%, transparent 30%); pointer-events: none; }
+    .hero__right::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to right, rgba(248,247,244,0.1) 0%, transparent 25%); pointer-events: none; }
     .hero__right img { width: 100%; height: 100%; object-fit: cover; }
 
     /* ---- SECTIONS ---- */
@@ -120,6 +118,18 @@
     .status--destacado { background: var(--accent); color: var(--bg); }
     .status--activo { background: #e8f0eb; color: #2d5a3d; }
     .status--beta { background: #f0ebe4; color: #6b5344; }
+
+    /* Enerpro featured card */
+    .project-card--featured { grid-column: span 2; border-left: 3px solid var(--accent); }
+    .project-card--featured h3 { font-size: 1.6rem; }
+    .project-card--featured p { font-size: 0.925rem; max-width: 52ch; }
+
+    /* Accordion */
+    .lab-more { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; overflow: hidden; max-height: 0; opacity: 0; transition: max-height 0.75s var(--ease), opacity 0.4s; margin-top: 0; }
+    .lab-more.open { max-height: 2400px; opacity: 1; margin-top: 1.25rem; }
+    .lab-footer { display: flex; justify-content: center; margin-top: 2rem; }
+    .lab-toggle__icon { transition: transform 0.35s var(--ease); flex-shrink: 0; }
+    .lab-toggle[aria-expanded="true"] .lab-toggle__icon { transform: rotate(180deg); }
 
     /* ---- MUSIC ---- */
     .music-block { display: flex; align-items: center; justify-content: space-between; gap: 2rem; padding: 2.5rem 3rem; background: var(--bg); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: 0 2px 2px 0; }
@@ -159,7 +169,8 @@
 
     /* ---- RESPONSIVE ---- */
     @media (max-width: 900px) {
-      .lab-grid { grid-template-columns: repeat(2, 1fr); }
+      .lab-grid, .lab-more { grid-template-columns: repeat(2, 1fr); }
+      .project-card--featured { grid-column: span 2; }
       .about__grid, .cv-grid { grid-template-columns: 1fr; gap: 2rem; }
       .hero { grid-template-columns: 1fr; }
       .hero__right { height: 55vw; }
@@ -170,7 +181,8 @@
       .nav__toggle { display: block; }
       .nav__links { position: fixed; top: var(--nav-h); left: 0; right: 0; background: var(--bg); flex-direction: column; padding: 1.5rem 1.25rem 2rem; gap: 1rem; border-bottom: 1px solid var(--border); transform: translateY(-120%); opacity: 0; pointer-events: none; transition: transform 0.4s var(--ease), opacity 0.35s; }
       .nav__links.open { transform: translateY(0); opacity: 1; pointer-events: auto; }
-      .lab-grid { grid-template-columns: 1fr; }
+      .lab-grid, .lab-more { grid-template-columns: 1fr; }
+      .project-card--featured { grid-column: span 1; }
       .music-block { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
       section { padding: 4rem 0; }
       .footer__inner { flex-direction: column; align-items: center; text-align: center; }
@@ -207,7 +219,7 @@
         <div class="reveal">
           <div class="hero__eyebrow">Tecnología · Creatividad · Propósito</div>
           <h1>Hola, soy <strong>Miguel.</strong></h1>
-          <p class="hero__subtitle">Tecnología, creatividad, salud mental y proyectos con propósito.</p>
+          <p class="hero__subtitle">Tecnología, creatividad y proyectos con propósito.</p>
           <div class="hero__actions">
             <a href="#laboratorio" class="btn btn--primary">Ver proyectos</a>
             <a href="#contacto" class="btn btn--outline">Contacto</a>
@@ -216,7 +228,7 @@
         </div>
       </div>
       <div class="hero__right">
-        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=900&q=85" alt="" loading="eager" fetchpriority="high">
+        <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&q=90" alt="" loading="eager" fetchpriority="high">
       </div>
     </section>
 
@@ -227,7 +239,7 @@
         <div class="about__grid">
           <div class="about__text reveal">
             <p>Soy Miguel. Maestro de primaria y música, coordinador TIC, administrativo y músico. Mi camino no ha sido lineal: he enseñado a niños, gestionado oficinas, atendido llamadas y subido a un escenario.</p>
-            <p>Hoy combino esa experiencia con mi pasión por la tecnología, la inteligencia artificial y la creación digital. Construyo proyectos con propósito: salud mental, accesibilidad, IA aplicada al deporte y todo lo que mezcle creatividad con impacto real.</p>
+            <p>Hoy combino esa experiencia con mi pasión por la tecnología, la inteligencia artificial y la creación digital. Construyo proyectos con propósito: accesibilidad, IA aplicada al deporte y todo lo que mezcle creatividad con impacto real.</p>
             <p>Soy fan del Barça, del fútbol y de las ideas que nacen de los errores. Creo en la resiliencia, en construir despacio y en hacer las cosas con honestidad.</p>
           </div>
           <ul class="about__list reveal reveal-delay-1">
@@ -246,9 +258,20 @@
       <div class="container">
         <p class="section-label reveal">Proyectos</p>
         <h2 class="section-title reveal reveal-delay-1">Laboratorio</h2>
+
+        <!-- Proyectos destacados, siempre visibles -->
         <div class="lab-grid">
 
-          <a href="https://lallardeldolc.vercel.app" class="project-card reveal" target="_blank" rel="noopener">
+          <a href="https://enerpro.vercel.app/presentacion.html" class="project-card project-card--featured reveal" target="_blank" rel="noopener">
+            <div class="project-card__badges">
+              <span class="status status--destacado">Destacado</span>
+              <span class="status status--activo">Activo</span>
+            </div>
+            <h3>Enerpro</h3>
+            <p>Plataforma de gestión y optimización energética para empresas y particulares.</p>
+          </a>
+
+          <a href="https://lallardeldolc.vercel.app" class="project-card reveal reveal-delay-1" target="_blank" rel="noopener">
             <div class="project-card__badges">
               <span class="status status--destacado">Destacado</span>
               <span class="status status--activo">Activo</span>
@@ -257,7 +280,7 @@
             <p>Web de lotes y packs regalo personalizados.</p>
           </a>
 
-          <a href="https://noflagpatriotshop.com" class="project-card reveal reveal-delay-1" target="_blank" rel="noopener">
+          <a href="https://noflagpatriotshop.com" class="project-card reveal reveal-delay-2" target="_blank" rel="noopener">
             <div class="project-card__badges">
               <span class="status status--destacado">Destacado</span>
               <span class="status status--activo">Activo</span>
@@ -266,7 +289,12 @@
             <p>Tienda oficial de merchandising de mi banda.</p>
           </a>
 
-          <a href="https://fichajesradaria.lovable.app" class="project-card reveal reveal-delay-2" target="_blank" rel="noopener">
+        </div>
+
+        <!-- Más proyectos, desplegables -->
+        <div class="lab-more" id="labMore" aria-hidden="true">
+
+          <a href="https://fichajesradaria.lovable.app" class="project-card" target="_blank" rel="noopener">
             <div class="project-card__badges">
               <span class="status status--activo">Activo</span>
             </div>
@@ -274,7 +302,7 @@
             <p>Análisis de fichajes con IA.</p>
           </a>
 
-          <a href="https://onaia.lovable.app" class="project-card reveal" target="_blank" rel="noopener">
+          <a href="https://onaia.lovable.app" class="project-card" target="_blank" rel="noopener">
             <div class="project-card__badges">
               <span class="status status--activo">Activo</span>
             </div>
@@ -282,7 +310,7 @@
             <p>Proyecto en desarrollo.</p>
           </a>
 
-          <a href="https://comprabarata.lovable.app" class="project-card reveal reveal-delay-1" target="_blank" rel="noopener">
+          <a href="https://comprabarata.lovable.app" class="project-card" target="_blank" rel="noopener">
             <div class="project-card__badges">
               <span class="status status--activo">Activo</span>
             </div>
@@ -290,7 +318,7 @@
             <p>Comparador para decisiones de compra.</p>
           </a>
 
-          <a href="https://apuestaclara.lovable.app" class="project-card reveal reveal-delay-2" target="_blank" rel="noopener">
+          <a href="https://apuestaclara.lovable.app" class="project-card" target="_blank" rel="noopener">
             <div class="project-card__badges">
               <span class="status status--activo">Activo</span>
             </div>
@@ -298,7 +326,7 @@
             <p>Análisis racional en apuestas deportivas.</p>
           </a>
 
-          <a href="https://spartafitcoach.lovable.app" class="project-card reveal" target="_blank" rel="noopener">
+          <a href="https://spartafitcoach.lovable.app" class="project-card" target="_blank" rel="noopener">
             <div class="project-card__badges">
               <span class="status status--beta">Beta</span>
             </div>
@@ -306,7 +334,7 @@
             <p>Fitness con enfoque motivacional.</p>
           </a>
 
-          <a href="https://sheindescuentos.lovable.app" class="project-card reveal reveal-delay-1" target="_blank" rel="noopener">
+          <a href="https://sheindescuentos.lovable.app" class="project-card" target="_blank" rel="noopener">
             <div class="project-card__badges">
               <span class="status status--activo">Activo</span>
             </div>
@@ -314,7 +342,7 @@
             <p>Verificación de descuentos online.</p>
           </a>
 
-          <a href="https://coaich-de-seduccion.lovable.app" class="project-card reveal reveal-delay-2" target="_blank" rel="noopener">
+          <a href="https://coaich-de-seduccion.lovable.app" class="project-card" target="_blank" rel="noopener">
             <div class="project-card__badges">
               <span class="status status--beta">Beta</span>
             </div>
@@ -322,7 +350,7 @@
             <p>Asistente conversacional para relaciones.</p>
           </a>
 
-          <a href="https://redflagtoxicai.lovable.app" class="project-card reveal" target="_blank" rel="noopener">
+          <a href="https://redflagtoxicai.lovable.app" class="project-card" target="_blank" rel="noopener">
             <div class="project-card__badges">
               <span class="status status--beta">Beta</span>
             </div>
@@ -331,6 +359,16 @@
           </a>
 
         </div>
+
+        <div class="lab-footer reveal">
+          <button class="btn btn--outline lab-toggle" id="labToggle" aria-expanded="false" aria-controls="labMore">
+            Ver todos los proyectos
+            <svg class="lab-toggle__icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
+          </button>
+        </div>
+
       </div>
     </section>
 
@@ -442,6 +480,8 @@
       var navToggle = document.getElementById('navToggle');
       var navLinks = document.getElementById('navLinks');
       var fab = document.getElementById('fab');
+      var labToggle = document.getElementById('labToggle');
+      var labMore = document.getElementById('labMore');
 
       window.addEventListener('scroll', function () {
         nav.classList.toggle('scrolled', window.scrollY > 20);
@@ -458,6 +498,13 @@
           navLinks.classList.remove('open');
           navToggle.setAttribute('aria-expanded', 'false');
         });
+      });
+
+      labToggle.addEventListener('click', function () {
+        var open = labMore.classList.toggle('open');
+        labToggle.setAttribute('aria-expanded', open);
+        labMore.setAttribute('aria-hidden', !open);
+        labToggle.childNodes[0].textContent = open ? 'Ver menos ' : 'Ver todos los proyectos ';
       });
 
       var revealEls = document.querySelectorAll('.reveal');
