@@ -62,11 +62,25 @@
     .logo strong { font-weight: 700; }
     .logo img { height: 2.4rem; width: auto; }
     .nav.scrolled .logo { color: var(--text); }
+    .nav__end { display: flex; align-items: center; gap: 0.5rem; }
     .nav__links { display: flex; gap: 1.5rem; list-style: none; }
     .nav__links a { font-size: 0.775rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(240,237,230,0.65); transition: color 0.2s; }
     .nav__links a:hover { color: var(--hero-text); }
     .nav.scrolled .nav__links a { color: var(--text-muted); }
     .nav.scrolled .nav__links a:hover { color: var(--accent); }
+
+    /* ---- LANG SWITCH ---- */
+    .lang-switch { display: flex; align-items: center; gap: 0; border-left: 1px solid rgba(240,237,230,0.15); padding-left: 0.85rem; margin-left: 0.35rem; }
+    .nav.scrolled .lang-switch { border-left-color: var(--border); }
+    .lang-btn { background: none; border: none; cursor: pointer; font-family: var(--sans); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; padding: 0.3rem 0.45rem; color: rgba(240,237,230,0.35); transition: color 0.2s; line-height: 1; }
+    .lang-btn.active { color: var(--hero-text); }
+    .nav.scrolled .lang-btn { color: var(--text-muted); }
+    .nav.scrolled .lang-btn.active { color: var(--accent); }
+    .lang-btn:hover { color: var(--hero-text); }
+    .nav.scrolled .lang-btn:hover { color: var(--accent); }
+    .lang-sep { font-size: 0.6rem; color: rgba(240,237,230,0.2); user-select: none; pointer-events: none; }
+    .nav.scrolled .lang-sep { color: var(--border); }
+
     .nav__toggle { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; color: var(--hero-text); transition: color 0.4s; }
     .nav.scrolled .nav__toggle { color: var(--accent); }
     .nav__toggle span { display: block; width: 1.35rem; height: 2px; background: currentColor; margin: 5px 0; transition: transform 0.3s, opacity 0.3s; }
@@ -132,25 +146,14 @@
 
     /* ---- SERVICES ---- */
     .services-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
-    .service-card {
-      background: var(--bg-elevated); border: 1px solid var(--border);
-      border-top: 2px solid var(--accent); padding: 1.75rem 1.5rem;
-      display: flex; flex-direction: column; gap: 0.85rem;
-      transition: box-shadow 0.3s, transform 0.3s var(--ease);
-    }
+    .service-card { background: var(--bg-elevated); border: 1px solid var(--border); border-top: 2px solid var(--accent); padding: 1.75rem 1.5rem; display: flex; flex-direction: column; gap: 0.85rem; transition: box-shadow 0.3s, transform 0.3s var(--ease); }
     .service-card:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); }
     .service-card__icon { width: 2rem; height: 2rem; color: var(--accent); flex-shrink: 0; }
     .service-card h3 { font-family: var(--serif); font-size: 1.15rem; font-weight: 600; line-height: 1.25; }
     .service-card p { font-size: 0.875rem; color: var(--text-muted); line-height: 1.7; flex: 1; }
 
     /* ---- ENERPRO CASE STUDY ---- */
-    .project-hero {
-      display: block; text-decoration: none; color: inherit;
-      background: var(--accent); border-radius: 2px;
-      padding: 2.75rem 3rem; margin-bottom: 1.25rem;
-      position: relative; overflow: hidden;
-      transition: box-shadow 0.3s, transform 0.3s var(--ease);
-    }
+    .project-hero { display: block; text-decoration: none; color: inherit; background: var(--accent); border-radius: 2px; padding: 2.75rem 3rem; margin-bottom: 1.25rem; position: relative; overflow: hidden; transition: box-shadow 0.3s, transform 0.3s var(--ease); }
     .project-hero:hover { transform: translateY(-2px); box-shadow: 0 16px 48px rgba(26,26,24,0.22); }
     .project-hero__inner { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
     .project-hero__badges { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.85rem; }
@@ -181,7 +184,7 @@
     .status--activo { background: #e8f0eb; color: #2d5a3d; }
     .status--beta { background: #f0ebe4; color: #6b5344; }
 
-    /* ---- LAB IA SUBSECTION ---- */
+    /* ---- LAB IA ---- */
     .lab-divider { border: none; border-top: 1px solid var(--border); margin: 3.5rem 0 2.5rem; }
     .lab-ia-header { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 1rem; margin-bottom: 1.5rem; }
     .subsection-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.35rem; display: flex; align-items: center; gap: 0.6rem; }
@@ -276,16 +279,23 @@
         <img src="logomiguel.png" alt="ML">
         Miguel <strong>Liébana</strong>
       </a>
-      <button class="nav__toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
-      <ul class="nav__links" id="navLinks">
-        <li><a href="#sobre-mi">Sobre mí</a></li>
-        <li><a href="#servicios">Servicios</a></li>
-        <li><a href="#laboratorio">Proyectos</a></li>
-        <li><a href="#cv">CV</a></li>
-        <li><a href="#contacto">Contacto</a></li>
-      </ul>
+      <div class="nav__end">
+        <ul class="nav__links" id="navLinks">
+          <li><a href="#sobre-mi" data-i18n="nav.sobre">Sobre mí</a></li>
+          <li><a href="#servicios" data-i18n="nav.servicios">Servicios</a></li>
+          <li><a href="#laboratorio" data-i18n="nav.proyectos">Proyectos</a></li>
+          <li><a href="#cv" data-i18n="nav.cv">CV</a></li>
+          <li><a href="#contacto" data-i18n="nav.contacto">Contacto</a></li>
+        </ul>
+        <div class="lang-switch" role="group" aria-label="Idioma / Idioma">
+          <button class="lang-btn active" data-lang="es" aria-pressed="true">ES</button>
+          <span class="lang-sep" aria-hidden="true">/</span>
+          <button class="lang-btn" data-lang="ca" aria-pressed="false">CA</button>
+        </div>
+        <button class="nav__toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </div>
   </header>
 
@@ -294,21 +304,21 @@
     <!-- HERO -->
     <section class="hero" id="inicio">
       <div class="container hero__inner">
-        <div class="hero__eyebrow">Creador digital · Barcelona</div>
+        <div class="hero__eyebrow" data-i18n="hero.eyebrow">Creador digital · Barcelona</div>
         <div class="hero__display">
           <h1>Miguel<br>Liébana.</h1>
-          <p class="hero__claim">Creo productos digitales con IA, diseño y tecnología accesible.</p>
+          <p class="hero__claim" data-i18n="hero.claim">Creo productos digitales con IA, diseño y tecnología accesible.</p>
         </div>
         <div class="hero__bottom">
           <div class="hero__left-bottom">
-            <p class="hero__subtitle">Desarrollo herramientas web útiles para empresas, creadores y proyectos con propósito — combinando mirada humana, criterio práctico e inteligencia artificial.</p>
+            <p class="hero__subtitle" data-i18n="hero.subtitle">Desarrollo herramientas web útiles para empresas, creadores y proyectos con propósito — combinando mirada humana, criterio práctico e inteligencia artificial.</p>
             <div class="hero__actions">
-              <a href="#laboratorio" class="btn btn--hero-primary">Ver proyectos</a>
-              <a href="#contacto" class="btn btn--hero-outline">Contactar</a>
-              <a href="newcv2026.PNG.pdf" class="hero__cv-link" download>Descargar CV ↓</a>
+              <a href="#laboratorio" class="btn btn--hero-primary" data-i18n="hero.btn.projects">Ver proyectos</a>
+              <a href="#contacto" class="btn btn--hero-outline" data-i18n="hero.btn.contact">Contactar</a>
+              <a href="newcv2026.PNG.pdf" class="hero__cv-link" download data-i18n="hero.btn.cv">Descargar CV ↓</a>
             </div>
           </div>
-          <span class="badge">Disponible · Barcelona</span>
+          <span class="badge" data-i18n="hero.badge">Disponible · Barcelona</span>
         </div>
       </div>
     </section>
@@ -316,22 +326,22 @@
     <!-- TICKER -->
     <div class="ticker" aria-hidden="true">
       <div class="ticker__track">
-        <span class="ticker__item">Productos digitales</span><span class="ticker__sep">·</span>
-        <span class="ticker__item">IA aplicada</span><span class="ticker__sep">·</span>
-        <span class="ticker__item">Diseño web</span><span class="ticker__sep">·</span>
-        <span class="ticker__item">Automatización</span><span class="ticker__sep">·</span>
-        <span class="ticker__item">Barcelona</span><span class="ticker__sep">·</span>
-        <span class="ticker__item">Propósito</span><span class="ticker__sep">·</span>
-        <span class="ticker__item">Ejecución real</span><span class="ticker__sep">·</span>
-        <span class="ticker__item">Tecnología accesible</span><span class="ticker__sep">·</span>
-        <span class="ticker__item">Productos digitales</span><span class="ticker__sep">·</span>
-        <span class="ticker__item">IA aplicada</span><span class="ticker__sep">·</span>
-        <span class="ticker__item">Diseño web</span><span class="ticker__sep">·</span>
-        <span class="ticker__item">Automatización</span><span class="ticker__sep">·</span>
-        <span class="ticker__item">Barcelona</span><span class="ticker__sep">·</span>
-        <span class="ticker__item">Propósito</span><span class="ticker__sep">·</span>
-        <span class="ticker__item">Ejecución real</span><span class="ticker__sep">·</span>
-        <span class="ticker__item">Tecnología accesible</span><span class="ticker__sep">·</span>
+        <span class="ticker__item" data-i18n="ticker.1">Productos digitales</span><span class="ticker__sep">·</span>
+        <span class="ticker__item" data-i18n="ticker.2">IA aplicada</span><span class="ticker__sep">·</span>
+        <span class="ticker__item" data-i18n="ticker.3">Diseño web</span><span class="ticker__sep">·</span>
+        <span class="ticker__item" data-i18n="ticker.4">Automatización</span><span class="ticker__sep">·</span>
+        <span class="ticker__item" data-i18n="ticker.5">Barcelona</span><span class="ticker__sep">·</span>
+        <span class="ticker__item" data-i18n="ticker.6">Propósito</span><span class="ticker__sep">·</span>
+        <span class="ticker__item" data-i18n="ticker.7">Ejecución real</span><span class="ticker__sep">·</span>
+        <span class="ticker__item" data-i18n="ticker.8">Tecnología accesible</span><span class="ticker__sep">·</span>
+        <span class="ticker__item" data-i18n="ticker.1">Productos digitales</span><span class="ticker__sep">·</span>
+        <span class="ticker__item" data-i18n="ticker.2">IA aplicada</span><span class="ticker__sep">·</span>
+        <span class="ticker__item" data-i18n="ticker.3">Diseño web</span><span class="ticker__sep">·</span>
+        <span class="ticker__item" data-i18n="ticker.4">Automatización</span><span class="ticker__sep">·</span>
+        <span class="ticker__item" data-i18n="ticker.5">Barcelona</span><span class="ticker__sep">·</span>
+        <span class="ticker__item" data-i18n="ticker.6">Propósito</span><span class="ticker__sep">·</span>
+        <span class="ticker__item" data-i18n="ticker.7">Ejecución real</span><span class="ticker__sep">·</span>
+        <span class="ticker__item" data-i18n="ticker.8">Tecnología accesible</span><span class="ticker__sep">·</span>
       </div>
     </div>
 
@@ -339,22 +349,22 @@
     <section id="sobre-mi">
       <div class="container">
         <span class="section-num" aria-hidden="true">01</span>
-        <p class="section-label reveal">Perfil</p>
-        <h2 class="section-title reveal reveal-delay-1">Sobre mí</h2>
+        <p class="section-label reveal" data-i18n="about.label">Perfil</p>
+        <h2 class="section-title reveal reveal-delay-1" data-i18n="about.title">Sobre mí</h2>
         <div class="about__grid">
           <div class="about__text reveal">
-            <p>Soy Miguel Liébana, creador digital con experiencia en educación, administración, música y tecnología.</p>
-            <p>Combino mirada humana, criterio práctico e inteligencia artificial para construir soluciones web útiles, claras y accesibles.</p>
-            <p>Mi foco actual está en productos digitales, automatización, IA aplicada y herramientas que ayuden a personas y empresas a trabajar mejor.</p>
-            <p>Me interesan los proyectos con propósito, la creatividad aplicada y la tecnología que simplifica la vida en lugar de complicarla.</p>
+            <p data-i18n="about.p1">Soy Miguel Liébana, creador digital con experiencia en educación, administración, música y tecnología.</p>
+            <p data-i18n="about.p2">Combino mirada humana, criterio práctico e inteligencia artificial para construir soluciones web útiles, claras y accesibles.</p>
+            <p data-i18n="about.p3">Mi foco actual está en productos digitales, automatización, IA aplicada y herramientas que ayuden a personas y empresas a trabajar mejor.</p>
+            <p data-i18n="about.p4">Me interesan los proyectos con propósito, la creatividad aplicada y la tecnología que simplifica la vida en lugar de complicarla.</p>
           </div>
           <ul class="about__list reveal reveal-delay-1">
-            <li>Creación de productos digitales</li>
-            <li>IA generativa aplicada</li>
-            <li>Diseño web y comunicación digital</li>
-            <li>Coordinación tecnológica</li>
-            <li>Músico y creador de contenido</li>
-            <li>Docente con experiencia en tecnología educativa</li>
+            <li data-i18n="about.li1">Creación de productos digitales</li>
+            <li data-i18n="about.li2">IA generativa aplicada</li>
+            <li data-i18n="about.li3">Diseño web y comunicación digital</li>
+            <li data-i18n="about.li4">Coordinación tecnológica</li>
+            <li data-i18n="about.li5">Músico y creador de contenido</li>
+            <li data-i18n="about.li6">Docente con experiencia en tecnología educativa</li>
           </ul>
         </div>
       </div>
@@ -364,24 +374,24 @@
     <section id="servicios">
       <div class="container">
         <span class="section-num" aria-hidden="true">02</span>
-        <p class="section-label reveal">Valor</p>
-        <h2 class="section-title reveal reveal-delay-1">Qué puedo aportar</h2>
+        <p class="section-label reveal" data-i18n="services.label">Valor</p>
+        <h2 class="section-title reveal reveal-delay-1" data-i18n="services.title">Qué puedo aportar</h2>
         <div class="services-grid">
 
           <div class="service-card reveal">
             <svg class="service-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
             </svg>
-            <h3>Prototipos web rápidos</h3>
-            <p>Convierto ideas en primeras versiones funcionales para validar, presentar o mejorar un proceso.</p>
+            <h3 data-i18n="services.1.title">Prototipos web rápidos</h3>
+            <p data-i18n="services.1.desc">Convierto ideas en primeras versiones funcionales para validar, presentar o mejorar un proceso.</p>
           </div>
 
           <div class="service-card reveal reveal-delay-1">
             <svg class="service-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M12 2a4 4 0 0 1 4 4c0 1.5-.8 2.8-2 3.5V11h2a2 2 0 0 1 2 2v1h1a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-4a1 1 0 0 1 1-1h1v-1a2 2 0 0 1 2-2h2V9.5C8.8 8.8 8 7.5 8 6a4 4 0 0 1 4-4z"/>
             </svg>
-            <h3>Automatización e IA aplicada</h3>
-            <p>Uso herramientas de IA para simplificar tareas, crear contenido, estructurar procesos y acelerar proyectos.</p>
+            <h3 data-i18n="services.2.title">Automatización e IA aplicada</h3>
+            <p data-i18n="services.2.desc">Uso herramientas de IA para simplificar tareas, crear contenido, estructurar procesos y acelerar proyectos.</p>
           </div>
 
           <div class="service-card reveal reveal-delay-2">
@@ -389,8 +399,8 @@
               <path d="M12 20h9"/>
               <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
             </svg>
-            <h3>Diseño y comunicación digital</h3>
-            <p>Creo webs, tiendas, presentaciones y materiales digitales con una comunicación clara y cuidada.</p>
+            <h3 data-i18n="services.3.title">Diseño y comunicación digital</h3>
+            <p data-i18n="services.3.desc">Creo webs, tiendas, presentaciones y materiales digitales con una comunicación clara y cuidada.</p>
           </div>
 
           <div class="service-card reveal reveal-delay-3">
@@ -400,8 +410,8 @@
               <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
               <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
             </svg>
-            <h3>Puente entre personas y tecnología</h3>
-            <p>Traduzco necesidades reales en soluciones usables, entendibles y prácticas.</p>
+            <h3 data-i18n="services.4.title">Puente entre personas y tecnología</h3>
+            <p data-i18n="services.4.desc">Traduzco necesidades reales en soluciones usables, entendibles y prácticas.</p>
           </div>
 
         </div>
@@ -412,87 +422,84 @@
     <section id="laboratorio">
       <div class="container">
         <span class="section-num" aria-hidden="true">03</span>
-        <p class="section-label reveal">Proyectos</p>
-        <h2 class="section-title reveal reveal-delay-1">Proyectos destacados</h2>
+        <p class="section-label reveal" data-i18n="projects.label">Proyectos</p>
+        <h2 class="section-title reveal reveal-delay-1" data-i18n="projects.title">Proyectos destacados</h2>
 
-        <!-- ENERPRO caso de estudio -->
         <a href="https://enerpro.vercel.app/presentacion.html" class="project-hero reveal" target="_blank" rel="noopener">
           <span class="project-hero__arrow" aria-hidden="true">↗</span>
           <div class="project-hero__inner">
             <div>
               <div class="project-hero__badges">
-                <span class="status">Proyecto real</span>
-                <span class="status status--green">SaaS interno</span>
-                <span class="status status--green">Activo</span>
+                <span class="status" data-i18n="status.real">Proyecto real</span>
+                <span class="status status--green" data-i18n="status.saas">SaaS interno</span>
+                <span class="status status--green" data-i18n="status.activo">Activo</span>
               </div>
-              <p class="project-hero__type">RRHH · Seguridad privada · Gestión interna</p>
-              <h3>ENERPRO<br>Portal del Empleado</h3>
-              <p class="project-hero__desc">App web para una empresa de seguridad privada que centraliza la gestión de empleados, documentos, turnos, vacaciones, solicitudes y administración interna.</p>
-              <span class="project-hero__cta">Ver presentación ↗</span>
+              <p class="project-hero__type" data-i18n="enerpro.type">RRHH · Seguridad privada · Gestión interna</p>
+              <h3>ENERPRO<br><span data-i18n="enerpro.subtitle">Portal del Empleado</span></h3>
+              <p class="project-hero__desc" data-i18n="enerpro.desc">App web para una empresa de seguridad privada que centraliza la gestión de empleados, documentos, turnos, vacaciones, solicitudes y administración interna.</p>
+              <span class="project-hero__cta" data-i18n="enerpro.cta">Ver presentación ↗</span>
             </div>
             <ul class="project-hero__features">
-              <li>Login seguro</li>
-              <li>Panel del empleado</li>
-              <li>Panel de administración</li>
-              <li>Gestión documental</li>
-              <li>Turnos y vacaciones</li>
-              <li>Solicitudes internas</li>
-              <li>Importación desde Excel</li>
-              <li>Diseño responsive</li>
-              <li>Despliegue en Vercel</li>
+              <li data-i18n="enerpro.f1">Login seguro</li>
+              <li data-i18n="enerpro.f2">Panel del empleado</li>
+              <li data-i18n="enerpro.f3">Panel de administración</li>
+              <li data-i18n="enerpro.f4">Gestión documental</li>
+              <li data-i18n="enerpro.f5">Turnos y vacaciones</li>
+              <li data-i18n="enerpro.f6">Solicitudes internas</li>
+              <li data-i18n="enerpro.f7">Importación desde Excel</li>
+              <li data-i18n="enerpro.f8">Diseño responsive</li>
+              <li data-i18n="enerpro.f9">Despliegue en Vercel</li>
             </ul>
           </div>
         </a>
 
-        <!-- Grid 2×2 de proyectos destacados -->
         <div class="featured-grid reveal reveal-delay-1">
 
           <a href="https://noflagpatriotshop.com" class="project-card" target="_blank" rel="noopener">
             <div class="project-card__badges">
-              <span class="status status--destacado">Destacado</span>
-              <span class="status status--activo">Activo</span>
+              <span class="status status--destacado" data-i18n="status.destacado">Destacado</span>
+              <span class="status status--activo" data-i18n="status.activo">Activo</span>
             </div>
             <h3>No Flag Patriots Shop</h3>
-            <p>Tienda oficial de merchandising de mi banda. E-commerce con catálogo y pasarela de pago.</p>
+            <p data-i18n="proj.nfp.desc">Tienda oficial de merchandising de mi banda. E-commerce con catálogo y pasarela de pago.</p>
           </a>
 
           <a href="https://lallardeldolc.vercel.app" class="project-card" target="_blank" rel="noopener">
             <div class="project-card__badges">
-              <span class="status status--destacado">Destacado</span>
-              <span class="status status--activo">Activo</span>
+              <span class="status status--destacado" data-i18n="status.destacado">Destacado</span>
+              <span class="status status--activo" data-i18n="status.activo">Activo</span>
             </div>
             <h3>La Llar del Dolç</h3>
-            <p>Web de lotes y packs regalo personalizados. Diseño, catálogo y gestión de pedidos.</p>
+            <p data-i18n="proj.llar.desc">Web de lotes y packs regalo personalizados. Diseño, catálogo y gestión de pedidos.</p>
           </a>
 
           <a href="https://fichajesradaria.lovable.app" class="project-card" target="_blank" rel="noopener">
             <div class="project-card__badges">
-              <span class="status status--activo">Activo</span>
+              <span class="status status--activo" data-i18n="status.activo">Activo</span>
             </div>
             <h3>Fichajes Radar IA</h3>
-            <p>Análisis de fichajes con inteligencia artificial. Datos, predicciones y valor de mercado.</p>
+            <p data-i18n="proj.fichajes.desc">Análisis de fichajes con inteligencia artificial. Datos, predicciones y valor de mercado.</p>
           </a>
 
           <a href="https://comprabarata.lovable.app" class="project-card" target="_blank" rel="noopener">
             <div class="project-card__badges">
-              <span class="status status--activo">Activo</span>
+              <span class="status status--activo" data-i18n="status.activo">Activo</span>
             </div>
             <h3>Compra Barata</h3>
-            <p>Comparador de precios para tomar mejores decisiones de compra de forma rápida y clara.</p>
+            <p data-i18n="proj.compra.desc">Comparador de precios para tomar mejores decisiones de compra de forma rápida y clara.</p>
           </a>
 
         </div>
 
-        <!-- Laboratorio IA -->
         <hr class="lab-divider reveal">
         <div class="lab-ia-header reveal">
           <div class="lab-ia-header__text">
-            <p class="subsection-label">Laboratorio IA</p>
-            <h3 class="subsection-title">Experimentos y prototipos</h3>
-            <p class="subsection-desc">Proyectos en desarrollo, ideas en proceso y pruebas con IA generativa.</p>
+            <p class="subsection-label" data-i18n="lab.label">Laboratorio IA</p>
+            <h3 class="subsection-title" data-i18n="lab.title">Experimentos y prototipos</h3>
+            <p class="subsection-desc" data-i18n="lab.desc">Proyectos en desarrollo, ideas en proceso y pruebas con IA generativa.</p>
           </div>
           <button class="btn btn--outline lab-toggle" id="labToggle" aria-expanded="false" aria-controls="labMore">
-            Ver experimentos
+            <span data-i18n="lab.btn.show">Ver experimentos</span>
             <svg class="lab-toggle__icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <polyline points="6 9 12 15 18 9"/>
             </svg>
@@ -501,34 +508,34 @@
 
         <div class="lab-more" id="labMore" aria-hidden="true">
           <a href="https://onaia.lovable.app" class="project-card" target="_blank" rel="noopener">
-            <div class="project-card__badges"><span class="status status--activo">Activo</span></div>
+            <div class="project-card__badges"><span class="status status--activo" data-i18n="status.activo">Activo</span></div>
             <h3>Onaia</h3>
-            <p>Proyecto en desarrollo.</p>
+            <p data-i18n="lab.onaia.desc">Proyecto en desarrollo.</p>
           </a>
           <a href="https://apuestaclara.lovable.app" class="project-card" target="_blank" rel="noopener">
-            <div class="project-card__badges"><span class="status status--activo">Activo</span></div>
+            <div class="project-card__badges"><span class="status status--activo" data-i18n="status.activo">Activo</span></div>
             <h3>Apuesta Clara</h3>
-            <p>Análisis racional en apuestas deportivas.</p>
+            <p data-i18n="lab.apuesta.desc">Análisis racional en apuestas deportivas.</p>
           </a>
           <a href="https://spartafitcoach.lovable.app" class="project-card" target="_blank" rel="noopener">
-            <div class="project-card__badges"><span class="status status--beta">Beta</span></div>
+            <div class="project-card__badges"><span class="status status--beta" data-i18n="status.beta">Beta</span></div>
             <h3>Espartanos</h3>
-            <p>Fitness con enfoque motivacional.</p>
+            <p data-i18n="lab.espartanos.desc">Fitness con enfoque motivacional.</p>
           </a>
           <a href="https://sheindescuentos.lovable.app" class="project-card" target="_blank" rel="noopener">
-            <div class="project-card__badges"><span class="status status--activo">Activo</span></div>
+            <div class="project-card__badges"><span class="status status--activo" data-i18n="status.activo">Activo</span></div>
             <h3>Shein Real Codes</h3>
-            <p>Verificación de descuentos online.</p>
+            <p data-i18n="lab.shein.desc">Verificación de descuentos online.</p>
           </a>
           <a href="https://coaich-de-seduccion.lovable.app" class="project-card" target="_blank" rel="noopener">
-            <div class="project-card__badges"><span class="status status--beta">Beta</span></div>
+            <div class="project-card__badges"><span class="status status--beta" data-i18n="status.beta">Beta</span></div>
             <h3>CoAIch de Seducción</h3>
-            <p>Asistente conversacional para relaciones.</p>
+            <p data-i18n="lab.coaich.desc">Asistente conversacional para relaciones.</p>
           </a>
           <a href="https://redflagtoxicai.lovable.app" class="project-card" target="_blank" rel="noopener">
-            <div class="project-card__badges"><span class="status status--beta">Beta</span></div>
+            <div class="project-card__badges"><span class="status status--beta" data-i18n="status.beta">Beta</span></div>
             <h3>RedFlag AI</h3>
-            <p>Comunicación y comportamiento digital.</p>
+            <p data-i18n="lab.redflag.desc">Comunicación y comportamiento digital.</p>
           </a>
         </div>
 
@@ -539,8 +546,8 @@
     <section id="musica">
       <div class="container">
         <span class="section-num" aria-hidden="true">04</span>
-        <p class="section-label reveal">Banda</p>
-        <h2 class="section-title reveal reveal-delay-1">Música</h2>
+        <p class="section-label reveal" data-i18n="music.label">Banda</p>
+        <h2 class="section-title reveal reveal-delay-1" data-i18n="music.title">Música</h2>
         <div class="music-block reveal reveal-delay-2">
           <div class="music-block__main">
             <img src="nfplogo.jpg" alt="No Flag Patriots" class="music-block__logo" loading="lazy">
@@ -558,55 +565,55 @@
     <section id="cv">
       <div class="container">
         <span class="section-num" aria-hidden="true">05</span>
-        <p class="section-label reveal">Trayectoria</p>
-        <h2 class="section-title reveal reveal-delay-1">CV</h2>
-        <p class="cv-intro reveal reveal-delay-2">Una trayectoria híbrida entre educación, administración, música y tecnología, ahora enfocada en creación digital e inteligencia artificial aplicada.</p>
+        <p class="section-label reveal" data-i18n="cv.label">Trayectoria</p>
+        <h2 class="section-title reveal reveal-delay-1" data-i18n="cv.title">CV</h2>
+        <p class="cv-intro reveal reveal-delay-2" data-i18n="cv.intro">Una trayectoria híbrida entre educación, administración, música y tecnología, ahora enfocada en creación digital e inteligencia artificial aplicada.</p>
         <div class="cv-grid">
           <div class="cv-block reveal">
-            <h3>Experiencia</h3>
+            <h3 data-i18n="cv.exp.h">Experiencia</h3>
             <div class="cv-item">
-              <p class="cv-item__title">Recepcionista / Administrativo</p>
-              <p class="cv-item__meta">CTTI · Generalitat de Catalunya · Actualidad</p>
-              <p class="cv-item__desc">Gestión administrativa y soporte en entorno institucional tecnológico.</p>
+              <p class="cv-item__title" data-i18n="cv.job1.title">Recepcionista / Administrativo</p>
+              <p class="cv-item__meta" data-i18n="cv.job1.meta">CTTI · Generalitat de Catalunya · Actualidad</p>
+              <p class="cv-item__desc" data-i18n="cv.job1.desc">Gestión administrativa y soporte en entorno institucional tecnológico.</p>
             </div>
             <div class="cv-item">
-              <p class="cv-item__title">Compositor y músico</p>
-              <p class="cv-item__meta">No Flag Patriots · 2022–2024</p>
-              <p class="cv-item__desc">Composición, directo y proyecto digital de la banda.</p>
+              <p class="cv-item__title" data-i18n="cv.job2.title">Compositor y músico</p>
+              <p class="cv-item__meta" data-i18n="cv.job2.meta">No Flag Patriots · 2022–2024</p>
+              <p class="cv-item__desc" data-i18n="cv.job2.desc">Composición, directo y proyecto digital de la banda.</p>
             </div>
             <div class="cv-item">
-              <p class="cv-item__title">Coordinador TIC</p>
-              <p class="cv-item__meta">Escola Joan Maragall · 2017–2020</p>
-              <p class="cv-item__desc">Planificación digital, formación del profesorado e implementación de herramientas.</p>
+              <p class="cv-item__title" data-i18n="cv.job3.title">Coordinador TIC</p>
+              <p class="cv-item__meta" data-i18n="cv.job3.meta">Escola Joan Maragall · 2017–2020</p>
+              <p class="cv-item__desc" data-i18n="cv.job3.desc">Planificación digital, formación del profesorado e implementación de herramientas.</p>
             </div>
             <div class="cv-item">
-              <p class="cv-item__title">Profesor de primaria y música</p>
-              <p class="cv-item__meta">Escoles Gornal, Bernat Metge, Torre de la Miranda · 2006–2020</p>
-              <p class="cv-item__desc">Docencia en aula con especialización musical.</p>
+              <p class="cv-item__title" data-i18n="cv.job4.title">Profesor de primaria y música</p>
+              <p class="cv-item__meta" data-i18n="cv.job4.meta">Escoles Gornal, Bernat Metge, Torre de la Miranda · 2006–2020</p>
+              <p class="cv-item__desc" data-i18n="cv.job4.desc">Docencia en aula con especialización musical.</p>
             </div>
           </div>
           <div class="cv-block reveal reveal-delay-1">
-            <h3>Formación</h3>
+            <h3 data-i18n="cv.edu.h">Formación</h3>
             <div class="cv-item">
-              <p class="cv-item__title">Magisterio · Educación Primaria y Musical</p>
-              <p class="cv-item__meta">Universitat de Barcelona · 2007</p>
+              <p class="cv-item__title" data-i18n="cv.edu1.title">Magisterio · Educación Primaria y Musical</p>
+              <p class="cv-item__meta" data-i18n="cv.edu1.meta">Universitat de Barcelona · 2007</p>
             </div>
             <div class="cv-item">
-              <p class="cv-item__title">FP Superior · Administración y Finanzas</p>
+              <p class="cv-item__title" data-i18n="cv.edu2.title">FP Superior · Administración y Finanzas</p>
               <p class="cv-item__meta">2022</p>
             </div>
             <div class="cv-item">
-              <p class="cv-item__title">IBM Watson AI Essentials</p>
-              <p class="cv-item__meta">IBM · Certificado verificado</p>
+              <p class="cv-item__title" data-i18n="cv.edu3.title">IBM Watson AI Essentials</p>
+              <p class="cv-item__meta" data-i18n="cv.edu3.meta">IBM · Certificado verificado</p>
             </div>
             <div class="cv-item">
-              <p class="cv-item__title">IA generativa y creación digital</p>
-              <p class="cv-item__meta">Autodidacta · En curso</p>
+              <p class="cv-item__title" data-i18n="cv.edu4.title">IA generativa y creación digital</p>
+              <p class="cv-item__meta" data-i18n="cv.edu4.meta">Autodidacta · En curso</p>
             </div>
           </div>
         </div>
         <div class="cv-actions reveal">
-          <a href="newcv2026.PNG.pdf" class="btn btn--primary" download>Descargar CV</a>
+          <a href="newcv2026.PNG.pdf" class="btn btn--primary" download data-i18n="cv.btn.download">Descargar CV</a>
           <a href="https://www.linkedin.com/in/mliebanavicente" class="btn btn--outline" target="_blank" rel="noopener">LinkedIn</a>
         </div>
       </div>
@@ -616,14 +623,14 @@
     <section id="contacto">
       <div class="container">
         <span class="section-num" aria-hidden="true">06</span>
-        <p class="section-label reveal">Hablemos</p>
-        <h2 class="section-title reveal reveal-delay-1">Contacto</h2>
+        <p class="section-label reveal" data-i18n="contact.label">Hablemos</p>
+        <h2 class="section-title reveal reveal-delay-1" data-i18n="contact.title">Contacto</h2>
         <div class="contact__inner reveal reveal-delay-2">
-          <p class="contact__question">¿Tienes una idea, una web o un proceso que quieras convertir en algo funcional?</p>
-          <p class="contact__sub">Hablemos. Puedo ayudarte a ordenar la idea, crear un prototipo o convertirla en una primera versión presentable.</p>
+          <p class="contact__question" data-i18n="contact.question">¿Tienes una idea, una web o un proceso que quieras convertir en algo funcional?</p>
+          <p class="contact__sub" data-i18n="contact.sub">Hablemos. Puedo ayudarte a ordenar la idea, crear un prototipo o convertirla en una primera versión presentable.</p>
           <div class="contact__actions">
-            <a href="mailto:mlieban3@gmail.com" class="btn btn--primary">Contactar</a>
-            <a href="#laboratorio" class="btn btn--outline">Ver proyectos</a>
+            <a href="mailto:mlieban3@gmail.com" class="btn btn--primary" data-i18n="contact.btn.contact">Contactar</a>
+            <a href="#laboratorio" class="btn btn--outline" data-i18n="contact.btn.projects">Ver proyectos</a>
             <a href="https://www.linkedin.com/in/mliebanavicente" class="btn btn--outline" target="_blank" rel="noopener">LinkedIn</a>
           </div>
           <a href="mailto:mlieban3@gmail.com" class="contact__email">mlieban3@gmail.com</a>
@@ -635,7 +642,7 @@
 
   <footer>
     <div class="container footer__inner">
-      <span>© 2026 Miguel Liébana · Hecho con creatividad y muchas reconstrucciones.</span>
+      <span data-i18n="footer.copy">© 2026 Miguel Liébana · Hecho con creatividad y muchas reconstrucciones.</span>
       <nav class="footer__links" aria-label="Enlaces rápidos">
         <a href="https://www.linkedin.com/in/mliebanavicente" target="_blank" rel="noopener">LinkedIn</a>
         <a href="https://noflagpatriots.com" target="_blank" rel="noopener">No Flag Patriots</a>
@@ -651,6 +658,326 @@
   </a>
 
   <script>
+    /* ============================================================
+       TRADUCCIONES / TRADUCCIONS
+    ============================================================ */
+    var i18n = {
+      es: {
+        /* página */
+        'page.title': 'Miguel Liébana — Creador de productos digitales',
+        'meta.desc': 'Miguel Liébana — Creador de productos digitales con IA, diseño y tecnología accesible. Barcelona.',
+        /* nav */
+        'nav.sobre': 'Sobre mí',
+        'nav.servicios': 'Servicios',
+        'nav.proyectos': 'Proyectos',
+        'nav.cv': 'CV',
+        'nav.contacto': 'Contacto',
+        'nav.menu.aria': 'Abrir menú',
+        /* hero */
+        'hero.eyebrow': 'Creador digital · Barcelona',
+        'hero.claim': 'Creo productos digitales con IA, diseño y tecnología accesible.',
+        'hero.subtitle': 'Desarrollo herramientas web útiles para empresas, creadores y proyectos con propósito — combinando mirada humana, criterio práctico e inteligencia artificial.',
+        'hero.btn.projects': 'Ver proyectos',
+        'hero.btn.contact': 'Contactar',
+        'hero.btn.cv': 'Descargar CV ↓',
+        'hero.badge': 'Disponible · Barcelona',
+        /* ticker */
+        'ticker.1': 'Productos digitales',
+        'ticker.2': 'IA aplicada',
+        'ticker.3': 'Diseño web',
+        'ticker.4': 'Automatización',
+        'ticker.5': 'Barcelona',
+        'ticker.6': 'Propósito',
+        'ticker.7': 'Ejecución real',
+        'ticker.8': 'Tecnología accesible',
+        /* sobre mí */
+        'about.label': 'Perfil',
+        'about.title': 'Sobre mí',
+        'about.p1': 'Soy Miguel Liébana, creador digital con experiencia en educación, administración, música y tecnología.',
+        'about.p2': 'Combino mirada humana, criterio práctico e inteligencia artificial para construir soluciones web útiles, claras y accesibles.',
+        'about.p3': 'Mi foco actual está en productos digitales, automatización, IA aplicada y herramientas que ayuden a personas y empresas a trabajar mejor.',
+        'about.p4': 'Me interesan los proyectos con propósito, la creatividad aplicada y la tecnología que simplifica la vida en lugar de complicarla.',
+        'about.li1': 'Creación de productos digitales',
+        'about.li2': 'IA generativa aplicada',
+        'about.li3': 'Diseño web y comunicación digital',
+        'about.li4': 'Coordinación tecnológica',
+        'about.li5': 'Músico y creador de contenido',
+        'about.li6': 'Docente con experiencia en tecnología educativa',
+        /* servicios */
+        'services.label': 'Valor',
+        'services.title': 'Qué puedo aportar',
+        'services.1.title': 'Prototipos web rápidos',
+        'services.1.desc': 'Convierto ideas en primeras versiones funcionales para validar, presentar o mejorar un proceso.',
+        'services.2.title': 'Automatización e IA aplicada',
+        'services.2.desc': 'Uso herramientas de IA para simplificar tareas, crear contenido, estructurar procesos y acelerar proyectos.',
+        'services.3.title': 'Diseño y comunicación digital',
+        'services.3.desc': 'Creo webs, tiendas, presentaciones y materiales digitales con una comunicación clara y cuidada.',
+        'services.4.title': 'Puente entre personas y tecnología',
+        'services.4.desc': 'Traduzco necesidades reales en soluciones usables, entendibles y prácticas.',
+        /* proyectos */
+        'projects.label': 'Proyectos',
+        'projects.title': 'Proyectos destacados',
+        'status.real': 'Proyecto real',
+        'status.saas': 'SaaS interno',
+        'status.activo': 'Activo',
+        'status.beta': 'Beta',
+        'status.destacado': 'Destacado',
+        'enerpro.type': 'RRHH · Seguridad privada · Gestión interna',
+        'enerpro.subtitle': 'Portal del Empleado',
+        'enerpro.desc': 'App web para una empresa de seguridad privada que centraliza la gestión de empleados, documentos, turnos, vacaciones, solicitudes y administración interna.',
+        'enerpro.f1': 'Login seguro',
+        'enerpro.f2': 'Panel del empleado',
+        'enerpro.f3': 'Panel de administración',
+        'enerpro.f4': 'Gestión documental',
+        'enerpro.f5': 'Turnos y vacaciones',
+        'enerpro.f6': 'Solicitudes internas',
+        'enerpro.f7': 'Importación desde Excel',
+        'enerpro.f8': 'Diseño responsive',
+        'enerpro.f9': 'Despliegue en Vercel',
+        'enerpro.cta': 'Ver presentación ↗',
+        'proj.nfp.desc': 'Tienda oficial de merchandising de mi banda. E-commerce con catálogo y pasarela de pago.',
+        'proj.llar.desc': 'Web de lotes y packs regalo personalizados. Diseño, catálogo y gestión de pedidos.',
+        'proj.fichajes.desc': 'Análisis de fichajes con inteligencia artificial. Datos, predicciones y valor de mercado.',
+        'proj.compra.desc': 'Comparador de precios para tomar mejores decisiones de compra de forma rápida y clara.',
+        /* laboratorio IA */
+        'lab.label': 'Laboratorio IA',
+        'lab.title': 'Experimentos y prototipos',
+        'lab.desc': 'Proyectos en desarrollo, ideas en proceso y pruebas con IA generativa.',
+        'lab.btn.show': 'Ver experimentos',
+        'lab.btn.hide': 'Ver menos',
+        'lab.onaia.desc': 'Proyecto en desarrollo.',
+        'lab.apuesta.desc': 'Análisis racional en apuestas deportivas.',
+        'lab.espartanos.desc': 'Fitness con enfoque motivacional.',
+        'lab.shein.desc': 'Verificación de descuentos online.',
+        'lab.coaich.desc': 'Asistente conversacional para relaciones.',
+        'lab.redflag.desc': 'Comunicación y comportamiento digital.',
+        /* música */
+        'music.label': 'Banda',
+        'music.title': 'Música',
+        /* cv */
+        'cv.label': 'Trayectoria',
+        'cv.title': 'CV',
+        'cv.intro': 'Una trayectoria híbrida entre educación, administración, música y tecnología, ahora enfocada en creación digital e inteligencia artificial aplicada.',
+        'cv.exp.h': 'Experiencia',
+        'cv.edu.h': 'Formación',
+        'cv.job1.title': 'Recepcionista / Administrativo',
+        'cv.job1.meta': 'CTTI · Generalitat de Catalunya · Actualidad',
+        'cv.job1.desc': 'Gestión administrativa y soporte en entorno institucional tecnológico.',
+        'cv.job2.title': 'Compositor y músico',
+        'cv.job2.meta': 'No Flag Patriots · 2022–2024',
+        'cv.job2.desc': 'Composición, directo y proyecto digital de la banda.',
+        'cv.job3.title': 'Coordinador TIC',
+        'cv.job3.meta': 'Escola Joan Maragall · 2017–2020',
+        'cv.job3.desc': 'Planificación digital, formación del profesorado e implementación de herramientas.',
+        'cv.job4.title': 'Profesor de primaria y música',
+        'cv.job4.meta': 'Escoles Gornal, Bernat Metge, Torre de la Miranda · 2006–2020',
+        'cv.job4.desc': 'Docencia en aula con especialización musical.',
+        'cv.edu1.title': 'Magisterio · Educación Primaria y Musical',
+        'cv.edu1.meta': 'Universitat de Barcelona · 2007',
+        'cv.edu2.title': 'FP Superior · Administración y Finanzas',
+        'cv.edu3.title': 'IBM Watson AI Essentials',
+        'cv.edu3.meta': 'IBM · Certificado verificado',
+        'cv.edu4.title': 'IA generativa y creación digital',
+        'cv.edu4.meta': 'Autodidacta · En curso',
+        'cv.btn.download': 'Descargar CV',
+        /* contacto */
+        'contact.label': 'Hablemos',
+        'contact.title': 'Contacto',
+        'contact.question': '¿Tienes una idea, una web o un proceso que quieras convertir en algo funcional?',
+        'contact.sub': 'Hablemos. Puedo ayudarte a ordenar la idea, crear un prototipo o convertirla en una primera versión presentable.',
+        'contact.btn.contact': 'Contactar',
+        'contact.btn.projects': 'Ver proyectos',
+        /* footer */
+        'footer.copy': '© 2026 Miguel Liébana · Hecho con creatividad y muchas reconstrucciones.',
+        /* accesibilidad */
+        'fab.aria': 'Ir a contacto',
+        'nav.menu.aria': 'Abrir menú'
+      },
+
+      ca: {
+        /* pàgina */
+        'page.title': 'Miguel Liébana — Creador de productes digitals',
+        'meta.desc': 'Miguel Liébana — Creador de productes digitals amb IA, disseny i tecnologia accessible. Barcelona.',
+        /* nav */
+        'nav.sobre': 'Sobre mi',
+        'nav.servicios': 'Serveis',
+        'nav.proyectos': 'Projectes',
+        'nav.cv': 'CV',
+        'nav.contacto': 'Contacte',
+        'nav.menu.aria': 'Obrir menú',
+        /* hero */
+        'hero.eyebrow': 'Creador digital · Barcelona',
+        'hero.claim': 'Creo productes digitals amb IA, disseny i tecnologia accessible.',
+        'hero.subtitle': 'Desenvolupo eines web útils per a empreses, creadors i projectes amb propòsit — combinant mirada humana, criteri pràctic i intel·ligència artificial.',
+        'hero.btn.projects': 'Veure projectes',
+        'hero.btn.contact': 'Contactar',
+        'hero.btn.cv': 'Descarregar CV ↓',
+        'hero.badge': 'Disponible · Barcelona',
+        /* ticker */
+        'ticker.1': 'Productes digitals',
+        'ticker.2': 'IA aplicada',
+        'ticker.3': 'Disseny web',
+        'ticker.4': 'Automatització',
+        'ticker.5': 'Barcelona',
+        'ticker.6': 'Propòsit',
+        'ticker.7': 'Execució real',
+        'ticker.8': 'Tecnologia accessible',
+        /* sobre mi */
+        'about.label': 'Perfil',
+        'about.title': 'Sobre mi',
+        'about.p1': 'Soc Miguel Liébana, creador digital amb experiència en educació, administració, música i tecnologia.',
+        'about.p2': 'Combino mirada humana, criteri pràctic i intel·ligència artificial per construir solucions web útils, clares i accessibles.',
+        'about.p3': 'El meu focus actual està en productes digitals, automatització, IA aplicada i eines que ajudin persones i empreses a treballar millor.',
+        'about.p4': "M'interessen els projectes amb propòsit, la creativitat aplicada i la tecnologia que simplifica la vida en lloc de complicar-la.",
+        'about.li1': 'Creació de productes digitals',
+        'about.li2': 'IA generativa aplicada',
+        'about.li3': 'Disseny web i comunicació digital',
+        'about.li4': 'Coordinació tecnològica',
+        'about.li5': 'Músic i creador de contingut',
+        'about.li6': 'Docent amb experiència en tecnologia educativa',
+        /* serveis */
+        'services.label': 'Valor',
+        'services.title': 'Què puc aportar',
+        'services.1.title': 'Prototips web ràpids',
+        'services.1.desc': 'Converteixo idees en primeres versions funcionals per validar, presentar o millorar un procés.',
+        'services.2.title': 'Automatització i IA aplicada',
+        'services.2.desc': "Faig servir eines d'IA per simplificar tasques, crear contingut, estructurar processos i accelerar projectes.",
+        'services.3.title': 'Disseny i comunicació digital',
+        'services.3.desc': 'Creo webs, botigues, presentacions i materials digitals amb una comunicació clara i acurada.',
+        'services.4.title': 'Pont entre persones i tecnologia',
+        'services.4.desc': 'Tradueixo necessitats reals en solucions usables, entenedores i pràctiques.',
+        /* projectes */
+        'projects.label': 'Projectes',
+        'projects.title': 'Projectes destacats',
+        'status.real': 'Projecte real',
+        'status.saas': 'SaaS intern',
+        'status.activo': 'Actiu',
+        'status.beta': 'Beta',
+        'status.destacado': 'Destacat',
+        'enerpro.type': 'RRHH · Seguretat privada · Gestió interna',
+        'enerpro.subtitle': "Portal de l'Empleat",
+        'enerpro.desc': "App web per a una empresa de seguretat privada que centralitza la gestió d'empleats, documents, torns, vacances, sol·licituds i administració interna.",
+        'enerpro.f1': 'Inici de sessió segur',
+        'enerpro.f2': "Panell de l'empleat",
+        'enerpro.f3': "Panell d'administració",
+        'enerpro.f4': 'Gestió documental',
+        'enerpro.f5': 'Torns i vacances',
+        'enerpro.f6': 'Sol·licituds internes',
+        'enerpro.f7': "Importació des d'Excel",
+        'enerpro.f8': 'Disseny responsive',
+        'enerpro.f9': 'Desplegament a Vercel',
+        'enerpro.cta': 'Veure presentació ↗',
+        'proj.nfp.desc': 'Botiga oficial de marxandatge de la meva banda. E-commerce amb catàleg i passarel·la de pagament.',
+        'proj.llar.desc': 'Web de lots i packs regal personalitzats. Disseny, catàleg i gestió de comandes.',
+        'proj.fichajes.desc': "Anàlisi de fitxatges amb intel·ligència artificial. Dades, prediccions i valor de mercat.",
+        'proj.compra.desc': 'Comparador de preus per prendre millors decisions de compra de manera ràpida i clara.',
+        /* laboratori IA */
+        'lab.label': 'Laboratori IA',
+        'lab.title': 'Experiments i prototips',
+        'lab.desc': 'Projectes en desenvolupament, idees en procés i proves amb IA generativa.',
+        'lab.btn.show': 'Veure experiments',
+        'lab.btn.hide': 'Veure menys',
+        'lab.onaia.desc': 'Projecte en desenvolupament.',
+        'lab.apuesta.desc': 'Anàlisi racional en apostes esportives.',
+        'lab.espartanos.desc': 'Fitness amb enfocament motivacional.',
+        'lab.shein.desc': 'Verificació de descomptes en línia.',
+        'lab.coaich.desc': 'Assistent conversacional per a relacions.',
+        'lab.redflag.desc': 'Comunicació i comportament digital.',
+        /* música */
+        'music.label': 'Banda',
+        'music.title': 'Música',
+        /* cv */
+        'cv.label': 'Trajectòria',
+        'cv.title': 'CV',
+        'cv.intro': 'Una trajectòria híbrida entre educació, administració, música i tecnologia, ara enfocada en creació digital i intel·ligència artificial aplicada.',
+        'cv.exp.h': 'Experiència',
+        'cv.edu.h': 'Formació',
+        'cv.job1.title': 'Recepcionista / Administratiu',
+        'cv.job1.meta': 'CTTI · Generalitat de Catalunya · Actualitat',
+        'cv.job1.desc': 'Gestió administrativa i suport en entorn institucional tecnològic.',
+        'cv.job2.title': 'Compositor i músic',
+        'cv.job2.meta': 'No Flag Patriots · 2022–2024',
+        'cv.job2.desc': 'Composició, directe i projecte digital de la banda.',
+        'cv.job3.title': 'Coordinador TIC',
+        'cv.job3.meta': 'Escola Joan Maragall · 2017–2020',
+        'cv.job3.desc': "Planificació digital, formació del professorat i implementació d'eines.",
+        'cv.job4.title': 'Professor de primària i música',
+        'cv.job4.meta': 'Escoles Gornal, Bernat Metge, Torre de la Miranda · 2006–2020',
+        'cv.job4.desc': "Docència a l'aula amb especialització musical.",
+        'cv.edu1.title': 'Magisteri · Educació Primària i Musical',
+        'cv.edu1.meta': 'Universitat de Barcelona · 2007',
+        'cv.edu2.title': 'FP Superior · Administració i Finances',
+        'cv.edu3.title': 'IBM Watson AI Essentials',
+        'cv.edu3.meta': 'IBM · Certificat verificat',
+        'cv.edu4.title': 'IA generativa i creació digital',
+        'cv.edu4.meta': 'Autodidacta · En curs',
+        'cv.btn.download': 'Descarregar CV',
+        /* contacte */
+        'contact.label': 'Parlem',
+        'contact.title': 'Contacte',
+        'contact.question': 'Tens una idea, una web o un procés que vulguis convertir en alguna cosa funcional?',
+        'contact.sub': 'Parlem. Puc ajudar-te a ordenar la idea, crear un prototip o convertir-la en una primera versió presentable.',
+        'contact.btn.contact': 'Contactar',
+        'contact.btn.projects': 'Veure projectes',
+        /* footer */
+        'footer.copy': '© 2026 Miguel Liébana · Fet amb creativitat i moltes reconstruccions.',
+        /* accessibilitat */
+        'fab.aria': 'Anar a contacte',
+        'nav.menu.aria': 'Obrir menú'
+      }
+    };
+
+    /* ============================================================
+       MOTOR DE TRADUCCIONS
+    ============================================================ */
+    function setLang(lang) {
+      var t = i18n[lang];
+      if (!t) return;
+
+      /* actualitzar tots els elements amb data-i18n */
+      document.querySelectorAll('[data-i18n]').forEach(function(el) {
+        var key = el.getAttribute('data-i18n');
+        if (t[key] !== undefined) el.textContent = t[key];
+      });
+
+      /* atributs d'accessibilitat */
+      var navToggleEl = document.getElementById('navToggle');
+      if (navToggleEl) navToggleEl.setAttribute('aria-label', t['nav.menu.aria']);
+      var fabEl = document.getElementById('fab');
+      if (fabEl) fabEl.setAttribute('aria-label', t['fab.aria']);
+
+      /* document */
+      document.documentElement.lang = lang;
+      document.title = t['page.title'];
+      var metaDesc = document.querySelector('meta[name="description"]');
+      if (metaDesc) metaDesc.setAttribute('content', t['meta.desc']);
+
+      /* estat dels botons de llengua */
+      document.querySelectorAll('.lang-btn').forEach(function(btn) {
+        var active = btn.getAttribute('data-lang') === lang;
+        btn.classList.toggle('active', active);
+        btn.setAttribute('aria-pressed', active);
+      });
+
+      /* sincronitzar el botó de l'acordió si ja estava obert */
+      var labMoreEl = document.getElementById('labMore');
+      var labToggleEl = document.getElementById('labToggle');
+      if (labMoreEl && labToggleEl) {
+        var isOpen = labMoreEl.classList.contains('open');
+        var span = labToggleEl.querySelector('[data-i18n]');
+        if (span) {
+          var key = isOpen ? 'lab.btn.hide' : 'lab.btn.show';
+          span.textContent = t[key];
+          span.setAttribute('data-i18n', key);
+        }
+      }
+
+      localStorage.setItem('lang', lang);
+    }
+
+    /* ============================================================
+       LÒGICA PRINCIPAL
+    ============================================================ */
     (function () {
       var nav = document.getElementById('nav');
       var navToggle = document.getElementById('navToggle');
@@ -660,20 +987,30 @@
       var labMore = document.getElementById('labMore');
       var heroSection = document.getElementById('inicio');
 
+      /* inicialitzar idioma */
+      setLang(localStorage.getItem('lang') || 'es');
+
+      /* botons de llengua */
+      document.querySelectorAll('.lang-btn').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          setLang(btn.getAttribute('data-lang'));
+        });
+      });
+
+      /* nav scroll */
       function updateNav() {
         var heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
         nav.classList.toggle('scrolled', window.scrollY + nav.offsetHeight >= heroBottom);
         fab.classList.toggle('visible', window.scrollY > 400);
       }
-
       window.addEventListener('scroll', updateNav, { passive: true });
       updateNav();
 
+      /* menú mòbil */
       navToggle.addEventListener('click', function () {
         var open = navLinks.classList.toggle('open');
         navToggle.setAttribute('aria-expanded', open);
       });
-
       navLinks.querySelectorAll('a').forEach(function (link) {
         link.addEventListener('click', function () {
           navLinks.classList.remove('open');
@@ -681,13 +1018,22 @@
         });
       });
 
+      /* acordió laboratori IA */
       labToggle.addEventListener('click', function () {
         var open = labMore.classList.toggle('open');
         labToggle.setAttribute('aria-expanded', open);
         labMore.setAttribute('aria-hidden', !open);
-        labToggle.childNodes[0].textContent = open ? 'Ver menos ' : 'Ver experimentos ';
+        var lang = localStorage.getItem('lang') || 'es';
+        var t = i18n[lang];
+        var span = labToggle.querySelector('[data-i18n]');
+        if (span && t) {
+          var key = open ? 'lab.btn.hide' : 'lab.btn.show';
+          span.textContent = t[key];
+          span.setAttribute('data-i18n', key);
+        }
       });
 
+      /* scroll reveal */
       var revealEls = document.querySelectorAll('.reveal');
       var observer = new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) {
@@ -697,7 +1043,6 @@
           }
         });
       }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
-
       revealEls.forEach(function (el) { observer.observe(el); });
     })();
   </script>
