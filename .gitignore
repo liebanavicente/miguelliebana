@@ -1,0 +1,17 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+index.rtfd/
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Local assets (not committed to repo)
+*.pdf
+newcv2026.PNG.pdf
+logomiguel.png
+nfplogo.jpg
