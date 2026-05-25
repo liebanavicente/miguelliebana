@@ -9,7 +9,11 @@
   <meta property="og:title" content="Miguel Liébana — Creador de productos digitales">
   <meta property="og:description" content="Orientación digital, IA práctica y comunicación clara. Barcelona.">
   <meta property="og:url" content="https://miguelliebana.com">
+  <meta property="og:image" content="https://miguelliebana.com/social-card.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://miguelliebana.com/social-card.jpg">
   <title>Miguel Liébana — Consultoría digital y tecnología accesible</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%230c0c0a'/%3E%3Ctext x='16' y='22' text-anchor='middle' fill='%23f0ede6' font-family='Georgia%2Cserif' font-size='13' font-weight='700'%3EML%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -44,7 +48,7 @@
     body { font-family: var(--sans); font-size: 1.0625rem; line-height: 1.65; color: var(--text); background: var(--hero-bg); -webkit-font-smoothing: antialiased; }
     h1, h2, h3 { font-family: var(--serif); font-weight: 600; line-height: 1.15; letter-spacing: -0.02em; }
     a { color: inherit; text-decoration: none; }
-    img { max-width: 100%; display: block; }
+    img { max-width: 100%; height: auto; display: block; }
     .container { width: min(100% - 2.5rem, var(--max-w)); margin-inline: auto; position: relative; }
 
     .skip-link { position: absolute; top: -100%; left: 1rem; background: var(--accent); color: var(--bg); padding: 0.5rem 1rem; border-radius: 0 0 4px 4px; font-size: 0.875rem; z-index: 999; }
@@ -164,35 +168,29 @@
     .service-card p { font-size: 0.875rem; color: var(--text-muted); line-height: 1.7; flex: 1; }
 
     /* ---- ENERPRO CASE STUDY ---- */
-    .project-hero { display: block; text-decoration: none; color: inherit; background: var(--accent); border-radius: 2px; padding: 2.5rem 3rem; margin-bottom: 1.25rem; position: relative; overflow: hidden; transition: box-shadow 0.3s, transform 0.3s var(--ease); }
+    .project-hero { display: block; text-decoration: none; color: inherit; background: var(--accent); border-radius: 2px; padding: 2rem 2.5rem; margin-bottom: 1.25rem; position: relative; overflow: hidden; transition: box-shadow 0.3s, transform 0.3s var(--ease); }
     .project-hero:hover { transform: translateY(-2px); box-shadow: 0 16px 48px rgba(26,26,24,0.22); }
     .project-hero__arrow { position: absolute; top: 1.75rem; right: 2.25rem; font-size: 1.25rem; color: rgba(248,247,244,0.18); transition: color 0.25s, transform 0.25s var(--ease); }
     .project-hero:hover .project-hero__arrow { color: rgba(248,247,244,0.45); transform: translate(3px, -3px); }
     /* header */
-    .project-hero__header { margin-bottom: 2rem; padding-right: 3rem; }
-    .project-hero__badges { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.85rem; }
+    .project-hero__header { margin-bottom: 1.4rem; padding-right: 3rem; }
+    .project-hero__badges { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.75rem; }
     .project-hero__badges .status { background: rgba(248,247,244,0.12); color: rgba(248,247,244,0.8); }
     .project-hero__badges .status--green { background: rgba(74,155,110,0.25); color: #7ecda0; }
     .project-hero__type { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(248,247,244,0.4); margin-bottom: 0.65rem; }
-    .project-hero h3 { font-size: clamp(1.75rem, 3vw, 2.6rem); color: var(--hero-text); line-height: 0.92; }
+    .project-hero h3 { font-size: clamp(1.7rem, 2.8vw, 2.45rem); color: var(--hero-text); line-height: 0.95; }
     /* main grid */
-    .project-hero__main { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; margin-bottom: 2rem; }
-    .project-hero__content { display: flex; flex-direction: column; gap: 1.25rem; }
-    .project-hero__desc { font-size: 0.95rem; color: rgba(248,247,244,0.65); line-height: 1.75; }
-    .project-hero__features { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 0.55rem 1rem; }
-    .project-hero__features li { display: flex; align-items: flex-start; gap: 0.55rem; font-size: 0.85rem; color: rgba(248,247,244,0.6); line-height: 1.35; }
-    .project-hero__features li::before { content: "✓"; color: #7ecda0; font-weight: 700; font-size: 0.75rem; flex-shrink: 0; margin-top: 0.1em; }
+    .project-hero__main { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 2rem; margin-bottom: 1.25rem; align-items: center; }
+    .project-hero__content { display: flex; flex-direction: column; gap: 1rem; }
+    .project-hero__desc { font-size: 0.95rem; color: rgba(248,247,244,0.68); line-height: 1.65; max-width: 44ch; }
+    .project-hero__features { list-style: none; display: flex; flex-wrap: wrap; gap: 0.45rem; }
+    .project-hero__features li { display: inline-flex; align-items: center; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(248,247,244,0.72); line-height: 1.2; padding: 0.4rem 0.65rem; border: 1px solid rgba(248,247,244,0.14); border-radius: 100px; background: rgba(248,247,244,0.06); }
     /* visual: screenshot + metrics */
-    .project-hero__visual { display: flex; flex-direction: column; gap: 1rem; }
+    .project-hero__visual { display: flex; flex-direction: column; gap: 0.75rem; }
     .project-hero__screenshot { border-radius: 4px; overflow: hidden; border: 1px solid rgba(248,247,244,0.1); box-shadow: 0 8px 32px rgba(0,0,0,0.4); }
-    .project-hero__screenshot img { width: 100%; display: block; }
-    .project-hero__metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.65rem; }
-    .metric { text-align: center; padding: 0.85rem 0.5rem; background: rgba(248,247,244,0.05); border: 1px solid rgba(248,247,244,0.08); border-radius: 2px; }
-    .metric__num { display: block; font-family: var(--serif); font-size: 1.6rem; font-weight: 700; color: var(--hero-text); line-height: 1; margin-bottom: 0.3rem; }
-    .metric__label { display: block; font-size: 0.62rem; color: rgba(248,247,244,0.45); letter-spacing: 0.06em; text-transform: uppercase; line-height: 1.35; }
+    .project-hero__screenshot img { width: 100%; height: auto; display: block; }
     /* footer: result + CTA */
-    .project-hero__footer { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; padding-top: 1.5rem; border-top: 1px solid rgba(248,247,244,0.1); }
-    .project-hero__result { font-size: 0.9rem; color: rgba(248,247,244,0.5); line-height: 1.7; max-width: 60ch; font-style: italic; }
+    .project-hero__footer { display: flex; align-items: center; justify-content: flex-end; gap: 1.5rem; flex-wrap: wrap; padding-top: 1rem; border-top: 1px solid rgba(248,247,244,0.1); }
     .project-hero__cta { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.875rem; font-weight: 500; letter-spacing: 0.04em; color: var(--hero-text); border: 1px solid rgba(248,247,244,0.28); padding: 0.65rem 1.25rem; border-radius: 2px; transition: background 0.25s, border-color 0.25s; white-space: nowrap; flex-shrink: 0; }
     .project-hero:hover .project-hero__cta { background: rgba(248,247,244,0.1); border-color: rgba(248,247,244,0.5); }
 
@@ -205,6 +203,9 @@
     .project-card__badges { display: flex; flex-wrap: wrap; gap: 0.4rem; }
     .project-card h3 { font-family: var(--serif); font-size: 1.35rem; font-weight: 600; padding-right: 1.5rem; line-height: 1.2; }
     .project-card p { font-size: 0.875rem; color: var(--text-muted); flex: 1; line-height: 1.65; }
+    .project-card__meta { list-style: none; display: grid; gap: 0.35rem; padding-top: 0.35rem; border-top: 1px solid rgba(26,26,24,0.07); }
+    .project-card__meta li { font-size: 0.76rem; color: var(--text-muted); line-height: 1.45; }
+    .project-card__meta strong { color: var(--text); font-weight: 600; }
     .status { align-self: flex-start; font-size: 0.62rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.25rem 0.7rem; border-radius: 100px; }
     .status--destacado { background: var(--accent); color: var(--bg); }
     .status--activo { background: #e8f0eb; color: #2d5a3d; }
@@ -272,7 +273,7 @@
       .featured-grid { grid-template-columns: repeat(2, 1fr); }
       .lab-more { grid-template-columns: repeat(2, 1fr); }
       .project-hero__main { grid-template-columns: 1fr; }
-      .project-hero__features { grid-template-columns: repeat(3, 1fr); }
+      .project-hero__screenshot img { max-height: 240px; object-fit: cover; object-position: top center; }
       .about__grid, .cv-grid { grid-template-columns: 1fr; gap: 2rem; }
       .hero h1 { font-size: clamp(3rem, 11vw, 6rem); }
       .music-block { padding: 2rem; }
@@ -286,7 +287,7 @@
       .services-grid { grid-template-columns: 1fr; }
       .featured-grid, .lab-more { grid-template-columns: 1fr; }
       .project-hero { padding: 1.75rem; }
-      .project-hero__features { grid-template-columns: 1fr 1fr; }
+      .project-hero__screenshot img { max-height: 180px; }
       .project-hero__footer { flex-direction: column; align-items: flex-start; }
       .music-block { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
       section { padding: 5rem 0; }
@@ -294,6 +295,13 @@
       .hero h1 { font-size: clamp(2.75rem, 12vw, 4.5rem); }
       .hero__right { height: 50vw; }
       .footer__inner { flex-direction: column; align-items: center; text-align: center; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+      .ticker__track { animation: none !important; }
+      .reveal { opacity: 1; transform: none; }
+      .hero__photo-wrap { transform: none !important; }
     }
   </style>
 </head>
@@ -304,7 +312,7 @@
   <header class="nav" id="nav">
     <div class="container nav__inner">
       <a href="#inicio" class="logo">
-        <img src="logomiguel.png" alt="ML">
+        <img src="logomiguel-192.png" alt="" width="192" height="192">
         Miguel <strong>Liébana</strong>
       </a>
       <div class="nav__end">
@@ -353,7 +361,7 @@
       </div>
       <div class="hero__right">
         <div class="hero__photo-wrap" id="heroPhotoWrap">
-          <img src="foto-miguel.jpg" alt="Miguel Liébana" class="hero__photo" loading="eager">
+          <img src="foto-miguel.jpg" alt="Miguel Liébana" class="hero__photo" width="900" height="900" loading="eager">
         </div>
         <div class="hero__right-overlay"></div>
       </div>
@@ -458,42 +466,22 @@
 
           <div class="project-hero__main">
             <div class="project-hero__content">
-              <p class="project-hero__desc" data-i18n="enerpro.desc">App web para una empresa de seguridad privada que centraliza la gestión de empleados, documentos, turnos, vacaciones, solicitudes y administración interna.</p>
+              <p class="project-hero__desc" data-i18n="enerpro.desc">Portal interno para centralizar recursos humanos, documentación y solicitudes en una empresa de seguridad privada.</p>
               <ul class="project-hero__features">
-                <li data-i18n="enerpro.f1">Login seguro</li>
-                <li data-i18n="enerpro.f2">Panel del empleado</li>
-                <li data-i18n="enerpro.f3">Panel de administración</li>
-                <li data-i18n="enerpro.f4">Gestión documental</li>
-                <li data-i18n="enerpro.f5">Turnos y vacaciones</li>
-                <li data-i18n="enerpro.f6">Solicitudes internas</li>
-                <li data-i18n="enerpro.f7">Importación desde Excel</li>
-                <li data-i18n="enerpro.f8">Diseño responsive</li>
-                <li data-i18n="enerpro.f9">Despliegue en Vercel</li>
+                <li data-i18n="enerpro.f1">Gestión documental</li>
+                <li data-i18n="enerpro.f2">Turnos y vacaciones</li>
+                <li data-i18n="enerpro.f3">Solicitudes internas</li>
+                <li data-i18n="enerpro.f4">Importación Excel</li>
               </ul>
             </div>
             <div class="project-hero__visual">
               <div class="project-hero__screenshot">
-                <img src="enerpro-mockup.png" alt="ENERPRO dashboard" loading="lazy">
-              </div>
-              <div class="project-hero__metrics">
-                <div class="metric">
-                  <span class="metric__num">+200</span>
-                  <span class="metric__label" data-i18n="enerpro.m1.label">Empleados gestionados</span>
-                </div>
-                <div class="metric">
-                  <span class="metric__num">9</span>
-                  <span class="metric__label" data-i18n="enerpro.m2.label">Módulos integrados</span>
-                </div>
-                <div class="metric">
-                  <span class="metric__num">100%</span>
-                  <span class="metric__label" data-i18n="enerpro.m3.label">Procesos digitalizados</span>
-                </div>
+                <img src="enerpro-mockup.png" alt="ENERPRO dashboard" width="1536" height="1024" loading="lazy">
               </div>
             </div>
           </div>
 
           <div class="project-hero__footer">
-            <p class="project-hero__result" data-i18n="enerpro.result">Centralización completa de los recursos humanos para una empresa de seguridad privada con más de 200 empleados — eliminando el papel, unificando la gestión y poniendo toda la información al alcance desde cualquier dispositivo.</p>
             <span class="project-hero__cta" data-i18n="enerpro.cta">Ver presentación ↗</span>
           </div>
         </a>
@@ -507,6 +495,10 @@
             </div>
             <h3>No Flag Patriots Shop</h3>
             <p data-i18n="proj.nfp.desc">Tienda oficial de merchandising de mi banda. E-commerce con catálogo y pasarela de pago.</p>
+            <ul class="project-card__meta">
+              <li><strong data-i18n="project.meta.role">Rol</strong>: <span data-i18n="proj.nfp.role">diseño, catálogo y enfoque comercial</span></li>
+              <li><strong data-i18n="project.meta.result">Resultado</strong>: <span data-i18n="proj.nfp.result">tienda activa para vender merchandising propio</span></li>
+            </ul>
           </a>
           <a href="https://lallardeldolc.vercel.app" class="project-card" target="_blank" rel="noopener">
             <div class="project-card__badges">
@@ -515,6 +507,10 @@
             </div>
             <h3>La Llar del Dolç</h3>
             <p data-i18n="proj.llar.desc">Web de lotes y packs regalo personalizados. Diseño, catálogo y gestión de pedidos.</p>
+            <ul class="project-card__meta">
+              <li><strong data-i18n="project.meta.role">Rol</strong>: <span data-i18n="proj.llar.role">web, estructura de oferta y presentación visual</span></li>
+              <li><strong data-i18n="project.meta.result">Resultado</strong>: <span data-i18n="proj.llar.result">catálogo claro para pedidos personalizados</span></li>
+            </ul>
           </a>
           <a href="https://fichajesradaria.lovable.app" class="project-card" target="_blank" rel="noopener">
             <div class="project-card__badges">
@@ -522,6 +518,10 @@
             </div>
             <h3>Fichajes Radar IA</h3>
             <p data-i18n="proj.fichajes.desc">Análisis de fichajes con inteligencia artificial. Datos, predicciones y valor de mercado.</p>
+            <ul class="project-card__meta">
+              <li><strong data-i18n="project.meta.role">Rol</strong>: <span data-i18n="proj.fichajes.role">prototipo IA, narrativa de datos y experiencia</span></li>
+              <li><strong data-i18n="project.meta.result">Resultado</strong>: <span data-i18n="proj.fichajes.result">demo funcional para explorar decisiones deportivas</span></li>
+            </ul>
           </a>
           <a href="https://comprabarata.lovable.app" class="project-card" target="_blank" rel="noopener">
             <div class="project-card__badges">
@@ -529,6 +529,10 @@
             </div>
             <h3>Compra Barata</h3>
             <p data-i18n="proj.compra.desc">Comparador de precios para tomar mejores decisiones de compra de forma rápida y clara.</p>
+            <ul class="project-card__meta">
+              <li><strong data-i18n="project.meta.role">Rol</strong>: <span data-i18n="proj.compra.role">concepto, flujo de comparación y prototipado</span></li>
+              <li><strong data-i18n="project.meta.result">Resultado</strong>: <span data-i18n="proj.compra.result">herramienta directa para comparar antes de comprar</span></li>
+            </ul>
           </a>
         </div>
 
@@ -569,13 +573,13 @@
         <h2 class="section-title reveal reveal-delay-1" data-i18n="music.title">Música</h2>
         <div class="music-block reveal reveal-delay-2">
           <div class="music-block__main">
-            <img src="nfplogo.jpg" alt="No Flag Patriots" class="music-block__logo" loading="lazy">
+            <img src="nfplogo.jpg" alt="No Flag Patriots" class="music-block__logo" width="1280" height="1280" loading="lazy">
             <div>
               <h3>No Flag Patriots</h3>
               <p class="genre">Punk Rock · Barcelona</p>
             </div>
           </div>
-          <a href="https://noflagpatriots.com" class="btn btn--outline" target="_blank" rel="noopener">noflagpatriots.com</a>
+          <a href="https://noflagpatriotshop.com" class="btn btn--outline" target="_blank" rel="noopener" data-i18n="music.shop">Tienda oficial</a>
         </div>
       </div>
     </section>
@@ -664,7 +668,7 @@
       <span data-i18n="footer.copy">© 2026 Miguel Liébana · Hecho con creatividad y muchas reconstrucciones.</span>
       <nav class="footer__links" aria-label="Enlaces rápidos">
         <a href="https://www.linkedin.com/in/mliebanavicente" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="https://noflagpatriots.com" target="_blank" rel="noopener">No Flag Patriots</a>
+        <a href="https://noflagpatriotshop.com" target="_blank" rel="noopener">No Flag Patriots Shop</a>
       </nav>
     </div>
   </footer>
@@ -702,19 +706,22 @@
         'projects.label': 'Proyectos', 'projects.title': 'Proyectos destacados',
         'status.real': 'Proyecto real', 'status.saas': 'SaaS interno', 'status.activo': 'Activo', 'status.beta': 'Beta', 'status.destacado': 'Destacado',
         'enerpro.type': 'RRHH · Seguridad privada · Gestión interna', 'enerpro.subtitle': 'Portal del Empleado',
-        'enerpro.desc': 'App web para una empresa de seguridad privada que centraliza la gestión de empleados, documentos, turnos, vacaciones, solicitudes y administración interna.',
-        'enerpro.f1': 'Login seguro', 'enerpro.f2': 'Panel del empleado', 'enerpro.f3': 'Panel de administración', 'enerpro.f4': 'Gestión documental', 'enerpro.f5': 'Turnos y vacaciones', 'enerpro.f6': 'Solicitudes internas', 'enerpro.f7': 'Importación desde Excel', 'enerpro.f8': 'Diseño responsive', 'enerpro.f9': 'Despliegue en Vercel',
-        'enerpro.m1.label': 'Empleados gestionados', 'enerpro.m2.label': 'Módulos integrados', 'enerpro.m3.label': 'Procesos digitalizados',
-        'enerpro.result': 'Centralización completa de los recursos humanos para una empresa de seguridad privada con más de 200 empleados — eliminando el papel, unificando la gestión y poniendo toda la información al alcance desde cualquier dispositivo.',
+        'enerpro.desc': 'Portal interno para centralizar recursos humanos, documentación y solicitudes en una empresa de seguridad privada.',
+        'enerpro.f1': 'Gestión documental', 'enerpro.f2': 'Turnos y vacaciones', 'enerpro.f3': 'Solicitudes internas', 'enerpro.f4': 'Importación Excel',
         'enerpro.cta': 'Ver presentación ↗',
+        'project.meta.role': 'Rol', 'project.meta.result': 'Resultado',
         'proj.nfp.desc': 'Tienda oficial de merchandising de mi banda. E-commerce con catálogo y pasarela de pago.',
+        'proj.nfp.role': 'diseño, catálogo y enfoque comercial', 'proj.nfp.result': 'tienda activa para vender merchandising propio',
         'proj.llar.desc': 'Web de lotes y packs regalo personalizados. Diseño, catálogo y gestión de pedidos.',
+        'proj.llar.role': 'web, estructura de oferta y presentación visual', 'proj.llar.result': 'catálogo claro para pedidos personalizados',
         'proj.fichajes.desc': 'Análisis de fichajes con inteligencia artificial. Datos, predicciones y valor de mercado.',
+        'proj.fichajes.role': 'prototipo IA, narrativa de datos y experiencia', 'proj.fichajes.result': 'demo funcional para explorar decisiones deportivas',
         'proj.compra.desc': 'Comparador de precios para tomar mejores decisiones de compra de forma rápida y clara.',
+        'proj.compra.role': 'concepto, flujo de comparación y prototipado', 'proj.compra.result': 'herramienta directa para comparar antes de comprar',
         'lab.label': 'Laboratorio IA', 'lab.title': 'Experimentos y prototipos', 'lab.desc': 'Proyectos en desarrollo, ideas en proceso y pruebas con IA generativa.',
         'lab.btn.show': 'Ver experimentos', 'lab.btn.hide': 'Ver menos',
-        'lab.onaia.desc': 'Proyecto en desarrollo.', 'lab.apuesta.desc': 'Análisis racional en apuestas deportivas.', 'lab.espartanos.desc': 'Fitness con enfoque motivacional.', 'lab.shein.desc': 'Verificación de descuentos online.', 'lab.coaich.desc': 'Asistente conversacional para relaciones.', 'lab.redflag.desc': 'Comunicación y comportamiento digital.',
-        'music.label': 'Banda', 'music.title': 'Música',
+        'lab.onaia.desc': 'Proyecto en desarrollo.', 'lab.espartanos.desc': 'Fitness con enfoque motivacional.',
+        'music.label': 'Banda', 'music.title': 'Música', 'music.shop': 'Tienda oficial',
         'cv.label': 'Trayectoria', 'cv.title': 'CV',
         'cv.intro': 'Una trayectoria híbrida entre educación, administración, música y tecnología, ahora enfocada en creación digital e inteligencia artificial aplicada.',
         'cv.exp.h': 'Experiencia', 'cv.edu.h': 'Formación',
@@ -756,19 +763,22 @@
         'projects.label': 'Projectes', 'projects.title': 'Projectes destacats',
         'status.real': 'Projecte real', 'status.saas': 'SaaS intern', 'status.activo': 'Actiu', 'status.beta': 'Beta', 'status.destacado': 'Destacat',
         'enerpro.type': 'RRHH · Seguretat privada · Gestió interna', 'enerpro.subtitle': "Portal de l'Empleat",
-        'enerpro.desc': "App web per a una empresa de seguretat privada que centralitza la gestió d'empleats, documents, torns, vacances, sol·licituds i administració interna.",
-        'enerpro.f1': 'Inici de sessió segur', 'enerpro.f2': "Panell de l'empleat", 'enerpro.f3': "Panell d'administració", 'enerpro.f4': 'Gestió documental', 'enerpro.f5': 'Torns i vacances', 'enerpro.f6': 'Sol·licituds internes', 'enerpro.f7': "Importació des d'Excel", 'enerpro.f8': 'Disseny responsive', 'enerpro.f9': 'Desplegament a Vercel',
-        'enerpro.m1.label': 'Empleats gestionats', 'enerpro.m2.label': 'Mòduls integrats', 'enerpro.m3.label': 'Processos digitalitzats',
-        'enerpro.result': "Centralització completa dels recursos humans per a una empresa de seguretat privada amb més de 200 empleats — eliminant el paper, unificant la gestió i posant tota la informació a l'abast des de qualsevol dispositiu.",
+        'enerpro.desc': 'Portal intern per centralitzar recursos humans, documentació i sol·licituds en una empresa de seguretat privada.',
+        'enerpro.f1': 'Gestió documental', 'enerpro.f2': 'Torns i vacances', 'enerpro.f3': 'Sol·licituds internes', 'enerpro.f4': "Importació Excel",
         'enerpro.cta': 'Veure presentació ↗',
+        'project.meta.role': 'Rol', 'project.meta.result': 'Resultat',
         'proj.nfp.desc': 'Botiga oficial de marxandatge de la meva banda. E-commerce amb catàleg i passarel·la de pagament.',
+        'proj.nfp.role': 'disseny, catàleg i enfocament comercial', 'proj.nfp.result': 'botiga activa per vendre marxandatge propi',
         'proj.llar.desc': 'Web de lots i packs regal personalitzats. Disseny, catàleg i gestió de comandes.',
+        'proj.llar.role': "web, estructura d'oferta i presentació visual", 'proj.llar.result': 'catàleg clar per a comandes personalitzades',
         'proj.fichajes.desc': "Anàlisi de fitxatges amb intel·ligència artificial. Dades, prediccions i valor de mercat.",
+        'proj.fichajes.role': "prototip IA, narrativa de dades i experiència", 'proj.fichajes.result': 'demo funcional per explorar decisions esportives',
         'proj.compra.desc': 'Comparador de preus per prendre millors decisions de compra de manera ràpida i clara.',
+        'proj.compra.role': 'concepte, flux de comparació i prototipatge', 'proj.compra.result': 'eina directa per comparar abans de comprar',
         'lab.label': 'Laboratori IA', 'lab.title': 'Experiments i prototips', 'lab.desc': 'Projectes en desenvolupament, idees en procés i proves amb IA generativa.',
         'lab.btn.show': 'Veure experiments', 'lab.btn.hide': 'Veure menys',
-        'lab.onaia.desc': 'Projecte en desenvolupament.', 'lab.apuesta.desc': 'Anàlisi racional en apostes esportives.', 'lab.espartanos.desc': 'Fitness amb enfocament motivacional.', 'lab.shein.desc': 'Verificació de descomptes en línia.', 'lab.coaich.desc': 'Assistent conversacional per a relacions.', 'lab.redflag.desc': 'Comunicació i comportament digital.',
-        'music.label': 'Banda', 'music.title': 'Música',
+        'lab.onaia.desc': 'Projecte en desenvolupament.', 'lab.espartanos.desc': 'Fitness amb enfocament motivacional.',
+        'music.label': 'Banda', 'music.title': 'Música', 'music.shop': 'Botiga oficial',
         'cv.label': 'Trajectòria', 'cv.title': 'CV',
         'cv.intro': 'Una trajectòria híbrida entre educació, administració, música i tecnologia, ara enfocada en creació digital i intel·ligència artificial aplicada.',
         'cv.exp.h': 'Experiència', 'cv.edu.h': 'Formació',
