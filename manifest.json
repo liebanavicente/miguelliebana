@@ -1,0 +1,23 @@
+{
+  "name": "Miguel Liébana — Orientación digital e IA práctica",
+  "short_name": "Miguel Liébana",
+  "description": "Orientación digital, IA práctica y comunicación clara. Barcelona.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0c0c0a",
+  "theme_color": "#0c0c0a",
+  "icons": [
+    {
+      "src": "logomiguel-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "logomiguel.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
