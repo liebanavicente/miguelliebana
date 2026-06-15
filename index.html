@@ -420,6 +420,29 @@
       .hero h1 { font-size: clamp(4rem, 20vw, 6.7rem); }
       .hero__inner { padding-top: 4.5rem; padding-bottom: 2.5rem; }
     }
+    /* ---- SHIMMER CARDS ---- */
+    .project-card::before,
+    .service-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        105deg,
+        transparent 35%,
+        rgba(255, 253, 248, 0.11) 50%,
+        transparent 65%
+      );
+      transform: translateX(-120%);
+      transition: transform 0s;
+      pointer-events: none;
+      border-radius: inherit;
+    }
+    .project-card:hover::before,
+    .service-card:hover::before {
+      transform: translateX(220%);
+      transition: transform 0.7s ease-in-out;
+    }
+
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
@@ -522,16 +545,16 @@
         <h2 class="section-title reveal reveal-delay-1" data-i18n="about.title">Sobre mí</h2>
         <div class="about__grid">
           <div class="about__text reveal">
-            <p data-i18n="about.p1">Trabajo en proyectos digitales, contenidos web, inteligencia artificial práctica y herramientas tecnológicas sencillas. Mi cliente habitual es una persona, un equipo pequeño o un negocio que quiere hacer algo real con la tecnología, sin complicarse.</p>
-            <p data-i18n="about.p2">Llego hasta aquí desde una trayectoria larga en educación, coordinación TIC, administración y atención al usuario. Esa experiencia me dio algo que no se aprende en un curso: capacidad para escuchar, explicar con claridad y acompañar procesos de cambio.</p>
+            <p data-i18n="about.p1">Trabajo como administrativo en el CTTI de la Generalitat de Catalunya y, en paralelo, construyo proyectos digitales propios: portales web, herramientas con IA y aplicaciones desplegadas con stack moderno.</p>
+            <p data-i18n="about.p2">Vengo de la docencia y la coordinación TIC, con formación en Administración y Finanzas. Esa mezcla me permite entender tanto los procesos internos de una organización como lo que se puede construir con tecnología accesible hoy.</p>
           </div>
           <ul class="about__list reveal reveal-delay-1">
-            <li data-i18n="about.li1">Consultoría y orientación digital</li>
-            <li data-i18n="about.li2">IA práctica y herramientas accesibles</li>
-            <li data-i18n="about.li3">Comunicación y contenidos web</li>
-            <li data-i18n="about.li4">Coordinación TIC y soporte tecnológico</li>
-            <li data-i18n="about.li5">Músico y creador de contenido digital</li>
-            <li data-i18n="about.li6">Atención al usuario y acompañamiento de equipos</li>
+            <li data-i18n="about.li1">Desarrollo web: HTML, Supabase, JavaScript, Vercel</li>
+            <li data-i18n="about.li2">Gestión documental y soporte administrativo digital</li>
+            <li data-i18n="about.li3">Coordinación TIC y formación tecnológica</li>
+            <li data-i18n="about.li4">IA generativa y automatizaciones con APIs externas</li>
+            <li data-i18n="about.li5">Músico activo — No Flag Patriots · Barcelona</li>
+            <li data-i18n="about.li6">Español / Català · Inglés B2 · Alemán C2</li>
           </ul>
         </div>
       </div>
@@ -820,9 +843,9 @@
         'hero.btn.projects': 'Ver proyectos', 'hero.btn.contact': 'Contactar', 'hero.btn.cv': 'Descargar CV ↓', 'hero.badge': 'Disponible · Barcelona',
         'ticker.1': 'Productos digitales', 'ticker.2': 'IA aplicada', 'ticker.3': 'Diseño web', 'ticker.4': 'Automatización', 'ticker.5': 'Barcelona', 'ticker.6': 'Propósito', 'ticker.7': 'Ejecución real', 'ticker.8': 'Tecnología accesible',
         'about.label': 'Perfil', 'about.title': 'Sobre mí',
-        'about.p1': 'Trabajo en proyectos digitales, contenidos web, inteligencia artificial práctica y herramientas tecnológicas sencillas. Mi cliente habitual es una persona, un equipo pequeño o un negocio que quiere hacer algo real con la tecnología, sin complicarse.',
-        'about.p2': 'Llego hasta aquí desde una trayectoria larga en educación, coordinación TIC, administración y atención al usuario. Esa experiencia me dio algo que no se aprende en un curso: capacidad para escuchar, explicar con claridad y acompañar procesos de cambio.',
-        'about.li1': 'Consultoría y orientación digital', 'about.li2': 'IA práctica y herramientas accesibles', 'about.li3': 'Comunicación y contenidos web', 'about.li4': 'Coordinación TIC y soporte tecnológico', 'about.li5': 'Músico y creador de contenido digital', 'about.li6': 'Atención al usuario y acompañamiento de equipos',
+        'about.p1': 'Trabajo como administrativo en el CTTI de la Generalitat de Catalunya y, en paralelo, construyo proyectos digitales propios: portales web, herramientas con IA y aplicaciones desplegadas con stack moderno.',
+        'about.p2': 'Vengo de la docencia y la coordinación TIC, con formación en Administración y Finanzas. Esa mezcla me permite entender tanto los procesos internos de una organización como lo que se puede construir con tecnología accesible hoy.',
+        'about.li1': 'Desarrollo web: HTML, Supabase, JavaScript, Vercel', 'about.li2': 'Gestión documental y soporte administrativo digital', 'about.li3': 'Coordinación TIC y formación tecnológica', 'about.li4': 'IA generativa y automatizaciones con APIs externas', 'about.li5': 'Músico activo — No Flag Patriots · Barcelona', 'about.li6': 'Español / Català · Inglés B2 · Alemán C2',
         'services.label': 'Valor', 'services.title': 'Qué puedo aportar',
         'services.1.title': 'Webs funcionales desde cero', 'services.1.desc': 'Desarrollo e implemento webs, tiendas y herramientas digitales con stack moderno: HTML, Supabase, JavaScript y Vercel. Del prototipo al despliegue real.',
         'services.2.title': 'Gestión y soporte administrativo', 'services.2.desc': 'Organización de procesos, gestión documental y soporte en entornos digitales. Formación en Administración y Finanzas y experiencia en entornos institucionales.',
@@ -882,9 +905,9 @@
         'hero.btn.projects': 'Veure projectes', 'hero.btn.contact': 'Contactar', 'hero.btn.cv': 'Descarregar CV ↓', 'hero.badge': 'Disponible · Barcelona',
         'ticker.1': 'Productes digitals', 'ticker.2': 'IA aplicada', 'ticker.3': 'Disseny web', 'ticker.4': 'Automatització', 'ticker.5': 'Barcelona', 'ticker.6': 'Propòsit', 'ticker.7': 'Execució real', 'ticker.8': 'Tecnologia accessible',
         'about.label': 'Perfil', 'about.title': 'Sobre mi',
-        'about.p1': "Treballo en projectes digitals, continguts web, intel·ligència artificial pràctica i eines tecnològiques senzilles. El meu client habitual és una persona, un equip petit o un negoci que vol fer alguna cosa real amb la tecnologia, sense complicar-se.",
-        'about.p2': "Arribo fins aquí des d'una trajectòria llarga en educació, coordinació TIC, administració i atenció a l'usuari. Aquesta experiència em va donar alguna cosa que no s'aprèn en un curs: capacitat per escoltar, explicar amb claredat i acompanyar processos de canvi.",
-        'about.li1': 'Consultoria i orientació digital', 'about.li2': 'IA pràctica i eines accessibles', 'about.li3': 'Comunicació i continguts web', 'about.li4': 'Coordinació TIC i suport tecnològic', 'about.li5': 'Músic i creador de contingut digital', 'about.li6': "Atenció a l'usuari i acompanyament d'equips",
+        'about.p1': "Treballo com a administratiu al CTTI de la Generalitat de Catalunya i, en paral·lel, construeixo projectes digitals propis: portals web, eines amb IA i aplicacions desplegades amb stack modern.",
+        'about.p2': "Vinc de la docència i la coordinació TIC, amb formació en Administració i Finances. Aquesta barreja em permet entendre tant els processos interns d'una organització com el que es pot construir amb tecnologia accessible avui.",
+        'about.li1': 'Desenvolupament web: HTML, Supabase, JavaScript, Vercel', 'about.li2': 'Gestió documental i suport administratiu digital', 'about.li3': 'Coordinació TIC i formació tecnològica', 'about.li4': 'IA generativa i automatitzacions amb APIs externes', 'about.li5': 'Músic actiu — No Flag Patriots · Barcelona', 'about.li6': 'Espanyol / Català · Anglès B2 · Alemany C2',
         'services.label': 'Valor', 'services.title': 'Què puc aportar',
         'services.1.title': 'Webs funcionals des de zero', 'services.1.desc': 'Desenvolupo i implemento webs, botigues i eines digitals amb stack modern: HTML, Supabase, JavaScript i Vercel. Del prototip al desplegament real.',
         'services.2.title': 'Gestió i suport administratiu', 'services.2.desc': "Organització de processos, gestió documental i suport en entorns digitals. Formació en Administració i Finances i experiència en entorns institucionals.",
