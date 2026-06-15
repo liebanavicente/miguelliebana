@@ -420,6 +420,33 @@
       .hero h1 { font-size: clamp(4rem, 20vw, 6.7rem); }
       .hero__inner { padding-top: 4.5rem; padding-bottom: 2.5rem; }
     }
+    /* ---- ANIMATED HERO GRADIENT ---- */
+    @keyframes hero-aurora {
+      0%   { opacity: 0.55; transform: scale(1)    translate(0, 0); }
+      50%  { opacity: 1;    transform: scale(1.08) translate(-4%, 3%); }
+      100% { opacity: 0.55; transform: scale(1)    translate(0, 0); }
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse 55% 55% at 18% 72%, rgba(55,45,18,0.28) 0%, transparent 65%),
+        radial-gradient(ellipse 35% 40% at 78% 25%, rgba(20,35,55,0.18) 0%, transparent 55%);
+      animation: hero-aurora 22s ease-in-out infinite;
+    }
+
+    /* ---- SECTION NUMBERS — más visibles ---- */
+    .section-num { color: rgba(42,42,40,0.065); }
+
+    /* ---- DOT GRID — fondos de sección ---- */
+    #sobre-mi, #laboratorio, #cv, #servicios, #musica, #contacto {
+      background-image: radial-gradient(circle, rgba(42,42,40,0.055) 1px, transparent 1px);
+      background-size: 22px 22px;
+    }
+
     /* ---- SHIMMER CARDS ---- */
     .project-card::before,
     .service-card::before {
@@ -545,7 +572,7 @@
         <h2 class="section-title reveal reveal-delay-1" data-i18n="about.title">Sobre mí</h2>
         <div class="about__grid">
           <div class="about__text reveal">
-            <p data-i18n="about.p1">Trabajo como administrativo en el CTTI de la Generalitat de Catalunya y, en paralelo, construyo proyectos digitales propios: portales web, herramientas con IA y aplicaciones desplegadas con stack moderno.</p>
+            <p data-i18n="about.p1">Trabajo como recepcionista en el CTTI de la Generalitat de Catalunya y, en paralelo, construyo proyectos digitales propios: portales web, herramientas con IA y aplicaciones desplegadas con stack moderno.</p>
             <p data-i18n="about.p2">Vengo de la docencia y la coordinación TIC, con formación en Administración y Finanzas. Esa mezcla me permite entender tanto los procesos internos de una organización como lo que se puede construir con tecnología accesible hoy.</p>
           </div>
           <ul class="about__list reveal reveal-delay-1">
@@ -843,7 +870,7 @@
         'hero.btn.projects': 'Ver proyectos', 'hero.btn.contact': 'Contactar', 'hero.btn.cv': 'Descargar CV ↓', 'hero.badge': 'Disponible · Barcelona',
         'ticker.1': 'Productos digitales', 'ticker.2': 'IA aplicada', 'ticker.3': 'Diseño web', 'ticker.4': 'Automatización', 'ticker.5': 'Barcelona', 'ticker.6': 'Propósito', 'ticker.7': 'Ejecución real', 'ticker.8': 'Tecnología accesible',
         'about.label': 'Perfil', 'about.title': 'Sobre mí',
-        'about.p1': 'Trabajo como administrativo en el CTTI de la Generalitat de Catalunya y, en paralelo, construyo proyectos digitales propios: portales web, herramientas con IA y aplicaciones desplegadas con stack moderno.',
+        'about.p1': 'Trabajo como recepcionista en el CTTI de la Generalitat de Catalunya y, en paralelo, construyo proyectos digitales propios: portales web, herramientas con IA y aplicaciones desplegadas con stack moderno.',
         'about.p2': 'Vengo de la docencia y la coordinación TIC, con formación en Administración y Finanzas. Esa mezcla me permite entender tanto los procesos internos de una organización como lo que se puede construir con tecnología accesible hoy.',
         'about.li1': 'Desarrollo web: HTML, Supabase, JavaScript, Vercel', 'about.li2': 'Gestión documental y soporte administrativo digital', 'about.li3': 'Coordinación TIC y formación tecnológica', 'about.li4': 'IA generativa y automatizaciones con APIs externas', 'about.li5': 'Músico activo — No Flag Patriots · Barcelona', 'about.li6': 'Español / Català · Inglés B2 · Alemán C2',
         'services.label': 'Valor', 'services.title': 'Qué puedo aportar',
@@ -905,7 +932,7 @@
         'hero.btn.projects': 'Veure projectes', 'hero.btn.contact': 'Contactar', 'hero.btn.cv': 'Descarregar CV ↓', 'hero.badge': 'Disponible · Barcelona',
         'ticker.1': 'Productes digitals', 'ticker.2': 'IA aplicada', 'ticker.3': 'Disseny web', 'ticker.4': 'Automatització', 'ticker.5': 'Barcelona', 'ticker.6': 'Propòsit', 'ticker.7': 'Execució real', 'ticker.8': 'Tecnologia accessible',
         'about.label': 'Perfil', 'about.title': 'Sobre mi',
-        'about.p1': "Treballo com a administratiu al CTTI de la Generalitat de Catalunya i, en paral·lel, construeixo projectes digitals propis: portals web, eines amb IA i aplicacions desplegades amb stack modern.",
+        'about.p1': "Treballo com a recepcionista al CTTI de la Generalitat de Catalunya i, en paral·lel, construeixo projectes digitals propis: portals web, eines amb IA i aplicacions desplegades amb stack modern.",
         'about.p2': "Vinc de la docència i la coordinació TIC, amb formació en Administració i Finances. Aquesta barreja em permet entendre tant els processos interns d'una organització com el que es pot construir amb tecnologia accessible avui.",
         'about.li1': 'Desenvolupament web: HTML, Supabase, JavaScript, Vercel', 'about.li2': 'Gestió documental i suport administratiu digital', 'about.li3': 'Coordinació TIC i formació tecnològica', 'about.li4': 'IA generativa i automatitzacions amb APIs externes', 'about.li5': 'Músic actiu — No Flag Patriots · Barcelona', 'about.li6': 'Espanyol / Català · Anglès B2 · Alemany C2',
         'services.label': 'Valor', 'services.title': 'Què puc aportar',
