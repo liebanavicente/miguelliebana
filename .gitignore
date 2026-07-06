@@ -12,6 +12,8 @@ index.rtfd/
 
 # Local assets (not committed to repo)
 *.pdf
+!cv2026newpdf.pdf
 newcv2026.PNG.pdf
 logomiguel.png
 nfplogo.jpg
+.vercel
