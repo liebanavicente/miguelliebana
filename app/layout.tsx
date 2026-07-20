@@ -1,15 +1,47 @@
-import { Geist, Geist_Mono } from "next/font/google"
+import type { Metadata } from "next"
+import { Plus_Jakarta_Sans } from "next/font/google"
 
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils"
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'})
-
-const fontMono = Geist_Mono({
+const sans = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  variable: "--font-mono",
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-sans-site",
 })
+
+const siteUrl = "https://miguelliebana.com"
+
+export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
+  title: "Miguel Liébana — Orientación digital e IA práctica",
+  description:
+    "Orientación digital, IA práctica y comunicación clara. Barcelona.",
+  manifest: "/manifest.json",
+  icons: {
+    icon: [
+      { url: "/logomiguel-192.png", sizes: "192x192", type: "image/png" },
+    ],
+    shortcut: "/logomiguel-192.png",
+    apple: "/logomiguel.png",
+  },
+  openGraph: {
+    type: "website",
+    title: "Miguel Liébana — Orientación digital e IA práctica",
+    description: "Orientación digital, IA práctica y comunicación clara. Barcelona.",
+    url: siteUrl,
+    images: [{ url: "/social-card.jpg", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/social-card.jpg"],
+  },
+}
+
+export const viewport = {
+  themeColor: "#0c0c0a",
+}
 
 export default function RootLayout({
   children,
@@ -18,9 +50,9 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
+      lang="es"
       suppressHydrationWarning
-      className={cn("antialiased", fontMono.variable, "font-sans", geist.variable)}
+      className={cn("dark antialiased", sans.variable)}
     >
       <body>
         <ThemeProvider>{children}</ThemeProvider>
